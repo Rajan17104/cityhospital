@@ -2,7 +2,7 @@ import React from 'react';
 
 function Main(props) {
     return (
-      <div>
+      <>
   <section id="hero" className="d-flex align-items-center">
     <div className="container">
       <h1>Welcome to City <br />Multispeciality Hospital</h1>
@@ -262,7 +262,7 @@ function Main(props) {
       </div>
     </section>
   </main>
-</div>
+  </>
 
     );
 }
