@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import Home from './Home';
+import Home from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import Header from './Header';
 
 function App() {
   return (
    <>
-  <Home />
+  <Header />
   <Main />
   <Footer />
    </>

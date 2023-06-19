@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Home(props) {
+function Header(props) {
     return (
         <div>
   <div className="main-header">
@@ -49,4 +49,4 @@ function Home(props) {
     );
 }
 
-export default Home;
+export default Header;
