@@ -11,12 +11,14 @@ function Auth(props) {
       <div className="container">
         <div className="section-title">
           {
-            authType === 'login' ? <h2>Login</h2> : <h2>Sign up</h2> 
+            authType === 'login' ? <h2>Login</h2> : <h2>Sign up</h2>
           }
-          
-          <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
+          {
+            // password === 'forget' ? <h2>Forget</h2> : null
+          }
+          {/* <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
             blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
+            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p> */}
         </div>
         <form action method="post" role="form" className="php-email-form">
           <div className="row justify-content-center" >
@@ -28,7 +30,10 @@ function Auth(props) {
                 </div>
                 
             }
-
+            {
+             
+                
+            }
             <div className="col-md-7 form-group mt-3 mt-md-0">
               <input type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
               <div className="validate" />
@@ -55,10 +60,10 @@ function Auth(props) {
       }<br /><br />
 
       {
-        authType === 'login' ?  
+        authType === 'login' ?
 
-          <span>Change a password ?<a href="#" onClick={() => setPassword('forget') }>  Forget password</a> </span>
-          : null     
+          <span>Change a password ?<a href="#" onClick={() => setPassword('forget')}>  Forget password</a> </span>
+          :  null
 
       }
     </section>
