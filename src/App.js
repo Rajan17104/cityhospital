@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import Footer from './component/Footer';
 import Header from './component/Header';
@@ -10,6 +9,11 @@ import Appointment from './container/Appointment';
 import Departments from './container/Departments';
 import Doctors from './container/Doctors';
 import Doctor from './container/Doctor';
+import VisitingDoctor from './container/VisitingDoctor';
+import NotFound from './container/Notfound';
+import Auth from './container/Auth';
+
+
 
 
 function App() {
@@ -23,7 +27,17 @@ function App() {
         <Route  path='/about' element={<About />}/>
         <Route  path='/contact' element={<Contact />}/>
         <Route path='/appointment' element={<Appointment />} />
-        <Route path='/doctor/:id' element={<Doctor />} />
+        {/* <Route path='/doctor/:id' element={<Doctor />} />
+        <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} /> */}
+
+        <Route path='/doctor/'>
+        <Route path=':id' element={<Doctor />} />
+        <Route path='visiting_doctor' element={<VisitingDoctor />} />
+        </Route>
+
+        <Route path='*' element={<NotFound />} />
+        <Route path='/auth'  element={<Auth />}/>
+
       </Routes>
       <Footer /> 
     </>

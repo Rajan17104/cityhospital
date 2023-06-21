@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Doctor from './Doctor';
 
 
 const doctordata = [
@@ -50,8 +49,9 @@ function Doctors(props) {
             tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
             ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
           </p>
-          {/* <Link to='/doctor/1'>Doctor 1</Link>
-          <Link to='/doctor/2'>Doctor 2</Link> */}
+          <Link to='/doctor/1'>Doctor 1</Link><br/>
+          <Link to='/doctor/2'>Doctor 2</Link><br/>
+          <Link to='/doctor/visiting_doctor'>Visiting Doctor</Link>
         </div>
         <div className="row">
           {
@@ -70,7 +70,6 @@ function Doctors(props) {
                         <a href><i className="ri-facebook-fill" /></a>
                         <a href><i className="ri-instagram-fill" /></a>
                         <a href><i className="ri-linkedin-box-fill"/> </a>
-                        {/* <Doctor did={v.id}/> */}
                       </div>
                     </div>
                   </div>

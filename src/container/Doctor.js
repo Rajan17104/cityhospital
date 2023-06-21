@@ -41,21 +41,23 @@ const doctordata = [
 function Doctor(props) {
 
   const {id} = useParams();
+  
+  let fdata = doctordata.filter((v) => v.id === parseInt(id))
 
   return (
     <div className="row">
       {
-        doctordata.map((v) => {
-          if(id == v.id){
-            return (
+        // filterdata.map((v) => {
+        //   if(id == v.id){
+            // return (
               <div className="col-lg-6-">
                 {/* <p>{id}</p> */}
                 <div className="member d-flex align-items-start">
-                  <div className="pic"><img src={v.url} className="img-doctor-" alt /></div>
+                  <div className="pic"><img src={fdata[0].url} className="img-doctor-" alt /></div>
                   <div className="member-info-">
-                    <p><span> Dr Name :   </span> {v.name}</p>
-                    <p><span>Dr Designation :   </span>{v.designation}</p> 
-                    <p><span>Dr Description :   </span> {v.description}</p>
+                    <p><span> Dr Name :   </span> {fdata[0].name}</p>
+                    <p><span>Dr Designation :   </span>{fdata[0].designation}</p> 
+                    <p><span>Dr Description :   </span> {fdata[0].description}</p>
                     <div className="social-">
                       <a href><i className="ri-twitter-fill" /></a>
                       <a href><i className="ri-facebook-fill" /></a>
@@ -65,9 +67,9 @@ function Doctor(props) {
                   </div>
                 </div>
               </div>
-            )
-          }
-        })
+            // );
+        //   }
+        // })
       }
     </div>
   )
