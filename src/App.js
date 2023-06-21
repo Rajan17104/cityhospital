@@ -12,6 +12,7 @@ import Doctor from './container/Doctor';
 import VisitingDoctor from './container/VisitingDoctor';
 import NotFound from './container/Notfound';
 import Auth from './container/Auth';
+import Extra from './container/Extra';
 
 
 
@@ -37,6 +38,7 @@ function App() {
 
         <Route path='*' element={<NotFound />} />
         <Route path='/auth'  element={<Auth />}/>
+        <Route path='/extra' element={<Extra />} />
 
       </Routes>
       <Footer /> 
