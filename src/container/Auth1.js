@@ -12,7 +12,7 @@ function Auth1(props) {
         <div className="section-title">
           {
             forgot ? <h2>Reset password</h2> :
-            authType === 'login' ? <h2>Login</h2> : <h2>Sign up</h2> 
+              authType === 'login' ? <h2>Login</h2> : <h2>Sign up</h2>
           }
 
           {/* <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
@@ -22,12 +22,12 @@ function Auth1(props) {
         <form action method="post" role="form" className="php-email-form">
           <div className="row justify-content-center" >
             {
-              authType === 'sign up'?
-              <div className="col-md-7 form-group">
-              <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-              <div className="validate" />
-            </div> :null
-               
+              authType === 'sign up' ?
+                <div className="col-md-7 form-group">
+                  <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div className="validate" />
+                </div> : null
+
             }
 
             <div className="col-md-7 form-group mt-3 mt-md-0">
@@ -44,12 +44,18 @@ function Auth1(props) {
 
           </div>
 
-          {
+          {/* {
             authType === 'login' ?
               <div className="text-center"><button type="submit">Login</button></div> :
               authType === 'sign up' ?
                 <div className="text-center"><button type="submit">Sign up</button></div> :
                 <div className="text-center"><button type="submit">Submit</button></div>
+          } */}
+
+          {
+            forgot ? <div className="text-center"><button type="submit">Submit</button></div> :
+              authType === 'login' ? <div className="text-center"><button type="submit">Login</button></div> :
+                <div className="text-center"><button type="submit">Sign up</button></div>
           }
 
 
@@ -61,12 +67,12 @@ function Auth1(props) {
             <div className='text-center'>
               <a href="#" onClick={() => setForgot(true)}>  Forgot password ?</a>
               <div className='text-center'>
-                        <span>You have already account ? <a href="#" onClick={() => {setAuthType('sign up');setForgot(false)}}> Sign up</a></span>
+                <span>You have already account ? <a href="#" onClick={() => { setAuthType('sign up'); setForgot(false) }}> Sign up</a></span>
               </div>
             </div>
           </> :
           <div className='text-center'>
-                <span>Creat new account<a href="#" onClick={() => {setAuthType('login');setForgot(false)}}>  Login</a> </span>
+            <span>Creat new account<a href="#" onClick={() => { setAuthType('login'); setForgot(false) }}>  Login</a> </span>
           </div>
       }<br /><br />
 

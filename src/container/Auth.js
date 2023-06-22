@@ -34,7 +34,8 @@ function Auth(props) {
             </div>
 
             {
-              authType !== 'forgot' ? <div className="col-md-7 form-group mt-3 mt-md-0">
+              authType !== 'forgot' ?
+               <div className="col-md-7 form-group mt-3 mt-md-0">
                 <input type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter a password" />
                 <div className="validate" />
               </div> : null
