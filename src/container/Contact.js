@@ -11,17 +11,17 @@ function Contact(props) {
     message: ""
   };
 
-  
-    const {values,errors,touched,handleBlur,handleChange,handleSubmit} = useFormik({
-      initialValues: initialValues,
-      validationSchema : signUpSchema,
-      onSubmit: (values,action) => {
-        console.log(values);
-        action.resetForm();
-      }
-    })
 
-  
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: (values, action) => {
+      console.log(values);
+      action.resetForm();
+    }
+  })
+
+
 
 
   return (
@@ -65,15 +65,15 @@ function Contact(props) {
                     id="name"
                     placeholder="Your Name"
                     value={values.name}
-                    // onBlur={handleBlur}
-                    // onChange={handleChange}
-                  
-                    />
-                    {errors.name && touched.name  ? 
-                    <p className='formError' style={{color:'red'}}>{errors.name}</p> :
-                    null
-                    }
-                  
+                  // onBlur={handleBlur}
+                  // onChange={handleChange}
+
+                  />
+                  {errors.name && touched.name  ?
+                    <p className='formError' style={{ color: 'red' }}>{errors.name}</p>: null
+                  }
+                 
+
                 </div>
                 <div className="col-md-6 form-group mt-3 mt-md-0">
                   <input
@@ -83,13 +83,13 @@ function Contact(props) {
                     id="email"
                     placeholder="Your Email"
                     value={values.email}
-                    // onChange={handleChange}
-                    // onBlur={handleBlur}
-                    />
-                    {errors.email && touched.email  ? 
-                    <p className='formError' style={{color:'red'}}>{errors.email}</p> :
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
+                  />
+                  {errors.email && touched.email ?
+                    <p className='formError' style={{ color: 'red' }}>{errors.email}</p> :
                     null
-                    }
+                  }
                 </div>
               </div>
               <div className="form-group mt-3">
@@ -99,26 +99,26 @@ function Contact(props) {
                   id="subject"
                   placeholder="Subject"
                   value={values.subject}
-                  // onChange={handleChange}
-                  // onBlur={handleBlur}
-                  />
-                  {errors.subject && touched.subject  ? 
-                    <p className='formError' style={{color:'red'}}>{errors.subject}</p> :
-                    null
-                    }
+                // onChange={handleChange}
+                // onBlur={handleBlur}
+                />
+                {errors.subject && touched.subject ?
+                  <p className='formError' style={{ color: 'red' }}>{errors.subject}</p> :
+                  null
+                }
               </div>
               <div className="form-group mt-3">
                 <textarea className="form-control"
                   name="message"
                   rows={5} placeholder="Message"
                   value={values.message}
-                  // onChange={handleChange} 
-                  // onBlur={handleBlur}
-                  />
-                  {errors.message && touched.message  ? 
-                    <p className='formError' style={{color:'red'}}>{errors.message}</p> :
-                    null
-                  }
+                // onChange={handleChange} 
+                // onBlur={handleBlur}
+                />
+                {errors.message && touched.message ?
+                  <p className='formError' style={{ color: 'red' }}>{errors.message}</p> :
+                  null
+                }
               </div>
               <div className="my-3">
                 <div className="loading">Loading</div>
