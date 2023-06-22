@@ -1,17 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Auth(props) {
+function Auth1(props) {
 
   const [authType, setAuthType] = useState('login');
+  const [forgot, setForgot] = useState(false);
 
   return (
     <section id="appointment" className="appointment">
       <div className="container">
         <div className="section-title">
           {
-            authType === 'login' ? <h2>Login</h2> :
-              authType === 'sign up' ? <h2>Sign up</h2> : <h2>Reset password</h2>
+            forgot ? <h2>Reset password</h2> :
+            authType === 'login' ? <h2>Login</h2> : <h2>Sign up</h2> 
           }
 
           {/* <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
@@ -21,11 +22,12 @@ function Auth(props) {
         <form action method="post" role="form" className="php-email-form">
           <div className="row justify-content-center" >
             {
-              authType === 'login' || authType === 'forgot' ? null :
-                <div className="col-md-7 form-group">
-                  <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div className="validate" />
-                </div>
+              authType === 'sign up'?
+              <div className="col-md-7 form-group">
+              <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div className="validate" />
+            </div> :null
+               
             }
 
             <div className="col-md-7 form-group mt-3 mt-md-0">
@@ -34,7 +36,7 @@ function Auth(props) {
             </div>
 
             {
-              authType !== 'forgot' ? <div className="col-md-7 form-group mt-3 mt-md-0">
+              !forgot ? <div className="col-md-7 form-group mt-3 mt-md-0">
                 <input type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="minlen:4" data-msg="Please enter a password" />
                 <div className="validate" />
               </div> : null
@@ -50,20 +52,21 @@ function Auth(props) {
                 <div className="text-center"><button type="submit">Submit</button></div>
           }
 
+
         </form>
       </div>
       {
         authType === 'login' ?
           <>
             <div className='text-center'>
-              <a href="#" onClick={() => setAuthType('forgot')}>  Forgot password ?</a>
+              <a href="#" onClick={() => setForgot(true)}>  Forgot password ?</a>
               <div className='text-center'>
-                <span>You have already account ? <a href="#" onClick={() => setAuthType('sign up')}> Sign up</a></span>
+                        <span>You have already account ? <a href="#" onClick={() => {setAuthType('sign up');setForgot(false)}}> Sign up</a></span>
               </div>
             </div>
           </> :
           <div className='text-center'>
-            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login</a> </span>
+                <span>Creat new account<a href="#" onClick={() => {setAuthType('login');setForgot(false)}}>  Login</a> </span>
           </div>
       }<br /><br />
 
@@ -72,4 +75,4 @@ function Auth(props) {
   );
 }
 
-export default Auth;
+export default Auth1;
