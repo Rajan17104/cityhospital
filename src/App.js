@@ -14,7 +14,7 @@ import NotFound from './container/Notfound';
 import Auth from './container/Auth';
 import Extra from './container/Extra';
 import Auth1 from './container/Auth1';
-import Contact1 from './container/Contact1';
+import Validation from './container/Validation';
 
 
 
@@ -28,8 +28,7 @@ function App() {
         <Route  path='/departments' element={<Departments/>} />
         <Route  path='/doctors' element={<Doctors />}/>
         <Route  path='/about' element={<About />}/>
-        {/* <Route  path='/contact' element={<Contact />}/> */}
-        <Route path='/contact' element={<Contact1 />}/>
+        <Route  path='/contact' element={<Contact />}/>
         <Route path='/appointment' element={<Appointment />} />
         {/* <Route path='/doctor/:id' element={<Doctor />} />
         <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} /> */}
@@ -43,6 +42,7 @@ function App() {
         {/* <Route path='/auth'  element={<Auth />}/> */}
         <Route path='/auth' element={<Auth1 />} />
         <Route path='/extra' element={<Extra />} />
+        <Route path='/validation' element={<Validation />} />
 
       </Routes>
       <Footer /> 
