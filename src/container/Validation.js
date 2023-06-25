@@ -128,8 +128,7 @@ function Validation(props) {
                                     onBlur={handleBlur}
 
                                 />male
-                                </p>
-                                <p><input type="radio"
+                                <input type="radio"
                                     className="form-contro"
                                     name="gender"
                                     id="gender"
@@ -140,8 +139,9 @@ function Validation(props) {
 
                                 />female
                                 </p>
-                                <span className='fromError' style={{ color: 'red' }}>{errors.gender && touched.gender ? errors.gender : null}</span>
+                                
                             </div>
+                            <span className='fromError' style={{ color: 'red' }}>{errors.gender && touched.gender ? errors.gender : null}</span>
                             <div>
                             <select name="country">
                                 <option value="0">Select</option>
