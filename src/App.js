@@ -39,8 +39,8 @@ function App() {
         </Route>
 
         <Route path='*' element={<NotFound />} />
-        {/* <Route path='/auth'  element={<Auth />}/> */}
-        <Route path='/auth' element={<Auth1 />} />
+        <Route path='/auth'  element={<Auth />}/>
+        {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
 
