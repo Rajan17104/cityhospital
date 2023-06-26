@@ -1,3 +1,4 @@
+import { Height } from '@mui/icons-material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
@@ -6,34 +7,46 @@ function Validation(props) {
 
     let userSchema = yup.object({
         name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name')
-        .test(
-            function (val) {
+            .test(
+                function (val) {
 
-                let arr = val.split(' ')
-                console.log(arr);
-                if (arr.length > 3) {
-                    return false;
-                } else if(arr.length > 3) {
-                    return false;
-                } else {
-                    return true;
-                }
+                    let arr = val.split(' ')
+                    console.log(arr);
+                    if (arr.length > 3) {
+                        return false;
+                    } else if (arr.length > 3) {
+                        return false;
+                    } else {
+                        return true;
+                    }
 
-            }),
+                }),
         email: yup.string().email().required('please enter a email'),
         password: yup.string().required('please enter a password').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'please enter a valid password'),
-        confpassword: yup.string().oneOf([yup.ref('password'),null],'password must matech'),
+        confpassword: yup.string().oneOf([yup.ref('password'), null], 'password must matech'),
         mobile_no: yup.string().required('please enter a mobile number').matches((/^(\+\d{1,3}[- ]?)?\d{10}$/), 'please enter a valid mobile number'),
         age: yup.number().required('please enter your age').min(0).max(150),
         gender: yup.string().required('please select a gender'),
         country: yup.string().required('please select a country'),
+        hobby: yup.array().min(2).of(yup.string().required()).required(),
         date: yup.string().required('please select a date'),
-        address: yup.string().required('please enter your address',
-            function (val) {
-                if (val <= 50) {
-                    return true;
+        address: yup.string().required('please enter your address')
+            .test('Address', 'maxmium 3 word allowed.', function (val) {
+                let arr = val.split(" ");
+
+                if (arr.length > 3) {
+                    return false
                 } else {
+                    return true
+                }
+            }),
+        date: yup.date().max(new Date(), "Enter a Valid Date").required(),
+        condition: yup.string().required('please select Your condition').test('message', '',
+            function (val) {
+                if (val.checked === true) {
                     return false;
+                } else {
+                    return true
                 }
             }),
     });
@@ -45,13 +58,16 @@ function Validation(props) {
             name: '',
             email: '',
             password: '',
-            confpassword:'',
-            age:'',
+            confpassword: '',
             mobile_no: '',
+            age: '',
             gender: '',
             country: '',
+            hobby: '',
+            address: '',
             date: '',
-            address: ''
+            condition: ''
+
         },
         onSubmit: values => {
 
@@ -67,6 +83,7 @@ function Validation(props) {
                 <form onSubmit={handleSubmit} onChange={handleChange} onBlur={handleBlur} action method="post" role="form" className="php-email-form">
                     <div className="row-1">
                         <div className="col-md-6 form-group"  >
+                            Name:-
                             <input type="text"
                                 name="name"
                                 className="form-control"
@@ -79,6 +96,7 @@ function Validation(props) {
                             <span className='fromError' style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span>
                         </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
+                            Email:-
                             <input type="email"
                                 className="form-control"
                                 name="email"
@@ -91,8 +109,9 @@ function Validation(props) {
                             <span className='fromError' style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span>
 
                         </div>
-            
+
                         <div className="col-md-6 form-group mt-3 mt-md-0">
+                            Password:-
                             <input type='password'
                                 className="form-control"
                                 name="password"
@@ -105,11 +124,12 @@ function Validation(props) {
                             <span className='fromError' style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span>
                         </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
+                            Conform Password
                             <input type='password'
                                 className="form-control"
                                 name="confpassword"
                                 id="confpassword"
-                                placeholder="confpassword"
+                                placeholder="conform password"
                                 value={values.confpassword}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -117,18 +137,7 @@ function Validation(props) {
                             <span className='fromError' style={{ color: 'red' }}>{errors.confpassword && touched.confpassword ? errors.confpassword : null}</span>
                         </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
-                            <input type='number'
-                                className="form-control"
-                                name="age"
-                                id="number"
-                                placeholder="Age"
-                                value={values.age}
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                            />
-                            <span className='fromError' style={{ color: 'red' }}>{errors.age && touched.age ? errors.age : null}</span>
-                        </div>
-                        <div className="col-md-6 form-group mt-3 mt-md-0">
+                            Mobile No:-
                             <input type='text'
                                 className="form-control"
                                 name="mobile_no"
@@ -140,33 +149,43 @@ function Validation(props) {
                             />
                             <span className='fromError' style={{ color: 'red' }}>{errors.mobile_no && touched.mobile_no ? errors.mobile_no : null}</span>
                         </div>
+                        <div className="col-md-6 form-group mt-3 mt-md-0">
+                            Age:-
+                            <input type='number'
+                                className="form-control"
+                                name="age"
+                                id="number"
+                                placeholder="Age"
+                                value={values.age}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <span className='fromError' style={{ color: 'red' }}>{errors.age && touched.age ? errors.age : null}</span>
+                        </div>
+
                         <div className="col-md-6 form-group mt-3 mt-md-0" >
-                            <div className="">
-                                <p style={{ display: 'inline-block' }}><input type="radio"
-                                    className="form-contro"
+                            <div className="col-md-12 form-group">
+                                Gender:-
+                                <input
+                                    type="radio"
                                     name="gender"
-                                    id="gender"
-                                    placeholder="gender"
-                                    value={values.gender}
+                                    value={"Male"}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-
-                                />male
-                                    <input type="radio"
-                                        className="form-contro"
-                                        name="gender"
-                                        id="gender"
-                                        placeholder="gender"
-                                        value={values.gender}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-
-                                    />female
-                                </p>
-
+                                />Male
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value={"Female"}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />Female<br />
+                                <span className='fromError' style={{ color: 'red' }}>{errors.gender && touched.gender ? errors.gender : null}</span>
                             </div>
-                            <span className='fromError' style={{ color: 'red' }}>{errors.gender && touched.gender ? errors.gender : null}</span>
+
+
                             <div>
+                                Country:-
                                 <select name="country">
                                     <option value="0">Select</option>
                                     <option value="au">Australia</option>
@@ -177,31 +196,85 @@ function Validation(props) {
                             </div>
                             <span className='fromError' style={{ color: 'red' }}>{errors.country && touched.country ? errors.country : null}</span>
                             <br />
-                            <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <input type='date'
-                                    className="form-control"
-                                    name="date"
-                                    id="date"
-                                    placeholder="date"
-                                    value={values.date}
+
+                            <div className="col-md-12 form-group">
+                                Hobby:-
+                                <input
+                                    type={"checkbox"}
+                                    name='hobby'
+                                    value={"gaming"}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                />
-                                <span className='fromError' style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null}</span>
+                                />gaming
+
+                                <input
+                                    type={"checkbox"}
+                                    name='hobby'
+                                    value={"sports"}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />sports
+
+
+                                <input
+                                    type={"checkbox"}
+                                    name='hobby'
+                                    value={"movie"}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />movie
+
+                                <input
+                                    type={"checkbox"}
+                                    name='hobby'
+                                    value={"music"}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />music
+
                             </div>
-                            
-                            <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <h5>address</h5>
-                                <input type='address'
+                            <span className='fromError' style={{ color: 'red' }}>{errors.hobby && touched.hobby ? errors.hobby : null}</span>
+
+                            <div className="col-md-12 form-group">
+                                Address:-
+                                <textarea
                                     className="form-control"
                                     name="address"
-                                    id="address"
-                                    placeholder="address"
+                                    placeholder="Fill Your Address"
                                     value={values.address}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
+                                    rows={5}
                                 />
                                 <span className='fromError' style={{ color: 'red' }}>{errors.address && touched.address ? errors.address : null}</span>
+
+
+                            </div>
+
+                            <div className="col-md-12 form-group">
+                                Date Of Birth:-
+                                <input
+                                    type="date"
+                                    name="date"
+                                    className="form-control"
+                                    id="Date"
+                                />
+                                <span className='fromError' style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null}</span>
+
+                            </div>
+
+                            <div className="col-md-12 form-group">
+                                Condition:-
+                                <input
+                                    type="checkbox"
+                                    name="condition"
+                                    value={values.condition}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {/* Terms &amp; Condition */}
+
+                                <span className='error' style={{ color: 'red' }}>{errors.condition && touched.condition ? errors.condition : null}</span>
                             </div>
                         </div>
                     </div>

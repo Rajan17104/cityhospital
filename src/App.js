@@ -13,8 +13,9 @@ import VisitingDoctor from './container/VisitingDoctor';
 import NotFound from './container/Notfound';
 import Auth from './container/Auth';
 import Extra from './container/Extra';
-import Auth1 from './container/Auth1';
+// import Auth1 from './container/Auth1';
 import Validation from './container/Validation';
+import Dropdown from './container/Dropdown';
 
 
 
@@ -43,7 +44,7 @@ function App() {
         {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
-
+        <Route path='/dropdown' element={<Dropdown />} />
       </Routes>
       <Footer /> 
     </>
