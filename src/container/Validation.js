@@ -5,21 +5,39 @@ import * as yup from 'yup';
 function Validation(props) {
 
     let userSchema = yup.object({
-        name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name'),
+        name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name',
+            function (val) {
+
+                let arr = val.split;
+                console.log(arr);
+                if (arr.length <= 3) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            },),
         email: yup.string().email().required('please enter a email'),
         subject: yup.string().required('please enter a subject'),
-        password:yup.string().required('please enter a password').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'please enter a valid password'),
-        mobile_no:  yup.string().required('please enter a mobile number').matches((/^(\+\d{1,3}[- ]?)?\d{10}$/), 'please enter a valid mobile number'),
+        password: yup.string().required('please enter a password').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'please enter a valid password'),
+        mobile_no: yup.string().required('please enter a mobile number').matches((/^(\+\d{1,3}[- ]?)?\d{10}$/), 'please enter a valid mobile number'),
         gender: yup.string().required('please select a gender'),
         country: yup.string().required('please select a country'),
         date: yup.string().required('please select a date'),
-        file: yup.string().required('please select a file'), 
-        month: yup.string().required('please select a mounth'), 
-        week:yup.string().required('please select a week'),
-        color:yup.string().required('please select a color'),
-        range:yup.string().required('please use a range'),
-        search:yup.string().required('please use a search'),
-        tel:yup.string().required('please select a tel'),
+        file: yup.string().required('please select a file'),
+        month: yup.string().required('please select a mounth'),
+        week: yup.string().required('please select a week'),
+        color: yup.string().required('please select a color'),
+        range: yup.string().required('please use a range'),
+        search: yup.string().required('please use a search'),
+        address: yup.string().required('please enter your address',
+            function (val) {
+                if (val <= 50) {
+                    return true
+                } else {
+                    return false
+                }
+            }),
     });
 
     const formik = useFormik({
@@ -29,18 +47,18 @@ function Validation(props) {
             name: '',
             email: '',
             subject: '',
-            password:'',
-            mobile_no:'',
+            password: '',
+            mobile_no: '',
             gender: '',
             country: '',
-            date:'',
-            file:'',
-            month:'',
-            week:'',
-            color:'',
-            range:'',
-            search:'',
-            tel:''
+            date: '',
+            file: '',
+            month: '',
+            week: '',
+            color: '',
+            range: '',
+            search: '',
+            address: ''
         },
         onSubmit: values => {
 
@@ -93,29 +111,29 @@ function Validation(props) {
                             <span className='fromError' style={{ color: 'red' }}>{errors.subject && touched.subject ? errors.subject : null}</span>
                         </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <input type='password'
-                                    className="form-control"
-                                    name="password"
-                                    id="password"
-                                    placeholder="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <span className='fromError' style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span>
-                            </div>
+                            <input type='password'
+                                className="form-control"
+                                name="password"
+                                id="password"
+                                placeholder="password"
+                                value={values.password}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <span className='fromError' style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span>
+                        </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <input type='text'
-                                    className="form-control"
-                                    name="mobile_no"
-                                    id="number"
-                                    placeholder="Mobile no"
-                                    value={values.mobile_no}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <span className='fromError' style={{ color: 'red' }}>{errors.mobile_no && touched.mobile_no ? errors.mobile_no : null}</span>
-                            </div>
+                            <input type='text'
+                                className="form-control"
+                                name="mobile_no"
+                                id="number"
+                                placeholder="Mobile no"
+                                value={values.mobile_no}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            />
+                            <span className='fromError' style={{ color: 'red' }}>{errors.mobile_no && touched.mobile_no ? errors.mobile_no : null}</span>
+                        </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0" >
                             <div className="">
                                 <p style={{ display: 'inline-block' }}><input type="radio"
@@ -128,31 +146,31 @@ function Validation(props) {
                                     onBlur={handleBlur}
 
                                 />male
-                                <input type="radio"
-                                    className="form-contro"
-                                    name="gender"
-                                    id="gender"
-                                    placeholder="gender"
-                                    value={values.gender}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
+                                    <input type="radio"
+                                        className="form-contro"
+                                        name="gender"
+                                        id="gender"
+                                        placeholder="gender"
+                                        value={values.gender}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
 
-                                />female
+                                    />female
                                 </p>
-                                
+
                             </div>
                             <span className='fromError' style={{ color: 'red' }}>{errors.gender && touched.gender ? errors.gender : null}</span>
                             <div>
-                            <select name="country">
-                                <option value="0">Select</option>
-                                <option value="au">Australia</option>
-                                <option value="in">India</option>
-                                <option value="us">United States</option>
-                                <option value="uk">United Kingdom</option>
-                            </select>
+                                <select name="country">
+                                    <option value="0">Select</option>
+                                    <option value="au">Australia</option>
+                                    <option value="in">India</option>
+                                    <option value="us">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                </select>
                             </div>
                             <span className='fromError' style={{ color: 'red' }}>{errors.country && touched.country ? errors.country : null}</span>
-                            <br/>
+                            <br />
                             <div className="col-md-6 form-group mt-3 mt-md-0">
                                 <input type='date'
                                     className="form-control"
@@ -243,17 +261,17 @@ function Validation(props) {
                                 <span className='fromError' style={{ color: 'red' }}>{errors.search && touched.search ? errors.search : null}</span>
                             </div>
                             <div className="col-md-6 form-group mt-3 mt-md-0">
-                                <h5>tel</h5>
-                                <input type='tel'
+                                <h5>address</h5>
+                                <input type='address'
                                     className="form-control"
-                                    name="tel"
-                                    id="tel"
-                                    placeholder="tel"
-                                    value={values.tel}
+                                    name="address"
+                                    id="address"
+                                    placeholder="address"
+                                    value={values.address}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                <span className='fromError' style={{ color: 'red' }}>{errors.tel && touched.tel ? errors.tel : null}</span>
+                                <span className='fromError' style={{ color: 'red' }}>{errors.address && touched.address ? errors.address : null}</span>
                             </div>
                         </div>
                     </div>
