@@ -1,4 +1,3 @@
-import { Height } from '@mui/icons-material';
 import { useFormik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
@@ -9,26 +8,30 @@ function Validation(props) {
         name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name')
             .test(
                 function (val) {
-
-                    let arr = val.split(' ')
+                    let arr = val.split(" ")
                     console.log(arr);
                     if (arr.length > 3) {
-                        return false;
-                    } else if (arr.length > 3) {
                         return false;
                     } else {
                         return true;
                     }
-
                 }),
         email: yup.string().email().required('please enter a email'),
         password: yup.string().required('please enter a password').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'please enter a valid password'),
-        confpassword: yup.string().oneOf([yup.ref('password'), null], 'password must matech'),
+        confpassword: yup.string().test('confpassword','password is not match',
+                function (val) {
+                    if(this.parent.password === val){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+        ),
         mobile_no: yup.string().required('please enter a mobile number').matches((/^(\+\d{1,3}[- ]?)?\d{10}$/), 'please enter a valid mobile number'),
         age: yup.number().required('please enter your age').min(0).max(150),
         gender: yup.string().required('please select a gender'),
         country: yup.string().required('please select a country'),
-        hobby: yup.array().min(2).of(yup.string().required()).required(),
+        hobby: yup.array().min(2).required(),
         date: yup.string().required('please select a date'),
         address: yup.string().required('please enter your address')
             .test('Address', 'maxmium 3 word allowed.', function (val) {
@@ -41,14 +44,8 @@ function Validation(props) {
                 }
             }),
         date: yup.date().max(new Date(), "Enter a Valid Date").required(),
-        condition: yup.string().required('please select Your condition').test('message', '',
-            function (val) {
-                if (val.checked === true) {
-                    return false;
-                } else {
-                    return true
-                }
-            }),
+        condition: yup.boolean().oneOf([true]).required('please select Your condition'),
+          
     });
 
     const formik = useFormik({
@@ -66,7 +63,7 @@ function Validation(props) {
             hobby: '',
             address: '',
             date: '',
-            condition: ''
+            condition: false
 
         },
         onSubmit: values => {
@@ -138,7 +135,7 @@ function Validation(props) {
                         </div>
                         <div className="col-md-6 form-group mt-3 mt-md-0">
                             Mobile No:-
-                            <input type='text'
+                            <input type='number'
                                 className="form-control"
                                 name="mobile_no"
                                 id="number"
