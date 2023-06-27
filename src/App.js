@@ -13,13 +13,13 @@ import VisitingDoctor from './user/container/VisitingDoctor';
 import NotFound from './user/container/Notfound';
 import Auth from './user/container/Auth';
 import Extra from './user/container/Extra';
-// import Auth1 from './container/Auth1';
 import Validation from './user/container/Validation';
 import Dropdown from './user/container/Dropdown';
 import DepartmentsDrawer from './admin/container/DepartmentsDrawer';
 import DoctorDrawer from './admin/container/DoctorDrawer'
 import MedicineDrawer from './admin/container/MedicineDrawer'
 import AppointmentDrawer from './admin/container/AppointmentDrawer'
+import Contact1 from './user/container/Contact1';
 
 function App() {
   return (
@@ -31,7 +31,8 @@ function App() {
         <Route  path='/doctors' element={<Doctors />}/>
         <Route  path='/about' element={<About />}/>
         <Route  path='/contact' element={<Contact />}/>
-        <Route path='/appointment' element={<Appointment />} /> */}
+        <Route  path='/contact' element={<Contact1/>}/>
+        <Route path='/appointment' element={<Appointment />} />  */}
         // {/* <Route path='/doctor/:id' element={<Doctor />} />*/}
         // {/* <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} />   */}
 
@@ -54,8 +55,6 @@ function App() {
       {/* <Footer /> */}
   
     </>
-
-   
 
   );
 }
