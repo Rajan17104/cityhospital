@@ -16,10 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 import HealingIcon from '@mui/icons-material/Healing';
+import MedicationIcon from '@mui/icons-material/Medication';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -90,7 +88,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const listdata = [
-  { lable: 'Medicines', icon: <LocalHospitalIcon />, to: '/admin/medicine_drawer' },
+  { lable: 'Medicines', icon: <MedicationIcon />, to: '/admin/medicine_drawer' },
   { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor_drawer' }
 ]
 

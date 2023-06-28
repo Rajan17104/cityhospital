@@ -8,9 +8,9 @@ function Validation(props) {
         name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name')
             .test(
                 function (val) {
-                    let arr = val.split(" ")
+                    let arr = val.split("")
                     console.log(arr);
-                    if (arr.length > 3) {
+                    if (arr.length < 3) {
                         return false;
                     } else {
                         return true;

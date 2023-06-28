@@ -6,7 +6,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Dropdown from '../component/Layout';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -21,42 +20,51 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
-  
-  function Validation(props) {
 
-    let userSchema = yup.object({
-        name: yup.string().required('please enter a name').matches(/^[a-zA-Z ]+$/, 'please enter a valid name')
-            .test(
-                function (val) {
-                    let arr = val.split(" ")
-                    console.log(arr);
-                    if (arr.length > 3) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }),
-              })
-            }
+  let medicineschema = yup.object({
+    name: yup.string().required().matches(/^[a-zA-Z ]+$/, 'please enter a valid name')
+    .test(
+      function (val) {
+          let arr = val.split("")
+          console.log(arr);
+          if (arr.length < 3) {
+              return false;
+          } else {
+              return true;
+          }
+      }),
 
-  const SignupForm = () => {
-    const formik = useFormik({
-      initialValues: {
-        mname: '',
-        mexp: '',
-        mprice: '',
-        mdesc:''
-      },
-      onSubmit: values => {
-        alert(JSON.stringify(values, null, 2));
-      },
-    });
-  }
+    date: yup.date().min(new Date(),"please entre a valid date").required(),
+    price: yup.number().required(),
+    desc:yup.string().required()
+    .test('desc', 'maxmium 3 word allowed.',
+     function (val){
+      let arr = val.split(" ")
+
+      if(arr.length > 3){
+        return false
+      }else{
+        return true
+      }
+    })
+  });
+
+  const formik = useFormik({
+    validationSchema: medicineschema,
+
+    initialValues: {
+      name: '',
+      date:'',
+      price:'',
+      desc:''
+    }
+  });
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
 
   return (
     <>
-    <div className=''>
-        <h1>Medicine</h1>
+      <h1>Medicine</h1>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form Medicine
       </Button>
@@ -72,49 +80,65 @@ export default function FormDialog() {
             margin="dense"
             id="name"
             label="Medicine name"
-            name='mname'
+            name='name'
             type="text"
             fullWidth
             variant="standard"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+          <span style={{color: 'red'}}>{errors.name && touched.name ? errors.name : null } </span>
           <TextField
             autoFocus
             margin="dense"
             id="name"
             label=""
-            name='mexp'
+            name='date'
             type="date"
             fullWidth
             variant="standard"
+            value={values.date}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-           <TextField
+          <span style={{color: 'red'}}>{errors.date && touched.date ? errors.date : null} </span>
+          <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Medicine Price"
-            name='mprice'
+            name='price'
             type="text"
             fullWidth
             variant="standard"
+            value={values.price}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
-              <TextField
+           <span style={{color: 'red'}}>{errors.price && touched.price ? errors.price : null} </span>
+          <TextField
             autoFocus
             margin="dense"
             id="name"
             label="Medicine Description"
-            name='mdesc'
+            name='desc'
             rows={5}
-            type="text"
+            type="address"
             fullWidth
             variant="standard"
+            value={values.desc}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
+           <span style={{color: 'red'}}>{errors.desc && touched.desc ? errors.desc : null} </span>
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>submit</Button>
+          <Button onClick={handleClose} onSubmit={handleSubmit}>submit</Button>
         </DialogActions>
       </Dialog>
-    </div>
     </>
   );
 }
