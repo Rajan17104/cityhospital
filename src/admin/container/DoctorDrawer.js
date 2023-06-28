@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Dropdown from '../../user/container/Dropdown';
+import Dropdown from '../component/Layout';
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -21,8 +21,6 @@ export default function FormDialog() {
 
   return (
     <>
-    <Dropdown />
-    <div className='' style={{marginLeft:'10rem'}}>
         <h1>Doctor</h1>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form Doctor
@@ -67,7 +65,6 @@ export default function FormDialog() {
           <Button onClick={handleClose}>submit</Button>
         </DialogActions>
       </Dialog>
-    </div>
     </>
   );
 }

@@ -16,11 +16,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import AddIcon from '@mui/icons-material/Add';
-import MedicationIcon from '@mui/icons-material/Medication';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import { useNavigate } from 'react-router-dom';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import HealingIcon from '@mui/icons-material/Healing';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -89,10 +89,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Dropdown() {
+const listdata = [
+  { lable: 'Medicines', icon: <LocalHospitalIcon />, to: '/admin/medicine_drawer' },
+  { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor_drawer' }
+]
+
+export default function Layout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -105,7 +109,7 @@ export default function Dropdown() {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} style={{ backgroundColor: 'red' }}>
+      <AppBar position="fixed" open={open} style={{ backgroundColor: '#FF6337' }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -132,95 +136,39 @@ export default function Dropdown() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate("/department_drawer") }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
+          {listdata.map((v, i) => (
+            <ListItem
+              key={i}
+              disablePadding
+              sx={{ display: 'block' }}
+              to={v.to}
+              component={Link}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
                 }}
               >
-                <AddBusinessIcon />
-              </ListItemIcon>
-              <ListItemText primary="Department" sx={{ opacity: open ? 1 : 0 }}/>
-            </ListItemButton>
-          </ListItem>
-   
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate("/doctor_drawer") }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <AddIcon />
-              </ListItemIcon>
-              <ListItemText primary="Doctor" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate("/medicine_drawer") }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <MedicationIcon />
-              </ListItemIcon>
-              <ListItemText primary="Medicine" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-       
-          <ListItem disablePadding sx={{ display: 'block' }}onClick={() => { navigate("/appointment_drawer") }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <AppRegistrationIcon />
-              </ListItemIcon>
-              <ListItemText primary="Appointment" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {v.icon}
+                </ListItemIcon>
+                <ListItemText primary={v.lable} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
-        <Divider />
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        
+        {children}
       </Box>
     </Box>
   );
