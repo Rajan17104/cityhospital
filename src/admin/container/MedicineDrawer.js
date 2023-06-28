@@ -136,7 +136,7 @@ export default function FormDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose} onSubmit={handleSubmit}>submit</Button>
+          <Button type='submit' onSubmit={handleSubmit}>submit</Button>
         </DialogActions>
       </Dialog>
     </>
