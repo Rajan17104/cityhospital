@@ -104,6 +104,8 @@ export default function Layout({ children }) {
     setOpen(false);
   };
 
+ 
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

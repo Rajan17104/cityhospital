@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useFormik } from 'formik';
+import { Form, Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 
 export default function FormDialog() {
@@ -19,6 +19,27 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleAdd = (data) =>{
+    console.log(data); 
+
+    let rno = Math.floor(Math.random() * 1000);
+
+    let newData = {id:rno , ...data}
+
+    let localdata = JSON.parse(localStorage.getItem("doctor"));
+
+    console.log(localdata);
+
+    if(localdata === null){
+      localStorage.setItem("doctor",JSON.stringify([newData]))
+    }else{
+      localdata.push(newData)
+      localStorage.setItem("doctor",JSON.stringify(localdata))
+    }
+
+    handleClose()
+  }
 
   let doctorschema = yup.object({
     img: yup.string().required(),
@@ -34,26 +55,26 @@ export default function FormDialog() {
         }
       ),
     designation: yup.string().required()
-    .test('designation' ,'maxmium 3 word allowed.',
-        function (val){
-          let arr = val.split(" ")  
-          
-          if(arr.length > 3){
+      .test('designation', 'maxmium 3 word allowed.',
+        function (val) {
+          let arr = val.split(" ")
+
+          if (arr.length > 3) {
             return false
-          }else{
+          } else {
             return true
           }
         }
       ),
 
-      description: yup.string().required()
-    .test('description' ,'maxmium 3 word allowed.',
-        function (val){
-          let arr = val.split(" ")  
-          
-          if(arr.length > 3){
+    description: yup.string().required()
+      .test('description', 'maxmium 3 word allowed.',
+        function (val) {
+          let arr = val.split(" ")
+
+          if (arr.length > 3) {
             return false
-          }else{
+          } else {
             return true
           }
         }
@@ -65,11 +86,15 @@ export default function FormDialog() {
     validationSchema: doctorschema,
 
     initialValues: {
-      img:'',
+      img: '',
       name: '',
-      designation:'',
-      description:''
-    }
+      designation: '',
+      description: ''
+    },
+    onSubmit: (values,action) => {
+      action.resetForm()
+      handleAdd(values)
+    },
   })
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
@@ -89,67 +114,69 @@ export default function FormDialog() {
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Doctor name"
-            type='file'
-            name='img'
-            fullWidth
-            variant="standard"
-            value={values.img}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <span style={{ color: 'red' }}>{errors.img && touched.img ? errors.img : null}</span>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Doctor name"
-            type="text"
-            name='name'
-            fullWidth
-            variant="standard"
-            value={values.name}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-          <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Doctor Designation"
-            name='designation'
-            type="text"
-            fullWidth
-            variant="standard"
-            value={values.designation}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-           <span style={{ color: 'red' }}>{errors.designation && touched.designation ? errors.designation : null}</span>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            name='description'
-            label="Doctor Description"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={values.description}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-           <span style={{ color: 'red' }}>{errors.description && touched.description ? errors.description : null}</span>
+            <form onSubmit={handleSubmit}>
+            <TextField
+              margin="dense"
+              id="name"
+              label="Doctor name"
+              type='file'
+              name='img'
+              fullWidth
+              variant="standard"
+              value={values.img}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.img && touched.img ? errors.img : null}</span>
+            <TextField
+              margin="dense"
+              id="name"
+              label="Doctor name"
+              type="text"
+              name='name'
+              fullWidth
+              variant="standard"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span>
+            <TextField
+              margin="dense"
+              id="name"
+              label="Doctor Designation"
+              name='designation'
+              type="text"
+              fullWidth
+              variant="standard"
+              value={values.designation}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.designation && touched.designation ? errors.designation : null}</span>
+            <TextField
+              margin="dense"
+              id="name"
+              name='description'
+              label="Doctor Description"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={values.description}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.description && touched.description ? errors.description : null}</span>
+
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type='submit'>submit</Button>
+            </DialogActions>
+            </form>
+          
+
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type='submit' onSubmit={handleSubmit}>submit</Button>
-        </DialogActions>
+
       </Dialog>
     </>
   );
