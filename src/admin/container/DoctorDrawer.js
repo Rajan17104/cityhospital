@@ -20,22 +20,22 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const handleAdd = (data) =>{
-    console.log(data); 
+  const handleAdd = (data) => {
+    console.log(data);
 
     let rno = Math.floor(Math.random() * 1000);
 
-    let newData = {id:rno , ...data}
+    let newData = { id: rno, ...data }
 
     let localdata = JSON.parse(localStorage.getItem("doctor"));
 
     console.log(localdata);
 
-    if(localdata === null){
-      localStorage.setItem("doctor",JSON.stringify([newData]))
-    }else{
+    if (localdata === null) {
+      localStorage.setItem("doctor", JSON.stringify([newData]))
+    } else {
       localdata.push(newData)
-      localStorage.setItem("doctor",JSON.stringify(localdata))
+      localStorage.setItem("doctor", JSON.stringify(localdata))
     }
 
     handleClose()
@@ -91,7 +91,7 @@ export default function FormDialog() {
       designation: '',
       description: ''
     },
-    onSubmit: (values,action) => {
+    onSubmit: (values, action) => {
       action.resetForm()
       handleAdd(values)
     },
@@ -114,7 +114,7 @@ export default function FormDialog() {
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText>
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <TextField
               margin="dense"
               id="name"
@@ -172,9 +172,8 @@ export default function FormDialog() {
               <Button onClick={handleClose}>Cancel</Button>
               <Button type='submit'>submit</Button>
             </DialogActions>
-            </form>
+          </form>
           
-
         </DialogContent>
 
       </Dialog>
