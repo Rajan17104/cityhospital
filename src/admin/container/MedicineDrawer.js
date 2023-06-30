@@ -9,6 +9,9 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { DataGrid } from '@mui/x-data-grid';
 import { useEffect, useState } from 'react';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 export default function FormDialog() {
@@ -37,25 +40,24 @@ export default function FormDialog() {
 
     if (localdata === null) {
       localStorage.setItem("medicines", JSON.stringify([newData]))
+      setItems([newData])
     } else {
       localdata.push(newData)
       localStorage.setItem("medicines", JSON.stringify(localdata))
+      setItems(localdata)
     }
 
     handleClose()
   };
 
-  useEffect( () => {
+  useEffect(() => {
     let localData = JSON.parse(localStorage.getItem("medicines"));
 
-    if (localData === null) {
-      setItems('')
-    } else {
+    if (localData !== null) {
       setItems(localData)
     }
 
-  }
-  ,);
+  }, []);
 
   let d = new Date();
   let nd = new Date(d.setDate(d.getDate() - 1))
@@ -89,54 +91,50 @@ export default function FormDialog() {
     onSubmit: (values, action) => {
       handleAdd(values)
       action.resetForm()
-      // window.location.reload(false);
     },
 
   });
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
 
-  const columns = [
+  const handleDelete = (id) => {
+    let localData = JSON.parse(localStorage.getItem("medicines"));
 
-    // { field: 'id', headerName: 'ID', width: 70 },
-    // { field: 'firstName', headerName: 'First name', width: 130 },
-    // { field: 'lastName', headerName: 'Last name', width: 130 },
-    // {
-    //   field: 'age',
-    //   headerName: 'Age',
-    //   type: 'number',
-    //   width: 90,
-    // },
-    // {
-    //   field: 'fullName',
-    //   headerName: 'Full name', 
-    //   description: 'This column has a value getter and is not sortable.',
-    //   sortable: false,
-    //   width: 160,
-    //   valueGetter: (params) =>
-    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
+    let fdata = localData.filter((v, i) => v.id !== id)
+
+    localStorage.setItem("medicines", JSON.stringify(fdata))
+
+    setItems(fdata)
+  }
+
+  const handleEdit = () =>{
+
+  }
+
+  const columns = [
 
     { field: 'id', headerName: 'ID', width: 130 },
     { field: 'name', headerName: 'Name', width: 130 },
     { field: 'date', headerName: 'ExpiryDate', width: 130 },
     { field: 'price', headerName: 'Price', width: 130 },
-    { field: 'desc', headerName: 'Description', width: 130 }
+    { field: 'desc', headerName: 'Description', width: 130 },
+    {
+      field: 'action',
+      headerName: 'Action',
+      width: 130,
+      renderCell: (params) => (
+        <>
+          <IconButton aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+            <DeleteIcon />
+          </IconButton>
 
-  ];
+          <IconButton aria-label="edit" onClick={() => handleEdit(params.row.id)}>
+            <EditIcon />
+          </IconButton>
+        </>
+      ),
 
-  const rows = [
-  // //     // { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  // //     // { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  // //     // { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  // //     // { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  // //     // { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  // //     // { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  // //     // { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  // //     // { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  // //     // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  //   { id: 1, name: 'rajan' , date: '132' , price: '100' , desc: 'good'},
-
+    }
 
   ];
 
@@ -223,13 +221,8 @@ export default function FormDialog() {
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={rows} 
+          rows={items}
           columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
           pageSizeOptions={[5, 10]}
           checkboxSelection
         />
