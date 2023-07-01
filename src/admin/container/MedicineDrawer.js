@@ -5,10 +5,10 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 import { DataGrid } from '@mui/x-data-grid';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -16,7 +16,6 @@ import EditIcon from '@mui/icons-material/Edit';
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
-  // const [inputData,setInputData] = React.useState('');
   const [items, setItems] = React.useState([]);
 
   const handleClickOpen = () => {
@@ -34,7 +33,7 @@ export default function FormDialog() {
 
     let newData = { id: rno, ...data };
 
-    let localdata = JSON.parse(localStorage.getItem("medicines"))
+    let localdata = JSON.parse(localStorage.getItem("medicines"));
 
     console.log(localdata);
 
@@ -47,7 +46,7 @@ export default function FormDialog() {
       setItems(localdata)
     }
 
-    handleClose()
+    handleClose();
   };
 
   useEffect(() => {
@@ -107,13 +106,36 @@ export default function FormDialog() {
     setItems(fdata)
   }
 
-  const handleEdit = () =>{
+  const handleEdit = (data) => {
+    setOpen(true);
+
+    formik.setValues(data);
+    
+    // update=true;
+    
+
+    // formik.setItem(data)
+    // {
+    //   <TextField
+
+    //   margin="dense"
+    //   id="name"
+    //   label="Medicine name"
+    //   name='name'
+    //   type="text"
+    //   fullWidth
+    //   variant="standard"
+    //   value={values.name}
+    // />
+    // }
+
+    console.log(data);
 
   }
 
   const columns = [
 
-    { field: 'id', headerName: 'ID', width: 130 },
+    // { field: 'id', headerName: 'ID', width: 130 },
     { field: 'name', headerName: 'Name', width: 130 },
     { field: 'date', headerName: 'ExpiryDate', width: 130 },
     { field: 'price', headerName: 'Price', width: 130 },
@@ -128,7 +150,7 @@ export default function FormDialog() {
             <DeleteIcon />
           </IconButton>
 
-          <IconButton aria-label="edit" onClick={() => handleEdit(params.row.id)}>
+          <IconButton aria-label="edit" onClick={() => handleEdit(params.row)}>
             <EditIcon />
           </IconButton>
         </>
@@ -147,75 +169,73 @@ export default function FormDialog() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Medicine</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText> */}
-          <form onSubmit={handleSubmit}>
-            <TextField
+          <Formik value={values} >
+            <form onSubmit={handleSubmit}>
+              <TextField
 
-              margin="dense"
-              id="name"
-              label="Medicine name"
-              name='name'
-              type="text"
-              fullWidth
-              variant="standard"
-              value={values.name}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null} </span>
-            <TextField
+                margin="dense"
+                id="name"
+                label="Medicine name"
+                name='name'
+                type="text"
+                fullWidth
+                variant="standard"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}  </span>
+              <TextField
 
-              margin="dense"
-              id="name"
-              label=""
-              name='date'
-              type="date"
-              fullWidth
-              variant="standard"
-              value={values.date}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null} </span>
-            <TextField
+                margin="dense"
+                id="name"
+                label=""
+                name='date'
+                type="date"
+                fullWidth
+                variant="standard"
+                value={values.date}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <span style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null} </span>
+              <TextField
 
-              margin="dense"
-              id="name"
-              label="Medicine Price"
-              name='price'
-              type="text"
-              fullWidth
-              variant="standard"
-              value={values.price}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span style={{ color: 'red' }}>{errors.price && touched.price ? errors.price : null} </span>
-            <TextField
+                margin="dense"
+                id="name"
+                label="Medicine Price"
+                name='price'
+                type="text"
+                fullWidth
+                variant="standard"
+                value={values.price}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <span style={{ color: 'red' }}>{errors.price && touched.price ? errors.price : null} </span>
+              <TextField
 
-              margin="dense"
-              id="name"
-              label="Medicine Description"
-              name='desc'
-              multiline
-              rows={4}
-              type="address"
-              fullWidth
-              variant="standard"
-              value={values.desc}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
+                margin="dense"
+                id="name"
+                label="Medicine Description"
+                name='desc'
+                multiline
+                rows={4}
+                type="address"
+                fullWidth
+                variant="standard"
+                value={values.desc}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
 
-            <DialogActions>
-              <Button onClick={handleClose}>Cancel</Button>
-              <Button type='submit' >submit</Button>
-            </DialogActions>
-          </form>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button type='submit' >submit</Button>
+              </DialogActions>
+            </form>
+          </Formik>
         </DialogContent>
       </Dialog>
 
