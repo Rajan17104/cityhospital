@@ -1,6 +1,6 @@
 // import { useFormik } from 'formik';
 // import React from 'react';
-// import { signUpSchema } from '../schemas';
+// import { signUpSchema } from './';
 
 // function Contact(props) {
 
