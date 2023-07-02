@@ -109,25 +109,16 @@ export default function FormDialog() {
   const handleEdit = (data) => {
     setOpen(true);
 
+    setItems(data)
+
+
     formik.setValues(data);
+
+
+    
     
     // update=true;
-    
 
-    // formik.setItem(data)
-    // {
-    //   <TextField
-
-    //   margin="dense"
-    //   id="name"
-    //   label="Medicine name"
-    //   name='name'
-    //   type="text"
-    //   fullWidth
-    //   variant="standard"
-    //   value={values.name}
-    // />
-    // }
 
     console.log(data);
 
