@@ -31,12 +31,14 @@ function Medicine(props) {
         )
 
         console.log(fData);
+
+        setSearch(fData)
     }
 
     return (
         <div className='row' >
-            <input type='search' name='search' onChange={(e) => handlechange(e.target.value)}/>
-            <ListMedicines mdata={data} />
+            <input type='search' name='search' placeholder='search...' onChange={(e) => handlechange(e.target.value)}/>
+            <ListMedicines mdata={search.length >0 ? search : data} />
         </div>
     );
 
