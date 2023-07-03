@@ -5,6 +5,7 @@ import ListMedicines from './ListMedicines';
 function Medicine(props) {
 
     const [data, setData] = useState([]);
+    const [search,setSearch] = useState([]);
 
     useEffect(() => {
         let localData = JSON.parse(localStorage.getItem("medicines"));
@@ -28,8 +29,6 @@ function Medicine(props) {
             v.date.toString().includes(val) ||
             v.desc.toLowerCase().includes(val.toLowerCase())
         )
-
-        
 
         console.log(fData);
     }
