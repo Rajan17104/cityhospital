@@ -15,7 +15,7 @@ import Extra from '../user/container/Extra';
 import Validation from '../user/container/Validation';
 import Contact1 from '../user/container/Contact1';
 import { Route, Routes } from 'react-router-dom';
-import Medicine from '../user/container/Medicine';
+import Medicine from '../user/container/Medicines/Medicine';
 
 function userRoute(props) {
     return (
@@ -43,7 +43,7 @@ function userRoute(props) {
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
         <Route path='/medicine' element={<Medicine />} />
-      </Routes>
+       </Routes>
       <Footer />
       </>
     );
