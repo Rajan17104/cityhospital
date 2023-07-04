@@ -5,6 +5,7 @@ import ListMedicines from './ListMedicines';
 function Medicine(props) {
 
     const [data, setData] = useState([]);
+    const [search,setSearch] = useState([]);
 
     useEffect(() => {
         let localData = JSON.parse(localStorage.getItem("medicines"));
@@ -29,16 +30,21 @@ function Medicine(props) {
             v.desc.toLowerCase().includes(val.toLowerCase())
         )
 
+<<<<<<< HEAD
         
         
 
+=======
+>>>>>>> febfb6a4d405827e7e1ef0d20041e7fae564ac50
         console.log(fData);
+
+        setSearch(fData)
     }
 
     return (
         <div className='row' >
-            <input type='search' name='search' onChange={(e) => handlechange(e.target.value)}/>
-            <ListMedicines mdata={data} />
+            <input type='search' name='search' placeholder='search...' onChange={(e) => handlechange(e.target.value)}/>
+            <ListMedicines mdata={search.length >0 ? search : data} />
         </div>
     );
 
