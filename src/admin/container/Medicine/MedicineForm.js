@@ -8,7 +8,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 
-function MedicineForm(props) {
+function MedicineForm({Adddata}) {
 
   const [open, setOpen] = React.useState(false);
 
@@ -53,8 +53,9 @@ function MedicineForm(props) {
     onSubmit: (values, action) => {
 
       action.resetForm()
+      // handleSubmitData(values)
       // const handleSubmitData =(values) =>{
-        props.getdata(values)
+        Adddata(values)
       // }
       
       handleClose();
