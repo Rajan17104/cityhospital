@@ -17,6 +17,7 @@ import EditIcon from '@mui/icons-material/Edit';
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [items, setItems] = React.useState([]);
+  const [update, setUpdate] = React.useState(null);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,7 +27,7 @@ export default function FormDialog() {
     setOpen(false);
   };
 
-  const handleAdd = (data) => {
+  const handleSubmitData = (data) => {
     console.log(data);
 
     let rno = Math.floor(Math.random() * 1000);
@@ -41,12 +42,30 @@ export default function FormDialog() {
       localStorage.setItem("medicines", JSON.stringify([newData]))
       setItems([newData])
     } else {
-      localdata.push(newData)
-      localStorage.setItem("medicines", JSON.stringify(localdata))
-      setItems(localdata)
+
+      if (update) {
+        let uData = localdata.map((v) => {
+          if (v.id === data.id) {
+            return data
+          } else {
+            return v;
+          }
+        })
+        localStorage.setItem("medicines", JSON.stringify(uData))
+        setItems(uData)
+        console.log(uData);
+      } else {
+        localdata.push(newData)
+        localStorage.setItem("medicines", JSON.stringify(localdata))
+        setItems(localdata)
+      }
+
+     
     }
 
     handleClose();
+    setUpdate(null);
+    
   };
 
   useEffect(() => {
@@ -88,8 +107,9 @@ export default function FormDialog() {
       desc: ''
     },
     onSubmit: (values, action) => {
-      handleAdd(values)
+
       action.resetForm()
+      handleSubmitData(values)
     },
 
   });
@@ -107,29 +127,14 @@ export default function FormDialog() {
   }
 
   const handleEdit = (data) => {
-    setOpen(true);
+
+    handleClickOpen();
 
     formik.setValues(data);
-    
-    // update=true;
-    
-
-    // formik.setItem(data)
-    // {
-    //   <TextField
-
-    //   margin="dense"
-    //   id="name"
-    //   label="Medicine name"
-    //   name='name'
-    //   type="text"
-    //   fullWidth
-    //   variant="standard"
-    //   value={values.name}
-    // />
-    // }
 
     console.log(data);
+
+    setUpdate(data);
 
   }
 
@@ -169,73 +174,73 @@ export default function FormDialog() {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Medicine</DialogTitle>
         <DialogContent>
-          <Formik value={values} >
-            <form onSubmit={handleSubmit}>
-              <TextField
+          {/* <Formik value={values} > */}
+          <form onSubmit={handleSubmit}>
+            <TextField
 
-                margin="dense"
-                id="name"
-                label="Medicine name"
-                name='name'
-                type="text"
-                fullWidth
-                variant="standard"
-                value={values.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}  </span>
-              <TextField
+              margin="dense"
+              id="name"
+              label="Medicine name"
+              name='name'
+              type="text"
+              fullWidth
+              variant="standard"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}  </span>
+            <TextField
 
-                margin="dense"
-                id="name"
-                label=""
-                name='date'
-                type="date"
-                fullWidth
-                variant="standard"
-                value={values.date}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <span style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null} </span>
-              <TextField
+              margin="dense"
+              id="name"
+              label=""
+              name='date'
+              type="date"
+              fullWidth
+              variant="standard"
+              value={values.date}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null} </span>
+            <TextField
 
-                margin="dense"
-                id="name"
-                label="Medicine Price"
-                name='price'
-                type="text"
-                fullWidth
-                variant="standard"
-                value={values.price}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <span style={{ color: 'red' }}>{errors.price && touched.price ? errors.price : null} </span>
-              <TextField
+              margin="dense"
+              id="name"
+              label="Medicine Price"
+              name='price'
+              type="text"
+              fullWidth
+              variant="standard"
+              value={values.price}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.price && touched.price ? errors.price : null} </span>
+            <TextField
 
-                margin="dense"
-                id="name"
-                label="Medicine Description"
-                name='desc'
-                multiline
-                rows={4}
-                type="address"
-                fullWidth
-                variant="standard"
-                value={values.desc}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
+              margin="dense"
+              id="name"
+              label="Medicine Description"
+              name='desc'
+              multiline
+              rows={4}
+              type="address"
+              fullWidth
+              variant="standard"
+              value={values.desc}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
 
-              <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
-                <Button type='submit' >submit</Button>
-              </DialogActions>
-            </form>
-          </Formik>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button type='submit' >submit</Button>
+            </DialogActions>
+          </form>
+          {/* </Formik> */}
         </DialogContent>
       </Dialog>
 

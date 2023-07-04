@@ -30,6 +30,7 @@ function Medicine(props) {
         )
 
         
+        
 
         console.log(fData);
     }
