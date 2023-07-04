@@ -113,7 +113,7 @@ export default function FormDialog() {
 
   return (
     <>
-      <MedicineForm />
+      <MedicineForm getdata={handleSubmitData}/>
 
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid

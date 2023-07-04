@@ -10,67 +10,68 @@ import * as yup from 'yup';
 
 function MedicineForm(props) {
 
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-      };
-    
-      const handleClose = () => {
-        setOpen(false);
-      };
+  const handleClickOpen = () => {
+    setOpen(true);
 
-     
+  };
 
-      let d = new Date();
-      let nd = new Date(d.setDate(d.getDate() - 1))
-    
-      let medicineschema = yup.object({
-        name: yup.string().required(),
-        date: yup.date().min(nd, "please entre a valid date").required(),
-        price: yup.number().required(),
-        desc: yup.string().required()
-          .test('desc', 'maxmium 3 word allowed.',
-            function (val) {
-              let arr = val.split(" ")
-    
-              if (arr.length > 3) {
-                return false
-              } else {
-                return true
-              }
-            })
-      });
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-      const formik = useFormik({
-        validationSchema: medicineschema,
-    
-        initialValues: {
-          name: '',
-          date: '',
-          price: '',
-          desc: ''
-        },
-        onSubmit: (values, action) => {
-    
-          action.resetForm()
-        //   handleSubmitData(values)
-          handleClose();
-        },
-    
-      });
-    
-      const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
-    return (
-        <>
-        <h1>Medicine</h1>
+  let d = new Date();
+  let nd = new Date(d.setDate(d.getDate() - 1))
+
+  let medicineschema = yup.object({
+    name: yup.string().required(),
+    date: yup.date().min(nd, "please entre a valid date").required(),
+    price: yup.number().required(),
+    desc: yup.string().required()
+      .test('desc', 'maxmium 3 word allowed.',
+        function (val) {
+          let arr = val.split(" ")
+
+          if (arr.length > 3) {
+            return false
+          } else {
+            return true
+          }
+        })
+  });
+
+  const formik = useFormik({
+    validationSchema: medicineschema,
+
+    initialValues: {
+      name: '',
+      date: '',
+      price: '',
+      desc: ''
+    },
+    onSubmit: (values, action) => {
+
+      action.resetForm()
+      // const handleSubmitData =(values) =>{
+        props.getdata(values)
+      // }
+      
+      handleClose();
+    },
+
+  });
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+  return (
+    <>
+      <h1>Medicine</h1>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form Medicine
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Medicine</DialogTitle>
         <DialogContent>
-          {/* <Formik value={values} > */}
           <form onSubmit={handleSubmit}>
             <TextField
 
@@ -136,12 +137,11 @@ function MedicineForm(props) {
               <Button type='submit' >submit</Button>
             </DialogActions>
           </form>
-          {/* </Formik> */}
         </DialogContent>
-        
+
       </Dialog>
-      </>
-    );
+    </>
+  );
 }
 
 export default MedicineForm;
