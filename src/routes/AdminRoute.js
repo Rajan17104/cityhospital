@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import DepartmentsDrawer from '../admin/container/DepartmentsDrawer';
 import DoctorDrawer from '../admin/container/DoctorDrawer'
-import MedicineDrawer from '../admin/container/MedicineDrawer'
+import MedicineDrawer from '../admin/container/Medicine/MedicineDrawer'
 import AppointmentDrawer from '../admin/container/AppointmentDrawer'
 import Layout from '../admin/component/Layout'
 
