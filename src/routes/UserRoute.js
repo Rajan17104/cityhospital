@@ -16,19 +16,20 @@ import Validation from '../user/container/Validation';
 import Contact1 from '../user/container/Contact1';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/Medicines/Medicine';
+import PrivateRoute from '../user/container/PrivateRoute';
 
 function userRoute(props) {
-    return (
-        <>
+  return (
+    <>
       <Header />
       <Routes>
-        <Route  path='/' element={<Home />}/>
-        <Route  path='/departments' element={<Departments/>} />
-        <Route  path='/doctors' element={<Doctors />}/>
-        <Route  path='/about' element={<About />}/>
-        <Route  path='/contact' element={<Contact />}/>
-        <Route  path='/contact' element={<Contact1/>}/>
-        <Route path='/appointment' element={<Appointment />} /> 
+        <Route path='/' element={<Home />} />
+        <Route path='/departments' element={<Departments />} />
+        <Route path='/doctors' element={<Doctors />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/contact' element={<Contact1 />} />
+        <Route path='/appointment' element={<Appointment />} />
         // {/* <Route path='/doctor/:id' element={<Doctor />} />*/}
         // {/* <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} />   */}
 
@@ -38,15 +39,19 @@ function userRoute(props) {
         </Route> */}
 
         <Route path='*' element={<NotFound />} />
-        <Route path='/auth'  element={<Auth />}/>
+        <Route path='/auth' element={<Auth />} />
       //  {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
-        <Route path='/medicine' element={<Medicine />} />
-       </Routes>
+
+        <Route path='/private' element={<PrivateRoute />} >
+          <Route path='medicine' element={<Medicine />} />
+        </Route>
+
+      </Routes>
       <Footer />
-      </>
-    );
+    </>
+  );
 }
 
 export default userRoute;

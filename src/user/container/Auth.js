@@ -6,52 +6,75 @@ import * as yup from 'yup';
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
+  const [ans, setAns] = useState([]);
 
-  let authObj ={},authVal ={}
+  // let localdata = JSON.parse(localStorage.get  Item('logindata'));
 
-  if(authType === 'login'){
-    authObj ={
+  let authObj = {}, authVal = {}
+
+  if (authType === 'login') {
+    authObj = {
       email: yup.string().email('please enter a valid email').required('please enter a email'),
       password: yup.string().required('please enter a password'),
     }
-    authVal ={
-      email:'',
-      password:''
+    authVal = {
+      email: '',
+      password: ''
     }
-  }else if(authType === 'sign up'){
-    authObj ={
-      name : yup.string().required('plase enter a name'),
+
+  } else if (authType === 'sign up') {
+    authObj = {
+      name: yup.string().required('plase enter a name'),
       email: yup.string().email('please enter a valid email').required('please enter a email'),
       password: yup.string().required('please enter a password'),
     }
-    authVal ={
-      name:'',
-      email:'',
-      password:''
+    authVal = {
+      name: '',
+      email: '',
+      password: ''
     }
-  }else{
-      authObj ={
-        email: yup.string().required('please enter a password'),
-      }
-      authVal ={
-        email:''
-      }
+  } else {
+    authObj = {
+      email: yup.string().required('please enter a password'),
+    }
+    authVal = {
+      email: ''
+    }
   }
 
   let authSchema = yup.object(authObj);
 
+  const handleSubmitData = (val) => {
+    console.log(val);
+
+    let localdata = JSON.parse(localStorage.getItem("logindata"));
+    let rno = Math.floor(Math.random() * 1000);
+
+    let newData = { id: rno, ...val };
+    if (localdata === null) {
+        localStorage.setItem("logindata", JSON.stringify([newData]))
+        setAns([newData])
+    } else {
+        localdata.push(newData)
+        localStorage.setItem("logindata", JSON.stringify(localdata))
+        setAns(localdata)
+    }
+
+}
+
   const formik = useFormik({
     validationSchema: authSchema,
     initialValues: authVal,
-    enableReinitialize : true,
-    onSubmit: (values,action) => {
+    enableReinitialize: true,
+    onSubmit: (values, action) => {
       action.resetForm();
+      console.log('sdd');
+      handleSubmitData(values)
       console.log(values);
     },
-});
+  });
 
-
-const {handleBlur,handleChange,handleSubmit,values,errors,touched} =formik;
+  const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
 
 
   return (
@@ -72,60 +95,60 @@ const {handleBlur,handleChange,handleSubmit,values,errors,touched} =formik;
             {
               authType === 'login' || authType === 'forgot' ? null :
                 <div className="col-md-7 form-group">
-                  <input 
-                  type="text" 
-                  name="name" 
-                  className="form-control" 
-                  id="name" 
-                  placeholder="Your Name" 
-                  data-rule="minlen:4" 
-                  data-msg="Please enter at least 4 chars" 
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    id="name"
+                    placeholder="Your Name"
+                    data-rule="minlen:4"
+                    data-msg="Please enter at least 4 chars"
+                    value={values.name}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
-                  <span style={{color: 'red'}}>{errors.name && touched.name ? errors.name : null}</span>
+                  <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span>
                   <div className="validate" />
                 </div>
-                
-                }
+
+            }
 
             <div className="col-md-7 form-group mt-3 mt-md-0">
-              <input 
-              type="email" 
-              className="form-control" 
-              name="email" 
-              id="email" 
-              placeholder="Your Email" 
-              data-rule="email" 
-              data-msg="Please enter a valid email" 
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                id="email"
+                placeholder="Your Email"
+                data-rule="email"
+                data-msg="Please enter a valid email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-              <span style={{color: 'red'}}>{errors.email && touched.email ? errors.email : null}</span>
-              
+              <span style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span>
+
               <div className="validate" />
             </div>
 
             {
               authType !== 'forgot' ?
-               <div className="col-md-7 form-group mt-3 mt-md-0">
-                <input 
-                type="password" 
-                className="form-control" 
-                name="password" 
-                id="password" 
-                placeholder="Your password" 
-                data-rule="minlen:4" 
-                data-msg="Please enter a password" 
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                />
-                <span style={{color: 'red'}}>{errors.password && touched.password ? errors.password : null}</span>
-                <div className="validate" />
-              </div> : null
+                <div className="col-md-7 form-group mt-3 mt-md-0">
+                  <input
+                    type="password"
+                    className="form-control"
+                    name="password"
+                    id="password"
+                    placeholder="Your password"
+                    data-rule="minlen:4"
+                    data-msg="Please enter a password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <span style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span>
+                  <div className="validate" />
+                </div> : null
             }
 
           </div>
@@ -146,12 +169,12 @@ const {handleBlur,handleChange,handleSubmit,values,errors,touched} =formik;
             <div className='text-center'>
               <a href="#" onClick={() => setAuthType('forgot')}>  Forgot password ?</a>
               <div className='text-center'>
-                <span>You have already account ? <a href="#" onClick={() => setAuthType('sign up')}> Sign up</a></span>
+                <span>You have already account ? <a href="#" onClick={() => setAuthType('sign up')}> Sign up </a></span>
               </div>
             </div>
           </> :
           <div className='text-center'>
-            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login</a> </span>
+            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a> </span>
           </div>
       }<br /><br />
 
