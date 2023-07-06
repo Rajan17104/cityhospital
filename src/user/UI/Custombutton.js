@@ -2,9 +2,10 @@ import React from 'react';
 import Styled from 'styled-components'
 
 function Custombutton({data}) {
-    
+
     const Button = Styled.button`
     background: #000;
+    // background: #FF6337;
     border: 0;
     padding: 10px 35px;
     color: #fff;
