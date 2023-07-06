@@ -16,7 +16,7 @@ import Validation from '../user/container/Validation';
 import Contact1 from '../user/container/Contact1';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/Medicines/Medicine';
-import PrivateRoute from '../user/container/PrivateRoute';
+import PrivateRoute from './PrivateRoute';
 
 function userRoute(props) {
   return (
@@ -44,7 +44,7 @@ function userRoute(props) {
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
 
-        <Route path='/private' element={<PrivateRoute />} >
+        <Route  element={<PrivateRoute />} >
           <Route path='medicine' element={<Medicine />} />
         </Route>
 

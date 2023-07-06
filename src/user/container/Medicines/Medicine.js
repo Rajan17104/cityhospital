@@ -27,7 +27,7 @@ function Medicine(props) {
             v.price.toString().includes(val) ||
             v.date.toString().includes(val) ||
             v.desc.toLowerCase().includes(val.toLowerCase())
-        )
+        );
 
         console.log(fData);
 

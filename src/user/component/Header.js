@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function Header(props) {
+
+  let localdata = localStorage.getItem('logindata');
+
+  const handleremove = () =>{
+    localStorage.removeItem('logindata');
+  }
+
     return (
         
   <div className="main-header">
@@ -42,9 +49,16 @@ function Header(props) {
         </nav>
         <Link to='/appointment' className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
           Appointment</Link>
-        <Link to="/auth" className="appointment-btn scrollto">
-          <span className="d-none d-md-inline">Login/ Signup</span>
-        </Link>
+
+          {
+            localdata ?  <Link to="/auth" className="appointment-btn scrollto" onClick={handleremove}>
+            <span className="d-none d-md-inline">Logout</span>
+          </Link> : 
+           <Link to="/auth" className="appointment-btn scrollto">
+           <span className="d-none d-md-inline">Login/ Signup</span>
+         </Link>
+          }
+       
       </div>
     </header>
   </div>

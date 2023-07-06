@@ -5,11 +5,13 @@ import DoctorDrawer from '../admin/container/DoctorDrawer'
 import MedicineDrawer from '../admin/container/Medicine/MedicineDrawer'
 import AppointmentDrawer from '../admin/container/AppointmentDrawer'
 import Layout from '../admin/component/Layout'
+import Dashboard from '../admin/container/Dashboard/Dashboard';
 
 function adminRoute(props) {
     return (
         <Layout>
             <Routes>
+                <Route path='/' element={<Dashboard />} />
                 <Route path='/department_drawer' element={<DepartmentsDrawer />} />
                 <Route path='/doctor_drawer' element={<DoctorDrawer />} />
                 <Route path='/medicine_drawer' element={<MedicineDrawer />} />

@@ -1,14 +1,14 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
-  const [ans, setAns] = useState([]);
+  const navigate = useNavigate();
 
-  // let localdata = JSON.parse(localStorage.get  Item('logindata'));
 
   let authObj = {}, authVal = {}
 
@@ -42,25 +42,8 @@ function Auth(props) {
     }
   }
 
+
   let authSchema = yup.object(authObj);
-
-  const handleSubmitData = (val) => {
-    console.log(val);
-
-    let localdata = JSON.parse(localStorage.getItem("logindata"));
-    let rno = Math.floor(Math.random() * 1000);
-
-    let newData = { id: rno, ...val };
-    if (localdata === null) {
-        localStorage.setItem("logindata", JSON.stringify([newData]))
-        setAns([newData])
-    } else {
-        localdata.push(newData)
-        localStorage.setItem("logindata", JSON.stringify(localdata))
-        setAns(localdata)
-    }
-
-}
 
   const formik = useFormik({
     validationSchema: authSchema,
@@ -69,10 +52,30 @@ function Auth(props) {
     onSubmit: (values, action) => {
       action.resetForm();
       console.log('sdd');
-      handleSubmitData(values)
       console.log(values);
+       
+  if(authType === 'login'){
+    handlelogin();
+  }else if(authType === 'sign up') {
+    handleregister()
+  }else if(authType === 'forgot'){
+    handleforgot();
+  }
     },
   });
+
+  const handlelogin = () =>{
+    localStorage.setItem("logindata", 'true')
+    navigate('/')
+  }
+
+  const handleregister = () =>{
+    
+  }
+
+  const handleforgot = () =>{
+    
+  }
 
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
 
