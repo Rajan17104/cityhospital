@@ -1,9 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
+
 
 function Extra(props) {
+
+    const Button = styled.button`
+    
+    .btn{
+    
+    }
+
+    `
+
     return (
         <div>
-            <h1>hello</h1>
+            <Button className='btn'>fdskjndskjcjdsd</Button>
         </div>
     );
 }

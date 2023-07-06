@@ -44,7 +44,7 @@ function userRoute(props) {
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
 
-        <Route  element={<PrivateRoute />} >
+        <Route element={<PrivateRoute />} >
           <Route path='medicine' element={<Medicine />} />
         </Route>
 

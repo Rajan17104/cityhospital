@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import Custombutton from '../UI/Custombutton';
 
 function Auth(props) {
 
@@ -158,10 +159,10 @@ function Auth(props) {
 
           {
             authType === 'login' ?
-              <div className="text-center"><button type="submit">Login</button></div> :
+              <div className="text-center"><Custombutton type='submit' data={'Login'}/></div> :
               authType === 'sign up' ?
-                <div className="text-center"><button type="submit">Sign up</button></div> :
-                <div className="text-center"><button type="submit">Submit</button></div>
+                <div className="text-center"><Custombutton type='submit' data={'Sign up'}/></div> :
+                <div className="text-center"><Custombutton type='submit' data={'Submit'}/></div>
           }
 
         </form>
