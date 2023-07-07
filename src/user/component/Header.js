@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Custombutton from '../UI/Custombutton';
+import Button from './UI/Button';
 // import './App.css'
 
 
@@ -52,17 +52,17 @@ function Header(props) {
           </nav>
             <Link to='/appointment' >
               {/* <span className="d-none d-md-inline">Make an</span> */}
-              <Custombutton data={'Appointment'} />
+              <Button>Appointment</Button>
             </Link>
 
           {
             localdata ? <Link to="/auth" onClick={handleremove}>
               {/* <span className="d-none d-md-inline">Logout</span> */}
-              <Custombutton data={'Logout'} />
+             <Button>Logout</Button>
             </Link> :
               <Link to="/auth" >
                 {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
-                <Custombutton data={'Login/Signup'} />
+             <Button>Login/Signup</Button>
               </Link>
           }
 
