@@ -1,5 +1,5 @@
 import React from 'react';
-import Customcard from '../../UI/Customcard';
+import Customcard from '../../component/UI/Customcard';
 
 function ListMedicines({ mdata }) {
     return (
