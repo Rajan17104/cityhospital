@@ -33,11 +33,12 @@ import { styled } from 'styled-components';
     
      export const outlinebutton = styled(BaseButton)`
     //  background: ;
-     color: #fff;
+     color: #000;
      border: 2px solid  #000;
 
      &:hover {
-        background: #000
+        background: #000;
+        color: #fff;
     }
      `;
 

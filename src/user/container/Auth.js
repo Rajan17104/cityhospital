@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Button from '../component/UI/Button';
-
+import Input from '../component/UI/Input';
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
@@ -54,28 +54,28 @@ function Auth(props) {
       action.resetForm();
       console.log('sdd');
       console.log(values);
-       
-  if(authType === 'login'){
-    handlelogin();
-  }else if(authType === 'sign up') {
-    handleregister()
-  }else if(authType === 'forgot'){
-    handleforgot();
-  }
+
+      if (authType === 'login') {
+        handlelogin();
+      } else if (authType === 'sign up') {
+        handleregister()
+      } else if (authType === 'forgot') {
+        handleforgot();
+      }
     },
   });
 
-  const handlelogin = () =>{
+  const handlelogin = () => {
     localStorage.setItem("logindata", 'true')
     navigate('/')
   }
 
-  const handleregister = () =>{
-    
+  const handleregister = () => {
+
   }
 
-  const handleforgot = () =>{
-    
+  const handleforgot = () => {
+
   }
 
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
@@ -99,7 +99,7 @@ function Auth(props) {
             {
               authType === 'login' || authType === 'forgot' ? null :
                 <div className="col-md-7 form-group">
-                  <input
+                  <Input
                     type="text"
                     name="name"
                     className="form-control"
@@ -118,7 +118,7 @@ function Auth(props) {
             }
 
             <div className="col-md-7 form-group mt-3 mt-md-0">
-              <input
+              <Input
                 type="email"
                 className="form-control"
                 name="email"
@@ -138,7 +138,7 @@ function Auth(props) {
             {
               authType !== 'forgot' ?
                 <div className="col-md-7 form-group mt-3 mt-md-0">
-                  <input
+                  <Input
                     type="password"
                     className="form-control"
                     name="password"
@@ -161,7 +161,7 @@ function Auth(props) {
             authType === 'login' ?
               <div className="text-center"><Button type='primary' >Login</Button></div> :
               authType === 'sign up' ?
-                <div className="text-center"><Button type='secondary'  btndisable={true}>Sign up</Button></div> :
+                <div className="text-center"><Button type='secondary' btndisable={true}>Sign up</Button></div> :
                 <div className="text-center"><Button type='outline' >Submit</Button></div>
           }
 
@@ -178,9 +178,9 @@ function Auth(props) {
             </div>
           </> :
           <div className='text-center'>
-            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a> </span>
+            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a></span>
           </div>
-      }<br /><br />
+      }<br /><br/>
 
     </section>
 
