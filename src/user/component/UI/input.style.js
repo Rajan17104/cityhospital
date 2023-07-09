@@ -13,7 +13,7 @@ export const BaseInput = styled.input`
     
 
     &:focus{
-        border: 1px solid #ff0000;
+        outline: 1px solid #ff0000;
         // border-color: #ff0000;
 
         // background: #ff0000;
