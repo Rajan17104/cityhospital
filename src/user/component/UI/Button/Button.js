@@ -17,7 +17,7 @@ function Button({ children, type, btndisable=false }) {
 
         }
 
-    }
+    };
 
     const Btntype = checktype();
 
@@ -26,8 +26,8 @@ function Button({ children, type, btndisable=false }) {
             {children}
         </Btntype>
 
-
     );
+
 }
 
 export default Button;

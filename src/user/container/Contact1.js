@@ -1,6 +1,8 @@
 import { Formik, useFormik, } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
+import { Title } from '../component/UI/Subtitel/subtitel.style';
+import { H2, H4 } from '../component/UI/Heading/heading.style';
 
 function Contact1(props) {
 
@@ -49,10 +51,10 @@ function Contact1(props) {
         <section id="contact" className="contact">
             <div className="container">
                 <div className="section-title">
-                    <h2>Contact</h2>
-                    <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
+                    <H2>Contact</H2>
+                    <Title>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
                         blandit quam volutpat sollicitudin. Aenean ac turpis ante. Mauris velit sapien, aliquet aliquet rhoncus quis,
-                        luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.</p>
+                        luctus at neque. Mauris sit amet massa sed orci vehicula facilisis.</Title>
                 </div>
             </div>
             <div className="container">
@@ -61,19 +63,19 @@ function Contact1(props) {
                         <div className="info">
                             <div className="address">
                                 <i className="bi bi-geo-alt" />
-                                <h4>Location:</h4>
-                                <p> F-505, Inovative Plazza New Delhi, India</p>
+                                <H4>Location:</H4>
+                                <Title> F-505, Inovative Plazza New Delhi, India</Title>
                             </div>
                             <div className="email">
                                 <i className="bi bi-envelope" />
-                                <h4>Email:</h4>
-                                <p>cityhospital@example.com</p>
+                                <H4>Email:</H4>
+                                <Title>cityhospital@example.com</Title>
                             </div>
                             <div className="phone">
 
                                 <i className="bi bi-phone" />
-                                <h4>Call:</h4>
-                                <p>+91 9988776655</p>
+                                <H4>Call:</H4>
+                                <Title>+91 9988776655</Title>
                             </div>
                         </div>
                     </div>

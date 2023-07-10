@@ -1,18 +1,20 @@
 import React from 'react';
-import { HeadingH1, HeadingH2 } from './heading.style';
+import { H1, H2, H3, H4, H5, H6 } from './heading.style';
 
-function Heading({children}) {
+function Heading(props) {
+
+    <>
+        <H1></H1>
+        <H2></H2>
+        <H3></H3>
+        <H4></H4>
+        <H5></H5>
+        <H6></H6>
+    </>
+
     return (
-        <>
-       <HeadingH1>
-        {children}
-       </HeadingH1>
-
-        <HeadingH2>
-            {children}
-        </HeadingH2>
-
-       </>
+        <div>
+        </div>
     );
 }
 

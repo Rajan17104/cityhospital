@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Title } from '../component/UI/Subtitel/subtitel.style';
 
 
 const doctordata = [
@@ -45,13 +46,13 @@ function Doctors(props) {
       <div className="container">
         <div className="section-title">
           <h2>Doctors</h2>
-          <p>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
+          <Title>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
             tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
             ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
-          </p>
-          <Link to='/doctor/1'>Doctor 1</Link><br/>
+          </Title>
+          {/* <Link to='/doctor/1'>Doctor 1</Link><br/>
           <Link to='/doctor/2'>Doctor 2</Link><br/>
-          <Link to='/doctor/visiting_doctor'>Visiting Doctor</Link>
+          <Link to='/doctor/visiting_doctor'>Visiting Doctor</Link> */}
         </div>
         <div className="row">
           {
@@ -64,7 +65,7 @@ function Doctors(props) {
                     <div className="member-info">
                       <h4>{v.name}</h4>
                       <span>{v.designation}</span>
-                      <p>{v.description}</p>
+                      <Title>{v.description}</Title>
                       <div className="social">
                         <a href><i className="ri-twitter-fill" /></a>
                         <a href><i className="ri-facebook-fill" /></a>
@@ -87,7 +88,7 @@ function Doctors(props) {
           <div className="member-info">
             <h4>Atha Smith</h4>
             <span>Chief Medical Officer</span>
-            <p>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.</p>
+            <Title>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac.</Title>
             <div className="social">
               <a href><i className="ri-twitter-fill" /></a>
               <a href><i className="ri-facebook-fill" /></a>
@@ -103,7 +104,7 @@ function Doctors(props) {
           <div className="member-info">
             <h4>John White</h4>
             <span>Anesthesiologist</span>
-            <p>Aenean ac turpis ante. Mauris velit sapien.</p>
+            <Title>Aenean ac turpis ante. Mauris velit sapien.</Title>
             <div className="social">
               <a href><i className="ri-twitter-fill" /></a>
               <a href><i className="ri-facebook-fill" /></a>
@@ -119,7 +120,7 @@ function Doctors(props) {
           <div className="member-info">
             <h4>Umika Loha</h4>
             <span>Cardiology</span>
-            <p>Curabitur luctus eleifend odio. Phasellus placerat mi.</p>
+            <Title>Curabitur luctus eleifend odio. Phasellus placerat mi.</Title>
             <div className="social">
               <a href><i className="ri-twitter-fill" /></a>
               <a href><i className="ri-facebook-fill" /></a>
@@ -135,7 +136,7 @@ function Doctors(props) {
           <div className="member-info">
             <h4>Daimy Smith</h4>
             <span>Neurosurgeon</span>
-            <p>Morbi vulputate, tortor nec pellentesque molestie, eros nisi ornare purus.</p>
+            <Title>Morbi vulputate, tortor nec pellentesque molestie, eros nisi ornare purus.</Title>
             <div className="social">
               <a href><i className="ri-twitter-fill" /></a>
               <a href><i className="ri-facebook-fill" /></a>

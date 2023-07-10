@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Button from '../component/UI/Button/Button';
 import Input from '../component/UI/InputBox/Input';
-import Heading from '../component/UI/Heading/Heading';
+import { Title } from '../component/UI/Subtitel/subtitel.style';
+import { H2 } from '../component/UI/Heading/heading.style';
+
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
@@ -87,13 +89,13 @@ function Auth(props) {
       <div className="container">
         <div className="section-title">
           {
-            authType === 'login' ? <Heading>Login</Heading> :
-              authType === 'sign up' ? <Heading>Sign up</Heading> : <Heading>Reset password</Heading>
+            authType === 'login' ? <H2>Login</H2> :
+              authType === 'sign up' ? <H2>Sign up</H2> : <H2>Reset password</H2  >
           }
 
-          {/* <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
+          <Title>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
             blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p> */}
+            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</Title>
         </div>
         <form onSubmit={handleSubmit} className="php-email-form">
           <div className="row justify-content-center" >

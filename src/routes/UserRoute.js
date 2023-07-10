@@ -27,7 +27,7 @@ function userRoute(props) {
         <Route path='/departments' element={<Departments />} />
         <Route path='/doctors' element={<Doctors />} />
         <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
+       // {/* <Route path='/contact' element={<Contact />} /> */}
         <Route path='/contact' element={<Contact1 />} />
         <Route path='/appointment' element={<Appointment />} />
         // {/* <Route path='/doctor/:id' element={<Doctor />} />*/}
