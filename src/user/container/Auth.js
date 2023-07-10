@@ -3,8 +3,9 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import Button from '../component/UI/Button';
-import Input from '../component/UI/Input';
+import Button from '../component/UI/Button/Button';
+import Input from '../component/UI/InputBox/Input';
+import Heading from '../component/UI/Heading/Heading';
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
@@ -86,8 +87,8 @@ function Auth(props) {
       <div className="container">
         <div className="section-title">
           {
-            authType === 'login' ? <h2>Login</h2> :
-              authType === 'sign up' ? <h2>Sign up</h2> : <h2>Reset password</h2>
+            authType === 'login' ? <Heading>Login</Heading> :
+              authType === 'sign up' ? <Heading>Sign up</Heading> : <Heading>Reset password</Heading>
           }
 
           {/* <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
@@ -102,7 +103,6 @@ function Auth(props) {
                   <Input
                     type="text"
                     name="name"
-                    className="form-control"
                     id="name"
                     placeholder="Your Name"
                     data-rule="minlen:4"
@@ -110,8 +110,9 @@ function Auth(props) {
                     value={values.name}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    errorText={errors.name && touched.name ? errors.name : ''}
                   />
-                  <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span>
+                  {/* <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span> */}
                   <div className="validate" />
                 </div>
 
@@ -120,7 +121,6 @@ function Auth(props) {
             <div className="col-md-7 form-group mt-3 mt-md-0">
               <Input
                 type="email"
-                className="form-control"
                 name="email"
                 id="email"
                 placeholder="Your Email"
@@ -129,8 +129,9 @@ function Auth(props) {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                errorText={errors.email && touched.email ? errors.email : ''}
               />
-              <span style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span>
+              {/* <span style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span> */}
 
               <div className="validate" />
             </div>
@@ -140,7 +141,6 @@ function Auth(props) {
                 <div className="col-md-7 form-group mt-3 mt-md-0">
                   <Input
                     type="password"
-                    className="form-control"
                     name="password"
                     id="password"
                     placeholder="Your password"
@@ -149,8 +149,9 @@ function Auth(props) {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    errorText={errors.password && touched.password ? errors.password : ''}
                   />
-                  <span style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span>
+                  {/* <span style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span> */}
                   <div className="validate" />
                 </div> : null
             }

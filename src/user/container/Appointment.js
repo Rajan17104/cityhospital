@@ -1,6 +1,5 @@
 import React from 'react';
-import Custombutton from '../component/UI/Button';
-import Button from '../component/UI/Button';
+import Button from '../component/UI/Button/Button';
 
 function Appointment(props) {
     return (
