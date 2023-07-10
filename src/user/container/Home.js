@@ -1,6 +1,7 @@
 import React from 'react';
 import { H1, H2, H3 , H4} from '../component/UI/Heading/heading.style'
 import { Title } from '../component/UI/Subtitel/subtitel.style';
+import Icon from '../component/UI/Icon/Icon';
 
 function Home(props) {
     return (
@@ -19,28 +20,28 @@ function Home(props) {
                         <div className="row">
                             <div className="col-lg-3 col-md-6">
                                 <div className="count-box">
-                                    <i className="fas fa-user-md" />
+                                    <Icon className="fas fa-user-md" />
                                     <span>23</span>
                                     <Title>Doctors</Title>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div className="count-box">
-                                    <i className="far fa-hospital" />
+                                    <Icon className="far fa-hospital" />
                                     <span>18</span>
                                     <Title>Departments</Title>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
-                                    <i className="fas fa-heartbeat" />
+                                    <Icon className="fas fa-heartbeat" />
                                     <span>980</span>
                                     <Title>Patients</Title>
                                 </div>
                             </div>
                             <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div className="count-box">
-                                    <i className="fas fa-award" />
+                                    <Icon className="fas fa-award" />
                                     <span>12</span>
                                     <Title>Awards</Title>
                                 </div>
@@ -51,7 +52,7 @@ function Home(props) {
                 <section id="services" className="services">
                     <div className="container">
                         <div className="section-title">
-                            <H2 type='H2'>Our Facilities</H2>
+                            <H2 >Our Facilities</H2>
                             
                             <Title>Nunc aliquam eget nibh eu euismod. Donec dapibus blandit quam volutpat sollicitudin. Fusce tincidunt sit
                                 amet ex in volutpat. Donec lacinia finibus tortor. Curabitur luctus eleifend odio. Phasellus placerat mi et
