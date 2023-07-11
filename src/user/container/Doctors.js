@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
+import Card from '../component/UI/Card/Card';
 
 
 const doctordata = [
@@ -60,7 +61,7 @@ function Doctors(props) {
               return (
                 <div className="col-lg-6">
                   <Link to={`/doctor/${v.id}`}>
-                  <div className="member d-flex align-items-start">
+                  <Card className="member d-flex align-items-start">
                     <div className="pic"><img src={v.url} className="img-doctor" alt=''/></div>
                     <div className="member-info">
                       <h4>{v.name}</h4>
@@ -73,7 +74,7 @@ function Doctors(props) {
                         <a href><i className="ri-linkedin-box-fill"/> </a>
                       </div>
                     </div>
-                  </div>
+                  </Card>
                   </Link>
                 </div>
               )

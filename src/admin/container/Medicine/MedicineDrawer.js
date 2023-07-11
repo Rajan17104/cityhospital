@@ -30,14 +30,14 @@ export default function FormDialog() {
       if (update) {
         let uData = localdata.map((v) => {
           if (v.id === data.id) {
-            return data
+            return data;
           } else {
             return v;
           }
         })
         localStorage.setItem("medicines", JSON.stringify(uData))
         setItems(uData)
-        console.log(uData);
+        console.log(uData)
       } else {
         localdata.push(newData)
         localStorage.setItem("medicines", JSON.stringify(localdata))
@@ -59,7 +59,7 @@ export default function FormDialog() {
     localStorage.setItem("medicines", JSON.stringify(fdata))
 
     setItems(fdata)
-  }
+  };
 
   React.useEffect(() => {
     let localdata = JSON.parse(localStorage.getItem("medicines"));
@@ -76,7 +76,7 @@ export default function FormDialog() {
 
     setUpdate(data);
 
-  }
+  };
 
   const columns = [
 

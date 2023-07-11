@@ -7,6 +7,6 @@ function Icon({...rest}) {
         <Icons {...rest}/>
        
     );
-}
+};
 
 export default Icon;
