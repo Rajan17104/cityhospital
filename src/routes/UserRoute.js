@@ -17,6 +17,7 @@ import Contact1 from '../user/container/Contact1';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/Medicines/Medicine';
 import PrivateRoute from './PrivateRoute';
+import Counter from '../user/Counter/Counter'
 
 function userRoute(props) {
   return (
@@ -43,6 +44,8 @@ function userRoute(props) {
       //  {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
+        <Route path='/counter' element={<Counter />} />
+
 
         <Route element={<PrivateRoute />} >
           <Route path='medicine' element={<Medicine />} />
