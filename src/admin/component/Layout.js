@@ -89,7 +89,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const listdata = [
   { lable: 'Medicines', icon: <MedicationIcon />, to: '/admin/medicine_drawer' },
-  { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor_drawer' }
+  { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor' }
 ]
 
 export default function Layout({ children }) {

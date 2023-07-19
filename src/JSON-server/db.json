@@ -1,0 +1,51 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "Doctors": [
+    {
+      "id": 101,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 102,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 103,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 104,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 105,
+      "name": "ABC",
+      "price": 100
+    },
+    {
+      "id": 106,
+      "name": "ABC",
+      "price": 1000
+    }
+  ]
+}
