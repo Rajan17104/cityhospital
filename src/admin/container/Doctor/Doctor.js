@@ -1,14 +1,15 @@
 import { DataGrid } from '@mui/x-data-grid';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDoctorData, deleteDoctor, getDoctorData } from '../../../user/Redux/action/doctors.action';
+import { addDoctorData, deleteDoctor, getDoctorData, updateDoctor } from '../../../user/Redux/action/doctors.action';
 import DoctorFrom from './DoctorFrom';
 import { IconButton } from '@mui/material';
-
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
 function Doctor(props) {
+
+    const [update,  setupdate] = React.useState(null);
 
     const dispatch = useDispatch();
     const Ddata = useSelector(state => state.doctors)
@@ -17,16 +18,23 @@ function Doctor(props) {
         dispatch(getDoctorData())
     }, [])
 
-    const handlesubmit = (data) =>{
-        dispatch(addDoctorData(data))
-    }
+   
 
     const handleDelete = (id) => {
         dispatch(deleteDoctor(id))
     }
 
-    const handleUpdate = () => {
+    const handleUpdate = (data) => {
+        setupdate(data) 
+    }
 
+    const handlesubmit = (data) => {
+        if (update) {
+            dispatch(updateDoctor(data))
+        } else {
+            dispatch(addDoctorData(data))
+        }
+        setupdate(null)
     }
 
     const columns = [
@@ -57,7 +65,7 @@ function Doctor(props) {
         <div>
             <h1>Doctors</h1>
 
-        <DoctorFrom onhandlesubmit={handlesubmit}/>
+        <DoctorFrom onhandlesubmit={handlesubmit} onupdate={update}/>
 
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid

@@ -24,18 +24,18 @@
     },
     {
       "id": 105,
-      "name": "ABC",
-      "price": 100
-    },
-    {
-      "id": 106,
-      "name": "ABC",
-      "price": 1000
+      "name": "ABCd",
+      "price": "1000"
     },
     {
       "name": "patel",
       "price": "52063",
       "id": 108
+    },
+    {
+      "name": "rajan",
+      "price": "123",
+      "id": 109
     }
   ]
 }

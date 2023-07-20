@@ -6,11 +6,18 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {   useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-function DoctorFrom({onhandlesubmit}) {
+function DoctorFrom({onhandlesubmit , onupdate}) {
   const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (onupdate) {
+      formik.setValues(onupdate)
+      handleClickOpen()
+  }
+  },[onupdate])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -37,8 +44,9 @@ function DoctorFrom({onhandlesubmit}) {
     },
     onSubmit: (values, action) => {
       action.resetForm()
-      onhandlesubmit(values)
       handleClose()
+
+      onhandlesubmit(values)
     },
   })
 
@@ -80,7 +88,7 @@ console.log(errors);
               type="text"
               fullWidth
               variant="standard"
-              value={values.designation}
+              value={values.price}
               onChange={handleChange}
               onBlur={handleBlur}
             />
