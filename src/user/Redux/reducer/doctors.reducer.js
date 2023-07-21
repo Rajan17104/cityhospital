@@ -6,15 +6,28 @@ const initState = {
     error: null
 }
 
-export const doctorsReducer = (state = initState , action) =>{
+export const doctorsReducer = (state = initState, action) => {
 
     console.log(action);
 
-    switch(action.type){
-        case ActionType.GET_DOCTORS: 
+    switch (action.type) {
+        case ActionType.LOADING_DOCTORS:
+            return {
+                doctors: [],
+                loading: true,
+            }
+        case ActionType.ERROR_DOCTORS:
+            return {
+                doctors: [],
+                loading: false,
+                error: action.payload
+            }
+
+        case ActionType.GET_DOCTORS:
             return {
                 ...state,
-                doctors: action.payload
+                doctors: action.payload,
+                loading: false
             }
         case ActionType.ADD_DOCTORS:
             return {
@@ -22,7 +35,7 @@ export const doctorsReducer = (state = initState , action) =>{
                 doctors: state.doctors.concat(action.payload)
             }
         case ActionType.DELETE_DOCTORS:
-            return{
+            return {
                 ...state,
                 doctors: state.doctors.filter((v) => v.id != action.payload)
             }
@@ -30,15 +43,15 @@ export const doctorsReducer = (state = initState , action) =>{
             return {
                 ...state,
                 doctors: state.doctors.map((v) => {
-                    if(v.id === action.payload.id){
+                    if (v.id === action.payload.id) {
                         return action.payload
-                    }else{
+                    } else {
                         return v;
                     }
                 })
             }
-        default :
-        return state
+        default:
+            return state
     }
 
 }
