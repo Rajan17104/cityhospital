@@ -57,7 +57,7 @@ console.log(errors);
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form Doctor
+        Open form Team
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Doctor</DialogTitle>
