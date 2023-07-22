@@ -8,22 +8,19 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Formik, useFormik } from 'formik';
 import * as yup from 'yup';
 
-function MedicineForm({ Adddata, onupdate }) {
+function MedicineForm({ onhandlesubmit, onupdate }) {
 
   const [open, setOpen] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (onupdate) {
-
-      formik.setValues(onupdate);
-      handleClickOpen();
-
+      formik.setValues(onupdate)
+      handleClickOpen()
     }
   }, [onupdate])
 
   const handleClickOpen = () => {
     setOpen(true);
-
   };
 
   const handleClose = () => {
@@ -35,8 +32,8 @@ function MedicineForm({ Adddata, onupdate }) {
 
   let medicineschema = yup.object({
     name: yup.string().required(),
-    date: yup.date().min(nd, "please entre a valid date").required(),
     price: yup.number().required(),
+    date: yup.date().min(nd, "please entre a valid date").required(),
     desc: yup.string().required()
       .test('desc', 'maxmium 3 word allowed.',
         function (val) {
@@ -55,22 +52,22 @@ function MedicineForm({ Adddata, onupdate }) {
 
     initialValues: {
       name: '',
-      date: '',
       price: '',
+      date: '',
       desc: ''
     },
     onSubmit: (values, action) => {
 
       action.resetForm()
+      handleClose()
 
-      Adddata(values)
-
-      handleClose();
-    },
+      onhandlesubmit(values)
+    }
 
   });
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+  
   return (
     <>
       <h1>Medicine</h1>

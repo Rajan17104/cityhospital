@@ -4,79 +4,39 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import MedicineForm from './MedicineForm';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { Addmedicine, deleteMedicine, getMedicine, updateMedicine } from '../../../user/Redux/action/medicine.action';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function FormDialog() {
 
-  const [items, setItems] = React.useState([]);
-  const [update, setUpdate] = React.useState(null);
+  const [update, setupdate] = React.useState(null);
 
-  const handleSubmitData = (data) => {
-    console.log(data);
+  const dispatch = useDispatch();
+  const medicines = useSelector(state => state.medicine)
 
-    let rno = Math.floor(Math.random() * 1000);
 
-    let newData = { id: rno, ...data };
-
-    let localdata = JSON.parse(localStorage.getItem("medicines"));
-
-    console.log(localdata);
-
-    if (localdata === null) {
-      localStorage.setItem("medicines", JSON.stringify([newData]))
-      setItems([newData])
-    } else {
-
-      if (update) {
-        let uData = localdata.map((v) => {
-          if (v.id === data.id) {
-            return data;
-          } else {
-            return v;
-          }
-        })
-        localStorage.setItem("medicines", JSON.stringify(uData))
-        setItems(uData)
-        console.log(uData)
-      } else {
-        localdata.push(newData)
-        localStorage.setItem("medicines", JSON.stringify(localdata))
-        setItems(localdata)
-      }
-
-    }
-
-    setUpdate(null);
-
-  };
+  React.useEffect(() => {
+    dispatch(getMedicine())
+  }, [])
 
 
   const handleDelete = (id) => {
-    let localdata = JSON.parse(localStorage.getItem("medicines"));
+    dispatch(deleteMedicine(id))
+  }
 
-    let fdata = localdata.filter((v, i) => v.id !== id)
+  const handleUpdate = (data) => {
+    setupdate(data)
+  }
 
-    localStorage.setItem("medicines", JSON.stringify(fdata))
-
-    setItems(fdata)
-  };
-
-  React.useEffect(() => {
-    let localdata = JSON.parse(localStorage.getItem("medicines"));
-
-    if (localdata !== null) {
-      setItems(localdata)
+  const handlesubmit = (data) => {
+    if (update) {
+      dispatch(updateMedicine(data))
+    } else {
+      dispatch(Addmedicine(data))
     }
-
-  }, []);
-
-  const handleEdit = (data) => {
-
-    console.log(data);
-
-    setUpdate(data);
-
-  };
+    setupdate(null)
+  }
 
   const columns = [
 
@@ -95,7 +55,7 @@ export default function FormDialog() {
             <DeleteIcon />
           </IconButton>
 
-          <IconButton aria-label="edit" onClick={() => handleEdit(params.row)}>
+          <IconButton aria-label="edit" onClick={() => handleUpdate(params.row)}>
             <EditIcon />
           </IconButton>
         </>
@@ -106,17 +66,24 @@ export default function FormDialog() {
   ];
 
   return (
-    <>
-      <MedicineForm Adddata={handleSubmitData} onupdate={update} />
+    <div>
+      {
+        medicines.loading ? <CircularProgress /> :
 
-      <div style={{ height: 400, width: '100%' }}>
-        <DataGrid
-          rows={items}
-          columns={columns}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-        />
-      </div>
-    </>
+          <>
+            <MedicineForm onhandlesubmit={handlesubmit} onupdate={update} />
+
+            <div style={{ height: 400, width: '100%' }}>
+              <DataGrid
+                rows={medicines.medicine}
+                columns={columns}
+                pageSizeOptions={[5, 10]}
+                checkboxSelection
+              />
+            </div>
+          </>
+      }
+    </div>
+
   );
 }

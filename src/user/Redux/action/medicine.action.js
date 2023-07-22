@@ -1,11 +1,10 @@
-import * as ActionTypes from '../ActionType'
+import * as ActionType from "../ActionType"
 
-
-export const getDoctorData = () => (dispatch) => {
+export const getMedicine = () => (dispatch) => {
     try {
         dispatch(loadingData(true));
         setTimeout(function () {
-            fetch("http://localhost:3004/Doctors")
+            fetch("http://localhost:3004/medicines")
                 .then((response) => {
                     if (response.ok) {
                         return response.json()
@@ -13,7 +12,7 @@ export const getDoctorData = () => (dispatch) => {
                     throw new Error('Something went wrong')
                 }
                 )
-                .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
+                .then((data) => dispatch({ type: ActionType.GET_MEDICINE, payload: data }))
                 .catch((error) => dispatch(errorData(error.message)))
         }, 3000)
 
@@ -22,9 +21,10 @@ export const getDoctorData = () => (dispatch) => {
     }
 }
 
-export const addDoctorData = (data) => (dispatch) => {
+
+export const Addmedicine = (data) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctors", {
+        fetch("http://localhost:3004/medicines", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -38,7 +38,7 @@ export const addDoctorData = (data) => (dispatch) => {
                 throw new Error('Something went wrong')
             }
             )
-            .then((data) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: data }))
+            .then((data) => dispatch({ type: ActionType.ADD_MEDICINE, payload: data }))
             .catch((error) => dispatch(errorData(error.message)))
 
     } catch (error) {
@@ -47,13 +47,13 @@ export const addDoctorData = (data) => (dispatch) => {
     }
 }
 
-export const deleteDoctor = (id) => (dispatch) => {
+export const deleteMedicine = (id) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctors/" + id, {
+        fetch("http://localhost:3004/medicines/" + id, {
             method: "DELETE",
 
         })
-            .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
+            .then(dispatch({ type: ActionType.DELETE_DOCTORS, payload: id }))
             .catch((error) => console.log(error))
 
     } catch (error) {
@@ -61,9 +61,9 @@ export const deleteDoctor = (id) => (dispatch) => {
     }
 }
 
-export const updateDoctor = (data) => (dispatch) => {
+export const updateMedicine= (data) => (dispatch) => {
     try {
-        fetch("http://localhost:3004/Doctors/" + data.id, {
+        fetch("http://localhost:3004/medicines/" + data.id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ export const updateDoctor = (data) => (dispatch) => {
                 throw new Error('Something went wrong')
             }
             )
-            .then((data) => dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data }))
+            .then((data) => dispatch({ type: ActionType.UPDATE_MEDICINE, payload: data }))
             .catch((error) => console.log(error))
 
     } catch (error) {
@@ -87,10 +87,10 @@ export const updateDoctor = (data) => (dispatch) => {
 
 export const loadingData = (status) => (dispatch) => {
     console.log("Loading");
-    dispatch({ type: ActionTypes.LOADING_DOCTORS, payload: status })
+    dispatch({ type: ActionType.LOADING_MEDICINE, payload: status })
 }
 
 export const errorData = (errorMsg) => (dispatch) => {
     console.log(errorMsg);
-    dispatch({ type: ActionTypes.ERROR_DOCTORS, payload: errorMsg })
+    dispatch({ type: ActionType.ERROR_MEDICINE, payload: errorMsg })
 }
