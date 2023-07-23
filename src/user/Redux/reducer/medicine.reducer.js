@@ -21,8 +21,9 @@ export const medicinereducer = (state = initState, action) => {
             }
         case ActionType.GET_MEDICINE:
             return {
-                medicine: [],
-                loading: false,
+                ...state,
+                medicine: action.payload,
+                loading: false
             }
         case ActionType.ADD_MEDICINE:
             return {

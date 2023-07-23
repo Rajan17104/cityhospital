@@ -35,16 +35,6 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
     price: yup.number().required(),
     date: yup.date().min(nd, "please entre a valid date").required(),
     desc: yup.string().required()
-      .test('desc', 'maxmium 3 word allowed.',
-        function (val) {
-          let arr = val.split(" ")
-
-          if (arr.length > 3) {
-            return false
-          } else {
-            return true
-          }
-        })
   });
 
   const formik = useFormik({
@@ -70,7 +60,6 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
   
   return (
     <>
-      <h1>Medicine</h1>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form Medicine
       </Button>

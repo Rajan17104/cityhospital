@@ -13,7 +13,7 @@ export default function FormDialog() {
   const [update, setupdate] = React.useState(null);
 
   const dispatch = useDispatch();
-  const medicines = useSelector(state => state.medicine)
+  const medicines = useSelector(state => state.medicines)
 
 
   React.useEffect(() => {
@@ -67,6 +67,8 @@ export default function FormDialog() {
 
   return (
     <div>
+
+      <h1>Medicine</h1>
       {
         medicines.loading ? <CircularProgress /> :
 
@@ -75,7 +77,7 @@ export default function FormDialog() {
 
             <div style={{ height: 400, width: '100%' }}>
               <DataGrid
-                rows={medicines.medicine}
+                rows={medicines.medicines}
                 columns={columns}
                 pageSizeOptions={[5, 10]}
                 checkboxSelection
