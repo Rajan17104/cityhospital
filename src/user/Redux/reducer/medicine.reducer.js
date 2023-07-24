@@ -1,44 +1,44 @@
 import * as ActionType from '../ActionType'
 
 const initState = {
-    medicine: [],
+    medicines: [],
     loading: false,
     error: null
 }
 
 export const medicinereducer = (state = initState, action) => {
     switch (action.type) {
-        case ActionType.LOADING_DOCTORS:
+        case ActionType.LOADING_MEDICINE:
             return {
-                medicine: [],
+                medicines: [],
                 loading: true,
             }
-        case ActionType.ERROR_DOCTORS:
+        case ActionType.ERROR_MEDICINE:
             return {
-                medicine: [],
+                medicines: [],
                 loading: false,
                 error: action.payload
             }
         case ActionType.GET_MEDICINE:
             return {
                 ...state,
-                medicine: action.payload,
+                medicines: action.payload,
                 loading: false
             }
         case ActionType.ADD_MEDICINE:
             return {
                 ...state,
-                medicine: state.medicine.concat(action.payload)
+                medicines: state.medicines.concat(action.payload)
             }
         case ActionType.DELETE_MEDICINE:
             return {
                 ...state,
-                medicine: state.medicine.filter((v) => v.id != action.payload)
+                medicines: state.medicines.filter((v) => v.id != action.payload)
             }
         case ActionType.UPDATE_MEDICINE:
             return {
                 ...state,
-                medicine: state.medicine.map((v) => {
+                medicines: state.medicines.map((v) => {
                     if (v.id === action.payload.id) {
                         return action.payload
                     } else {

@@ -70,7 +70,7 @@ function Doctor(props) {
             <h1>Doctors</h1>
 
             {
-                doctors.loading ? <CircularProgress /> :
+                doctors.loading ? <CircularProgress style={{color: "red" }}/> :
 
                     <>
                         <DoctorFrom onhandlesubmit={handlesubmit} onupdate={update} />

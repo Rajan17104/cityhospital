@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-function MedicineForm({ onhandlesubmit, onupdate }) {
-
+function DoctorFrom({ onhandlesubmit, onupdate }) {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -27,15 +27,15 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
     setOpen(false);
   };
 
-  let d = new Date();
-  let nd = new Date(d.setDate(d.getDate() - 1))
 
   let medicineschema = yup.object({
+
     name: yup.string().required(),
     price: yup.number().required(),
-    date: yup.date().min(nd, "please entre a valid date").required(),
+    expiry: yup.date().required(),
     desc: yup.string().required()
-  });
+
+  })
 
   const formik = useFormik({
     validationSchema: medicineschema,
@@ -43,29 +43,34 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
     initialValues: {
       name: '',
       price: '',
-      date: '',
+      expiry: '',
       desc: ''
     },
-    onSubmit: (values, action) => {
 
+    onSubmit: (values, action) => {
       action.resetForm()
       handleClose()
 
       onhandlesubmit(values)
-    }
-
-  });
+    },
+  })
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
-  
+
+  console.log(errors);
+
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
         Open form Medicine
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Medicine</DialogTitle>
+        <DialogTitle>Doctor</DialogTitle>
         <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here. We
+            will send updates occasionally.
+          </DialogContentText>
           <form onSubmit={handleSubmit}>
             <TextField
 
@@ -86,15 +91,15 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
               margin="dense"
               id="name"
               label=""
-              name='date'
+              name='expiry'
               type="date"
               fullWidth
               variant="standard"
-              value={values.date}
+              value={values.expiry}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            <span style={{ color: 'red' }}>{errors.date && touched.date ? errors.date : null} </span>
+            <span style={{ color: 'red' }}>{errors.expiry && touched.expiry ? errors.expiry : null} </span>
             <TextField
 
               margin="dense"
@@ -125,12 +130,12 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
               onBlur={handleBlur}
             />
             <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.desc : null} </span>
-
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button type='submit' >submit</Button>
+              <Button type='submit'>submit</Button>
             </DialogActions>
           </form>
+
         </DialogContent>
 
       </Dialog>
@@ -138,4 +143,4 @@ function MedicineForm({ onhandlesubmit, onupdate }) {
   );
 }
 
-export default MedicineForm;
+export default DoctorFrom;

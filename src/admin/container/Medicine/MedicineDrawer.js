@@ -1,27 +1,29 @@
-import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import IconButton from '@mui/material/IconButton';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import MedicineForm from './MedicineForm'
+import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import MedicineForm from './MedicineForm';
-import { useDispatch, useSelector } from 'react-redux';
-import { Addmedicine, deleteMedicine, getMedicine, updateMedicine } from '../../../user/Redux/action/medicine.action';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Addmedicine, deleteMedicine, getMedicine, updateMedicine } from '../../../user/Redux/action/medicine.action';
 
-export default function FormDialog() {
+
+function MedicineDrawer(props) {
 
   const [update, setupdate] = React.useState(null);
 
   const dispatch = useDispatch();
   const medicines = useSelector(state => state.medicines)
 
-
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getMedicine())
   }, [])
 
 
+
   const handleDelete = (id) => {
+    console.log('fgfdhh');
     dispatch(deleteMedicine(id))
   }
 
@@ -42,13 +44,11 @@ export default function FormDialog() {
 
     // { field: 'id', headerName: 'ID', width: 130 },
     { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'date', headerName: 'ExpiryDate', width: 130 },
     { field: 'price', headerName: 'Price', width: 130 },
-    { field: 'desc', headerName: 'Description', width: 130 },
+    { field: 'expiry', headerName: 'expiry', width: 130 },
+    { field: 'desc', headerName: 'desc', width: 130 },
     {
-      field: 'action',
-      headerName: 'Action',
-      width: 130,
+      field: 'action', headerName: 'action', width: 130,
       renderCell: (params) => (
         <>
           <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(params.row.id)}>
@@ -59,33 +59,45 @@ export default function FormDialog() {
             <EditIcon />
           </IconButton>
         </>
-      ),
-
+      )
     }
+
 
   ];
 
-  return (
-    <div>
 
+  return (
+
+
+    <div>
       <h1>Medicine</h1>
+
       {
-        medicines.loading ? <CircularProgress /> :
+
+        medicines.loading ? <div><CircularProgress style={{color: "red" }} /></div> :
 
           <>
             <MedicineForm onhandlesubmit={handlesubmit} onupdate={update} />
+
 
             <div style={{ height: 400, width: '100%' }}>
               <DataGrid
                 rows={medicines.medicines}
                 columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: { page: 0, pageSize: 5 },
+                  },
+                }}
                 pageSizeOptions={[5, 10]}
                 checkboxSelection
               />
             </div>
           </>
       }
-    </div>
+    </div >
 
   );
 }
+
+export default MedicineDrawer;

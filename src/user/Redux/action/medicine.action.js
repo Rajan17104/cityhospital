@@ -53,7 +53,7 @@ export const deleteMedicine = (id) => (dispatch) => {
             method: "DELETE",
 
         })
-            .then(dispatch({ type: ActionType.DELETE_DOCTORS, payload: id }))
+            .then(dispatch({ type: ActionType.DELETE_MEDICINE, payload: id }))
             .catch((error) => console.log(error))
 
     } catch (error) {
