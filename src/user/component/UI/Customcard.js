@@ -1,7 +1,8 @@
+import { Height } from '@mui/icons-material';
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 
-function Customcard({ values }) {
+function Customcard({ values, btnVal, onclick1 }) {
     return (
 
         <Card
@@ -19,23 +20,28 @@ function Customcard({ values }) {
 
             <CardBody>
                 <CardTitle tag="h5">
-                    {values.name}
+                    {'Name : ' + values.name}
                 </CardTitle>
                 <CardSubtitle
                     className="mb-2 text-muted"
                     tag="h6"
                 >
-                    {values.price}
+                    {'Price : ' + values.price}
                 </CardSubtitle>
                 <CardText>
-                    {values.date}<br/>
-                    {values.desc}
+                    {'Date : ' + values.expiry}<br />
+                    {'Description : ' + values.desc}
                 </CardText>
+
                 {
-                    values.btnVal ? <Button>
-                        Button
-                    </Button> : null
+                    btnVal ?
+                        <Button
+                            onClick={() =>onclick1(values.id)}>
+                            {btnVal}
+                        </Button> : null
                 }
+
+
 
             </CardBody>
         </Card>
