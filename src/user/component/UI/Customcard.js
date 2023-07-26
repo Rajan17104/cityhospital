@@ -30,7 +30,7 @@ function Customcard({ values, btnVal, onclick1 }) {
                 </CardSubtitle>
                 <CardText>
                     {'Date : ' + values.expiry}<br />
-                    {'Description : ' + values.desc}
+                    {'Description : ' + values.desc.substring(0 ,50)}
                 </CardText>
 
                 {

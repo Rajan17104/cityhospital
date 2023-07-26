@@ -1,10 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from './UI/Button/Button';
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
 // import './App.css'
 
 
+
+
 function Header(props) {
+
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge' : { 
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
+
+  const cartData = useSelector((state) => state.cart)
+
+  console.log(cartData);
+
+  let cartCount = 0;
+
+  if (cartData.items) {
+    cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
+  }
 
   let localdata = localStorage.getItem('logindata');
 
@@ -21,11 +47,22 @@ function Header(props) {
             <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
           </div>
+
+
+
           <div className="d-none d-lg-flex social-links align-items-center">
             <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
             <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
             <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
+
+            <Link to="/cart">
+              <IconButton aria-label="cart" style={{}}>
+                <StyledBadge badgeContent={cartCount} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton >
+            </Link>
           </div>
         </div>
       </div>
@@ -52,19 +89,19 @@ function Header(props) {
             </ul>
             <i className="bi bi-list mobile-nav-toggle" />
           </nav>
-            <Link to='/appointment' >
-              {/* <span className="d-none d-md-inline">Make an</span> */}
-              <Button>Appointment</Button>
-            </Link>
+          <Link to='/appointment' >
+            {/* <span className="d-none d-md-inline">Make an</span> */}
+            <Button>Appointment</Button>
+          </Link>
 
           {
             localdata ? <Link to="/auth" onClick={handleremove}>
               {/* <span className="d-none d-md-inline">Logout</span> */}
-             <Button>Logout</Button>
+              <Button>Logout</Button>
             </Link> :
               <Link to="/auth" >
                 {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
-             <Button>Login/Signup</Button>
+                <Button>Login/Signup</Button>
               </Link>
           }
 

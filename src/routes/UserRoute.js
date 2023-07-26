@@ -18,6 +18,7 @@ import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/Medicines/Medicine';
 import PrivateRoute from './PrivateRoute';
 import Counter from '../user/Counter/Counter'
+import Cart from '../user/container/Cart/Cart';
 
 function userRoute(props) {
   return (
@@ -45,7 +46,7 @@ function userRoute(props) {
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
         <Route path='/counter' element={<Counter />} />
-
+        <Route path='/cart' element={<Cart />} />
 
         <Route element={<PrivateRoute />} >
           <Route path='medicine' element={<Medicine />} />

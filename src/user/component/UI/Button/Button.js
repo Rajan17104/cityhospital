@@ -3,7 +3,6 @@ import { BaseButton, outlinebutton, primarybutton, secondarybutton } from './but
 
 
 function Button({ children, type, btndisable=false }) {
-    console.log(type);
     const checktype = () => {
         switch (type) {
             case 'primary':
