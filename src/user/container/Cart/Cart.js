@@ -84,9 +84,12 @@ function Cart(props) {
                                     </div>
                                 </div>
                             </div>
+
                         )
                     })
                 }
+
+
 
 
 
