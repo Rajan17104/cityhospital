@@ -5,7 +5,7 @@ function ListMedicines({ mdata, cart }) {
     return (
         <>
             {
-                mdata.map((v, i) => {
+                mdata.map((v) => {
                     return (
                         <div className='col-md-4 justify-content-between g-4'>
                             <Customcard

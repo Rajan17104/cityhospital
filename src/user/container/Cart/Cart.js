@@ -2,7 +2,11 @@ import React from 'react';
 import { Title } from '../../component/UI/Subtitel/subtitel.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-import { DecCartQty, IncCartQty } from '../../Redux/action/cart.action';
+import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart(props) {
 
@@ -29,9 +33,13 @@ function Cart(props) {
         console.log('handle increment called');
     }
 
-    const handleDec = (id) =>{
+    const handleDec = (id) => {
         dispatch(DecCartQty(id))
         console.log(id);
+    }
+
+    const handleDelete = (id) => {
+        dispatch(RemoveCartQty(id))
     }
 
     return (
@@ -46,39 +54,42 @@ function Cart(props) {
                 </div>
                 {
                     cartItems.map((c) => {
-                        return(
+                        return (
                             <div className="card mb-3">
-                            <div className="card-body">
-                                <div className="d-flex justify-content-between">
-                                    <div className="d-flex flex-row align-items-center">
-        
-                                        <div className="ms-3">
-                                            <h5>{c.name}</h5>
-                                            <p className="small mb-0">{c.desc.substring(0 ,120)}</p>
+                                <div className="card-body">
+                                    <div className="d-flex justify-content-between">
+                                        <div className="d-flex flex-row align-items-center">
+
+                                            <div className="ms-3">
+                                                <h5>{c.name}</h5>
+                                                <p className="small mb-0">{c.desc.substring(0, 120)}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="d-flex flex-row align-items-center">
-                                        <div style={{ width: 150 , display: 'flex'}}>
-                                            
-                                            <Button onClick={()=>handleDec(c.pid)} style={{width: '20px'}}>-</Button>
-                                            <h5 className="fw-normal mb-0">{c.qty}</h5>
-                                            <Button onClick={()=>handleInc(c.pid)}>+</Button>
+                                        <div className="d-flex flex-row align-items-center">
+                                            <div style={{ width: 150, display: 'flex' }}>
+
+                                                <Button onClick={() => handleDec(c.pid)}><RemoveIcon /></Button>
+                                                <h5 className="fw-normal mb-0">{c.qty}</h5>
+                                                <Button onClick={() => handleInc(c.pid)}><AddIcon /></Button>
+                                            </div>
+                                            <div style={{ width: 80 }}>
+
+                                                <h5 className="mb-0">${c.qty * c.price}</h5>
+                                            </div>
+                                            {/* <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a> */}
+                                            <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}>
+                                                <DeleteIcon />
+                                            </IconButton>
                                         </div>
-                                        <div style={{ width: 80 }}>
-                                            
-                                            <h5 className="mb-0">${c.qty*c.price}</h5>
-                                        </div>
-                                        <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         )
                     })
                 }
 
 
-              
+
 
             </div>
         </section>

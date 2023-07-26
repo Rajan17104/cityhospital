@@ -50,17 +50,21 @@ export const cartReducer = (state = initState, action) => {
 
         case ActionType.DEC_QTY:
 
-        console.log(state.items+ action.payload);
+            console.log(state.items + action.payload);
 
-        let Dec_index = state.items.findIndex((v) => v.pid === action.payload);
-        state.items[Dec_index].qty--
+            let Dec_index = state.items.findIndex((v) => v.pid === action.payload);
+            state.items[Dec_index].qty--
 
-        return {
-            items: state.items,
-            loading: false,
-            error: null
-        }
+            return {
+                items: state.items,
+                loading: false,
+                error: null
+            }
 
+        case ActionType.REMOVE_ITEM:
+            return{
+                items: state.items.filter((v) => v.pid != action.payload)
+            }
 
         default:
             return state

@@ -53,13 +53,16 @@ function Medicine(props) {
     }
 
     return (
-        <div className='row' >
-            <input type='search' style={{ marginTop: '50px' }} name='search' placeholder='Search....' onChange={(e) => handlechange(e.target.value)} />
-            <ListMedicines
-                mdata={search.length > 0 ? search : medicines.medicines}
-                cart={handleCart}
-            />
-        </div>
+        <>
+            <input type='search' style={{ marginTop: '50px', width: '500px' , justifyContent: 'center' }} name='search' placeholder='Search....' onChange={(e) => handlechange(e.target.value)} />
+
+            <div className='row' >
+                <ListMedicines
+                    mdata={search.length > 0 ? search : medicines.medicines}
+                    cart={handleCart}
+                />
+            </div>
+        </>
     );
 
 
