@@ -2,6 +2,7 @@ import React from 'react';
 import { Title } from '../../component/UI/Subtitel/subtitel.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
+import { DecCartQty, IncCartQty } from '../../Redux/action/cart.action';
 
 function Cart(props) {
 
@@ -23,8 +24,14 @@ function Cart(props) {
     console.log(cartItems);
 
     const handleInc = (id) => {
+        dispatch(IncCartQty(id))
         console.log(id);
         console.log('handle increment called');
+    }
+
+    const handleDec = (id) =>{
+        dispatch(DecCartQty(id))
+        console.log(id);
     }
 
     return (
@@ -51,13 +58,15 @@ function Cart(props) {
                                         </div>
                                     </div>
                                     <div className="d-flex flex-row align-items-center">
-                                        <div style={{ width: 50 }}>
-                                            {/* <Button onClick={()=>handleDec(c.pid)}></Button> */}
+                                        <div style={{ width: 150 , display: 'flex'}}>
+                                            
+                                            <Button onClick={()=>handleDec(c.pid)} style={{width: '20px'}}>-</Button>
                                             <h5 className="fw-normal mb-0">{c.qty}</h5>
                                             <Button onClick={()=>handleInc(c.pid)}>+</Button>
                                         </div>
                                         <div style={{ width: 80 }}>
-                                            <h5 className="mb-0">${c.price}</h5>
+                                            
+                                            <h5 className="mb-0">${c.qty*c.price}</h5>
                                         </div>
                                         <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a>
                                     </div>

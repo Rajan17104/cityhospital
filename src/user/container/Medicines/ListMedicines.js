@@ -9,6 +9,7 @@ function ListMedicines({ mdata, cart }) {
                     return (
                         <div className='col-md-4 justify-content-between g-4'>
                             <Customcard
+                            
                                 values={v}
                                 btnVal={"Add to cart"}
                                 onclick1={cart}

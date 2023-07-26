@@ -8,3 +8,7 @@ export const addToCart = (id) => (dispatch) => {
 export const IncCartQty = (id) => (dispatch) => {
     dispatch({type: ActionType.INC_QTY , payload: id})
 }
+
+export const DecCartQty = (id) => (dispatch) =>{
+    dispatch({type: ActionType.DEC_QTY, payload: id})
+}
