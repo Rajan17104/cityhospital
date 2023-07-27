@@ -42,6 +42,8 @@ function Cart(props) {
         dispatch(RemoveCartQty(id))
     }
 
+    let Total = cartItems.reduce((acc,v) => acc + v.price * v.qty , 0)
+
     return (
         <section id="doctors" className="doctors">
             <div className="container">
@@ -62,12 +64,12 @@ function Cart(props) {
 
                                             <div className="ms-3">
                                                 <h5>{c.name}</h5>
-                                                <p className="small mb-0">{c.desc.substring(0, 120)}</p>
+                                                <p className="small mb-0">{c.desc.substring(0, 120)}{'.....'}</p>
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row align-items-center">
                                             <div style={{ width: 150, display: 'flex' }}>
-
+                            
                                                 <Button onClick={() => handleDec(c.pid)}><RemoveIcon /></Button>
                                                 <h5 className="fw-normal mb-0">{c.qty}</h5>
                                                 <Button onClick={() => handleInc(c.pid)}><AddIcon /></Button>
@@ -84,11 +86,13 @@ function Cart(props) {
                                     </div>
                                 </div>
                             </div>
-
                         )
                     })
                 }
 
+                <div className=''>
+                    <p>{Total}</p>
+                </div>
 
 
 
