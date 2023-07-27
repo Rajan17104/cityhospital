@@ -56,13 +56,22 @@ function Header(props) {
             <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
 
-            <Link to="/cart">
+            {/* <Link to="/cart">
+              <IconButton aria-label="cart" style={{}}>
+                <StyledBadge badgeContent={cartCount} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton >
+            </Link> */}
+
+            <Link to="/cart1">
               <IconButton aria-label="cart" style={{}}>
                 <StyledBadge badgeContent={cartCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
             </Link>
+            
           </div>
         </div>
       </div>
@@ -83,7 +92,7 @@ function Header(props) {
               <li><Link className="nav-link scrollto" to='/contact'>Contact</Link></li>
               <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li>
               <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li>
-              <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
+              <li><Link className="nav-link scrollto" to='/medicine1'>Medicine</Link></li>
               <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>
 
             </ul>
