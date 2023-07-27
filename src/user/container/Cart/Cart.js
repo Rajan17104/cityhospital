@@ -93,11 +93,7 @@ function Cart(props) {
                 <div className=''>
                     <p>{Total}</p>
                 </div>
-
-
-
-
-
+                
             </div>
         </section>
     );

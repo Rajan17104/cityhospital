@@ -3,7 +3,10 @@ import Customcard from '../../component/UI/Customcard';
 import Cart_1 from '../Cart/Cart_1';
 
 function Medicine_1(props) {
+
+    let arr = []
     const [getData, setGetData] = useState([]);
+    // const [count, setCount] = useState([]);
 
     useEffect(() => {
         try {
@@ -16,9 +19,24 @@ function Medicine_1(props) {
         }
     }, [])
 
-    const onclick1 = (id)=>{
+    const onclick1 = (id) => {
+
+
+        arr.push({ pid: id, qty: 1 });
+
+        localStorage.setItem('cart', JSON.stringify(arr))
+
+        // let localdata = JSON.parse(localStorage.getItem("cart"));
+
+        // if (localdata === null) {
+        //     localStorage.setItem("cart", JSON.stringify([getData]))
+        // } else {
+        //     localdata.push(getData)
+        //     localStorage.setItem("cart", JSON.stringify(localdata))
+        // }
+
         console.log(id);
-    }   
+    }
 
     return (
         <div >
