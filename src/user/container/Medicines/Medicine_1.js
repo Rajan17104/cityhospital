@@ -4,8 +4,9 @@ import Cart_1 from '../Cart/Cart_1';
 
 function Medicine_1(props) {
 
-    let arr = []
+    const arr = []
     const [getData, setGetData] = useState([]);
+    const [prodata, setProdata] = useState([])
     // const [count, setCount] = useState([]);
 
     useEffect(() => {
@@ -19,23 +20,30 @@ function Medicine_1(props) {
         }
     }, [])
 
+
+
     const onclick1 = (id) => {
 
+        let localdata = JSON.parse(localStorage.getItem("cart"));
 
-        arr.push({ pid: id, qty: 1 });
+        if (localdata === null) {
+            localStorage.setItem("cart", JSON.stringify([{
+                pid: id,
+                qty: 1
+            }]));
+        } else {
 
-        localStorage.setItem('cart', JSON.stringify(arr))
+            let addData = localdata.find((v) => v.pid == id);
 
-        // let localdata = JSON.parse(localStorage.getItem("cart"));
+            if (addData) {
+                addData.qty++;
+                localStorage.setItem("cart", JSON.stringify(localdata));
+            } else {
+                localdata.push({ pid: id, qty: 1 });
+                localStorage.setItem("cart", JSON.stringify(localdata));
+            }
+        }
 
-        // if (localdata === null) {
-        //     localStorage.setItem("cart", JSON.stringify([getData]))
-        // } else {
-        //     localdata.push(getData)
-        //     localStorage.setItem("cart", JSON.stringify(localdata))
-        // }
-
-        console.log(id);
     }
 
     return (

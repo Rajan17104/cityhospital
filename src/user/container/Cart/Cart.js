@@ -42,7 +42,7 @@ function Cart(props) {
         dispatch(RemoveCartQty(id))
     }
 
-    let Total = cartItems.reduce((acc,v) => acc + v.price * v.qty , 0)
+    let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
 
     return (
         <section id="doctors" className="doctors">
@@ -69,7 +69,7 @@ function Cart(props) {
                                         </div>
                                         <div className="d-flex flex-row align-items-center">
                                             <div style={{ width: 150, display: 'flex' }}>
-                            
+
                                                 <Button onClick={() => handleDec(c.pid)}><RemoveIcon /></Button>
                                                 <h5 className="fw-normal mb-0">{c.qty}</h5>
                                                 <Button onClick={() => handleInc(c.pid)}><AddIcon /></Button>
@@ -93,7 +93,7 @@ function Cart(props) {
                 <div className=''>
                     <p>{Total}</p>
                 </div>
-                
+
             </div>
         </section>
     );

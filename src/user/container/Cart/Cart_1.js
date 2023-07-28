@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { IconButton } from '@mui/material';
@@ -9,9 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart_1(props) {
 
-    // const [items, setItems] = useState([])
-    // const [loading, setLoadind] = useState(false)
-    // const [error, setError] = useState(null)
 
     const [medicineData, setmedicineData] = useState([]);
     const [localdata, setLocaldata] = useState([]);
@@ -50,26 +45,42 @@ function Cart_1(props) {
     const handleInc = (id) => {
         console.log(id);
 
-        let Inc_index = localdata.findIndex((v) => v.pid === id);
-        let count = localdata[Inc_index].qty++;
-        console.log('handle increment called');
+        let mData = localdata.map((v) => {
+            if (v.pid === id) {
+                return { ...v, qty: v.qty + 1 }
+            } else {
+                return v;
+            }
+        });
+        setLocaldata(mData);
+        localStorage.setItem('cart', JSON.stringify(mData))
 
-        
-
-        if(localdata[Inc_index]){
-            localStorage.setItem('cart',JSON.stringify({pid: id , qty:count }))
-        }
     }
 
 
 
     const handleDec = (id) => {
         console.log(id);
+
+        let mData = localdata.map((v) => {
+            if (v.pid === id && v.qty > 1) {
+                return { ...v, qty: v.qty - 1 }
+            } else {
+                return v;
+            }
+        })
+        setLocaldata(mData)
+        localStorage.setItem('cart', JSON.stringify(mData))
+
     }
 
-    // const handleDelete = (id) => {
-    //     dispatch(RemoveCartQty(id))
-    // }
+    const handleDelete = (id) => {
+        let mData = localdata.filter((v) => v.pid !== id);
+
+        setLocaldata(mData)
+        localStorage.setItem('cart', JSON.stringify(mData))
+
+    }
 
     let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
 
@@ -109,8 +120,8 @@ function Cart_1(props) {
                                                 <h5 className="mb-0">${c.qty * c.price}</h5>
                                             </div>
                                             {/* <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a> */}
-                                            {/* <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}> */}
-                                            <IconButton style={{ color: 'red' }} aria-label="delete" >
+                                            <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}>
+                                                {/* <IconButton style={{ color: 'red' }} aria-label="delete" > */}
                                                 <DeleteIcon />
                                             </IconButton>
                                         </div>

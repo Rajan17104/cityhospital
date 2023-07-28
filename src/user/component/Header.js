@@ -13,30 +13,39 @@ import { useSelector } from 'react-redux';
 
 function Header(props) {
 
-  const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge' : { 
-      right: -3,
-      top: 13,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: '0 4px',
-    },
-  }));
+  // const StyledBadge = styled(Badge)(({ theme }) => ({
+  //   '& .MuiBadge-badge' : { 
+  //     right: -3,
+  //     top: 13,
+  //     border: `2px solid ${theme.palette.background.paper}`,
+  //     padding: '0 4px',
+  //   },
+  // }));
 
-  const cartData = useSelector((state) => state.cart)
+  // const cartData = useSelector((state) => state.cart)
 
-  console.log(cartData);
+  // console.log(cartData);
+
+  // let cartCount = 0;
+
+  // if (cartData.items) {
+  //   cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
+  // }
+
+  // let localdata = localStorage.getItem('logindata');
+
+  // const handleremove = () => {
+  //   localStorage.removeItem('logindata');
+  // }
+
+  let localdata = JSON.parse(localStorage.getItem("cart"));
 
   let cartCount = 0;
-
-  if (cartData.items) {
+  if(localdata){
     cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
+
   }
 
-  let localdata = localStorage.getItem('logindata');
-
-  const handleremove = () => {
-    localStorage.removeItem('logindata');
-  }
 
   return (
 
