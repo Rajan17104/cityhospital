@@ -9,10 +9,10 @@ export const IncCartQty = (id) => (dispatch) => {
     dispatch({type: ActionType.INC_QTY , payload: id})
 }
 
-export const DecCartQty = (id) => (dispatch) =>{
+export const DecCartQty = (id) => (dispatch) => {
     dispatch({type: ActionType.DEC_QTY, payload: id})
 }
 
-export const RemoveCartQty = (id) => (dispatch) =>{
+export const RemoveCartQty = (id) => (dispatch) => {
     dispatch({type: ActionType.REMOVE_ITEM, payload: id})
 }

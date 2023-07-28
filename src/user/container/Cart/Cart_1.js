@@ -26,12 +26,6 @@ function Cart_1(props) {
         }
     }, []);
 
-
-    // const medData = useSelector((state) => state.medicines)
-    // const cartData = useSelector((state) => state.cart)
-
-    // console.log(medData, cartData);
-
     let cartItems = localdata.map((v) => {
         let mData = medicineData.find((m) => m.id === v.pid)
 

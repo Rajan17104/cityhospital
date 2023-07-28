@@ -8,19 +8,25 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 // import './App.css'
 
-
-
-
 function Header(props) {
 
-  // const StyledBadge = styled(Badge)(({ theme }) => ({
-  //   '& .MuiBadge-badge' : { 
-  //     right: -3,
-  //     top: 13,
-  //     border: `2px solid ${theme.palette.background.paper}`,
-  //     padding: '0 4px',
-  //   },
-  // }));
+  let cartCount = 0;
+
+  let localdata = JSON.parse(localStorage.getItem("cart"));
+
+  if (localdata) {
+    cartCount = localdata.reduce((acc, v, i) => acc + v.qty, 0)
+  }
+
+
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge' : { 
+      right: -3,
+      top: 13,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
 
   // const cartData = useSelector((state) => state.cart)
 
@@ -34,18 +40,9 @@ function Header(props) {
 
   // let localdata = localStorage.getItem('logindata');
 
-  // const handleremove = () => {
-  //   localStorage.removeItem('logindata');
-  // }
-
-  let localdata = JSON.parse(localStorage.getItem("cart"));
-
-  let cartCount = 0;
-  if(localdata){
-    cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
-
+  const handleremove = () => {
+    localStorage.removeItem('logindata');
   }
-
 
   return (
 
