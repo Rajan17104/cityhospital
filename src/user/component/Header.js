@@ -6,6 +6,8 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 // import './App.css'
 
 function Header(props) {
@@ -72,10 +74,18 @@ function Header(props) {
 
             <Link to="/cart1">
               <IconButton aria-label="cart" style={{}}>
-                <StyledBadge badgeContent={cartCount} color="secondary">
+                <StyledBadge badgeContent={''} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
+            </Link>
+
+            <Link to='/favorite'>
+            <FavoriteIcon aria-label="cart" style={{color: 'red'}}>
+                <StyledBadge badgeContent={''} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </FavoriteIcon >
             </Link>
             
           </div>
@@ -100,6 +110,8 @@ function Header(props) {
               <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li>
               <li><Link className="nav-link scrollto" to='/medicine1'>Medicine</Link></li>
               <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/favorite'>My Favorite</Link></li> */}
+
 
             </ul>
             <i className="bi bi-list mobile-nav-toggle" />

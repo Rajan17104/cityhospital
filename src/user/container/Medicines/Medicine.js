@@ -52,6 +52,10 @@ function Medicine(props) {
         console.log("handle cart called" + id);
     }
 
+    // const onFavorite = (id) => {
+
+    // }
+
     return (
         <>
             <input type='search' style={{ marginTop: '50px', width: '500px' , justifyContent: 'center' }} name='search' placeholder='Search....' onChange={(e) => handlechange(e.target.value)} />
@@ -60,6 +64,7 @@ function Medicine(props) {
                 <ListMedicines
                     mdata={search.length > 0 ? search : medicines.medicines}
                     cart={handleCart}
+                    // favorite={onFavorite}
                 />
             </div>
         </>

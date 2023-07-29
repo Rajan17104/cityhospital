@@ -21,6 +21,7 @@ import Counter from '../user/Counter/Counter'
 import Cart from '../user/container/Cart/Cart';
 import Medicine_1 from '../user/container/Medicines/Medicine_1';
 import Cart_1 from '../user/container/Cart/Cart_1';
+import Favorite from '../user/container/Cart/Favorite';
 
 function userRoute(props) {
 
@@ -57,6 +58,7 @@ function userRoute(props) {
         <Route path='/counter' element={<Counter />} />
         {/* <Route path='/cart' element={<Cart />} /> */}
         <Route path='/cart1' element={<Cart_1 />} />
+        <Route path='/favorite' element={<Favorite />} />
 
         <Route element={<PrivateRoute />} >
           {/* <Route path='medicine' element={<Medicine />} /> */}

@@ -46,6 +46,21 @@ function Medicine_1(props) {
 
     }
 
+    const onFavorite = (id) => {
+
+        let localdata = JSON.parse(localStorage.getItem("favorite"));
+
+        if (localdata === null) {
+            localStorage.setItem("favorite", JSON.stringify([{
+                pid: id
+            }]));
+        } else {
+            localdata.push({ pid: id });
+            localStorage.setItem("favorite", JSON.stringify(localdata));
+        }
+    }
+
+
     return (
         <div >
             <h1 className='mt-5'>Medicine_with_Out_Redux</h1>
@@ -59,6 +74,7 @@ function Medicine_1(props) {
 
                                     values={v}
                                     btnVal={"Add to cart"}
+                                    favorite={onFavorite}
                                     onclick1={onclick1}
                                 />
                             </div>

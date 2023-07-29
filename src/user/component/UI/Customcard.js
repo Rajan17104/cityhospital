@@ -1,8 +1,11 @@
 import { Height } from '@mui/icons-material';
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-function Customcard({ values, btnVal, onclick1 }) {
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
+function Customcard({ values, btnVal, onclick1, favorite }) {
     return (
 
         <Card
@@ -19,9 +22,21 @@ function Customcard({ values, btnVal, onclick1 }) {
             }
 
             <CardBody>
-                <CardTitle tag="h5">
-                    {'Name : ' + values.name}
-                </CardTitle>
+                <div className='d-flex ' >
+                    <CardTitle tag="h5">
+                        {'Name : ' + values.name}
+                    </CardTitle>
+                    {
+                        favorite ?
+                            <button onClick={() => favorite(values.id)} style={{ marginLeft: '70px' }}>
+                                <FavoriteBorderIcon />
+                            </button> :
+                            <FavoriteBorderIcon /> ?
+
+                                 <FavoriteBorderIcon /> :  <FavoriteIcon />
+                    }
+                    {/* <span><FavoriteBorderIcon /></span> */}
+                </div>
                 <CardSubtitle
                     className="mb-2 text-muted"
                     tag="h6"
@@ -35,12 +50,7 @@ function Customcard({ values, btnVal, onclick1 }) {
 
                 {
                     btnVal ?
-                        // <Button
-                        //     onClick={() =>onclick1(values.id)}>
-                        //     {btnVal}
-                        // </Button> : null
-                        <Button
-                            onClick={() => onclick1(values.id)}>
+                        <Button onClick={() => onclick1(values.id)}>
                             {btnVal}
                         </Button> : null
                 }
