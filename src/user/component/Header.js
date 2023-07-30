@@ -13,11 +13,19 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 function Header(props) {
 
   let cartCount = 0;
+  let favCount = 0;
 
   let localdata = JSON.parse(localStorage.getItem("cart"));
 
   if (localdata) {
     cartCount = localdata.reduce((acc, v, i) => acc + v.qty, 0)
+  }
+
+  let localdata1 = JSON.parse(localStorage.getItem("favorite"));
+
+
+  if (localdata1) {
+    favCount = localdata1.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
 
@@ -74,7 +82,7 @@ function Header(props) {
 
             <Link to="/cart1">
               <IconButton aria-label="cart" style={{}}>
-                <StyledBadge badgeContent={''} color="secondary">
+                <StyledBadge badgeContent={cartCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
@@ -82,7 +90,7 @@ function Header(props) {
 
             <Link to='/favorite'>
             <FavoriteIcon aria-label="cart" style={{color: 'red'}}>
-                <StyledBadge badgeContent={''} color="secondary">
+                <StyledBadge badgeContent={favCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >
