@@ -25,14 +25,14 @@ import { useState } from 'react';
 
 function userRoute(props) {
 
-  // const [cartCount, setCartCount] = useState(0); 
+  const [ cartCount, setCartCount] = useState(0); 
   // const [cartCount, setCartCount] = useState([0])
 
 
   return (
     <>
-      {/* <Header count={cartCount} /> */}
-      <Header />
+      <Header count={cartCount} />
+      {/* <Header /> */}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -62,8 +62,8 @@ function userRoute(props) {
 
         <Route element={<PrivateRoute />} >
           {/* <Route path='medicine' element={<Medicine />} /> */}
-          {/* <Route path='medicine1' element={<Medicine_1  onUpdate={setCartCount()} />} /> */}
-          <Route path='medicine1' element={<Medicine_1 />} />
+          <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} />
+          {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
         </Route>
 

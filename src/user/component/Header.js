@@ -10,7 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // import './App.css'
 
-function Header(props) {
+function Header({cartcount1}) {
 
   let cartCount = 0;
   let favCount = 0;
@@ -82,7 +82,7 @@ function Header(props) {
 
             <Link to="/cart1">
               <IconButton aria-label="cart" style={{}}>
-                <StyledBadge badgeContent={cartCount} color="secondary">
+                <StyledBadge badgeContent={cartcount1} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
