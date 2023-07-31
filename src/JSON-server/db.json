@@ -18,17 +18,12 @@
   },
   "Doctors": [
     {
-      "id": 104,
-      "name": "ABC",
-      "price": 100
-    },
-    {
       "id": 105,
-      "name": "Hello",
-      "price": "520"
+      "name": "Hello ggj",
+      "price": "5204"
     },
     {
-      "name": "patel",
+      "name": "patel ",
       "price": "52",
       "id": 108
     },
@@ -61,6 +56,16 @@
       "name": "pen",
       "price": "863512.0",
       "id": 114
+    },
+    {
+      "name": "patel",
+      "price": "200",
+      "id": 115
+    },
+    {
+      "name": "kit",
+      "price": "600",
+      "id": 116
     }
   ],
   "medicines": [
@@ -116,7 +121,7 @@
     {
       "id": 8,
       "name": "Orlistat",
-      "price": 80 ,
+      "price": 80,
       "expiry": 2023,
       "desc": "Orlistat, sold under the brand name Xenical among others, is a medication used to treat obesity. Its primary function is preventing the absorption of fats from the human diet by acting as a lipase inhibitor, thereby reducing caloric intake."
     }

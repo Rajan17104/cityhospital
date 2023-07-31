@@ -1,21 +1,50 @@
 import axios from "axios";
 import { BASE_URL } from "../utils/baseURL";
 
-
-
 const instance = axios.create({
     baseURL: BASE_URL,
     timeout: 1000
-  });
+});
 
 
-  const sendRequest = (config) => {
-    instance.request(config);
-  }
+export const sendRequest = (config) => {
+    return instance.request(config);
+}
 
-const getRequest = (path) => {
-    sendRequest({
+export const getRequest = (path) => {
+    return sendRequest({
         method: 'GET',
         url: path
+    })
+}
+
+export const addRequest = (path, data) => {
+    return sendRequest({
+        method: 'POST',
+        url: path,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data)
+
+    })
+}
+
+export const deleteRequest = (path) => {
+    return sendRequest({
+        method: 'DELETE',
+        url: path
+    })
+}
+
+export const updateRequest = (path, data) => {
+    return sendRequest({
+        method: 'PUT',
+        url: path,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(data)
+
     })
 }
