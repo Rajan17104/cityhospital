@@ -2,11 +2,12 @@ import React from 'react';
 import { Title } from '../../component/UI/Subtitel/subtitel.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
+// import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { decQty, incQty, removeItem } from '../../Redux/slice/CartSlice';
 
 function Cart(props) {
 
@@ -28,18 +29,18 @@ function Cart(props) {
     console.log(cartItems);
 
     const handleInc = (id) => {
-        dispatch(IncCartQty(id))
+        dispatch(incQty(id))
         console.log(id);
         console.log('handle increment called');
     }
 
     const handleDec = (id) => {
-        dispatch(DecCartQty(id))
+        dispatch(decQty(id))
         console.log(id);
     }
 
     const handleDelete = (id) => {
-        dispatch(RemoveCartQty(id))
+        dispatch(removeItem(id))
     }
 
     let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)

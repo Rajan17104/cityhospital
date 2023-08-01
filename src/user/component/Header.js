@@ -10,7 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // import './App.css'
 
-function Header({cartcount1}) {
+function Header({count}) {
 
   let cartCount = 0;
   let favCount = 0;
@@ -72,21 +72,21 @@ function Header({cartcount1}) {
             <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
 
-            {/* <Link to="/cart">
+            <Link to="/cart">
               <IconButton aria-label="cart" style={{}}>
                 <StyledBadge badgeContent={cartCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
-            </Link> */}
+            </Link>
 
-            <Link to="/cart1">
+            {/* <Link to="/cart1">
               <IconButton aria-label="cart" style={{}}>
-                <StyledBadge badgeContent={cartcount1} color="secondary">
+                <StyledBadge badgeContent={count} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
-            </Link>
+            </Link> */}
 
             <Link to='/favorite'>
             <FavoriteIcon aria-label="cart" style={{color: 'red'}}>
@@ -116,7 +116,8 @@ function Header({cartcount1}) {
               <li><Link className="nav-link scrollto" to='/contact'>Contact</Link></li>
               <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li>
               <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li>
-              <li><Link className="nav-link scrollto" to='/medicine1'>Medicine</Link></li>
+              <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}
               <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/favorite'>My Favorite</Link></li> */}
 

@@ -23,10 +23,9 @@ import Cart_1 from '../user/container/Cart/Cart_1';
 import Favorite from '../user/container/Cart/Favorite';
 import { useState } from 'react';
 
-function userRoute(props) {
+function UserRoute(props) {
 
-  const [ cartCount, setCartCount] = useState(0); 
-  // const [cartCount, setCartCount] = useState([0])
+  const [cartCount, setCartCount] = useState(0); 
 
 
   return (
@@ -56,13 +55,13 @@ function userRoute(props) {
         <Route path='/extra' element={<Extra />} />
         <Route path='/validation' element={<Validation />} />
         <Route path='/counter' element={<Counter />} />
-        {/* <Route path='/cart' element={<Cart />} /> */}
-        <Route path='/cart1' element={<Cart_1 />} />
+        <Route path='/cart' element={<Cart />} />
+        {/* <Route path='/cart1' element={<Cart_1 />} /> */}
         <Route path='/favorite' element={<Favorite />} />
 
         <Route element={<PrivateRoute />} >
-          {/* <Route path='medicine' element={<Medicine />} /> */}
-          <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} />
+          <Route path='medicine' element={<Medicine />} />
+          {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
           {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
         </Route>
@@ -73,4 +72,4 @@ function userRoute(props) {
   );
 }
 
-export default userRoute;
+export default UserRoute;

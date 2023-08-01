@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 function Cart_1(props) {
 
-
     const [medicineData, setmedicineData] = useState([]);
     const [localdata, setLocaldata] = useState([]);
 

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import ListMedicines from './ListMedicines';
 import { getMedicine } from '../../Redux/action/medicine.action';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../Redux/action/cart.action';
+import { addCart } from '../../Redux/slice/CartSlice';
+// import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
 
-    const [data, setData] = useState([]);
+    // const [data, setData] = useState([]);
     const [search, setSearch] = useState([]);
 
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ function Medicine(props) {
     }
 
     const handleCart = (id) => {
-        dispatch(addToCart(id))
+        dispatch(addCart(id))
         console.log("handle cart called" + id);
     }
 
