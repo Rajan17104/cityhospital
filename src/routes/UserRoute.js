@@ -22,6 +22,7 @@ import Medicine_1 from '../user/container/Medicines/Medicine_1';
 import Cart_1 from '../user/container/Cart/Cart_1';
 import Favorite from '../user/container/Cart/Favorite';
 import { useState } from 'react';
+import DepartmentData from '../user/container/Department/DepartmentData';
 
 function UserRoute(props) {
 
@@ -35,7 +36,8 @@ function UserRoute(props) {
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/departments' element={<Departments />} />
+        {/* <Route path='/departments' element={<Departments />} /> */}
+        <Route path='/department' element={<DepartmentData />} />
         <Route path='/doctors' element={<Doctors />} />
         <Route path='/about' element={<About />} />
        // {/* <Route path='/contact' element={<Contact />} /> */}

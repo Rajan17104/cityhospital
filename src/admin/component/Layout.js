@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HealingIcon from '@mui/icons-material/Healing';
 import MedicationIcon from '@mui/icons-material/Medication';
+import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
 import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
@@ -89,7 +90,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const listdata = [
   { lable: 'Medicines', icon: <MedicationIcon />, to: '/admin/medicine_drawer' },
-  { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor' }
+  { lable: 'Doctors', icon: <HealingIcon />, to: '/admin/doctor' },
+  { lable: 'Department', icon: <AssuredWorkloadIcon />, to: '/admin/department' }
 ]
 
 export default function Layout({ children }) {

@@ -20,7 +20,7 @@ export const getDoctorData = () => (dispatch) => {
             //     )
             //     .then((data) => dispatch({ type: ActionTypes.GET_DOCTORS, payload: data }))
             //     .catch((error) => dispatch(errorData(error.message)))
-        }, 3000)
+        }, 1000)
 
     } catch (error) {
         dispatch(errorData(error.message))

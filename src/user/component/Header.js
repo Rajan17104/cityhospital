@@ -10,7 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 
 // import './App.css'
 
-function Header({count}) {
+function Header({ count }) {
 
   let cartCount = 0;
   let favCount = 0;
@@ -30,7 +30,7 @@ function Header({count}) {
 
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge' : { 
+    '& .MuiBadge-badge': {
       right: -3,
       top: 13,
       border: `2px solid ${theme.palette.background.paper}`,
@@ -89,13 +89,13 @@ function Header({count}) {
             </Link> */}
 
             <Link to='/favorite'>
-            <FavoriteIcon aria-label="cart" style={{color: 'red'}}>
+              <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
                 <StyledBadge badgeContent={favCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >
             </Link>
-            
+
           </div>
         </div>
       </div>
@@ -110,7 +110,8 @@ function Header({count}) {
           <nav id="navbar" className="navbar order-last order-lg-0">
             <ul>
               <li><Link className="nav-link scrollto active" to='/'>Home</Link></li>
-              <li><Link className="nav-link scrollto" to='/departments'>Departments</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/departments'>Departments</Link></li> */}
+              <li><Link className="nav-link scrollto" to='/department'>Department</Link></li>
               <li><Link className="nav-link scrollto" to='/doctors'>Doctors</Link></li>
               <li><Link className="nav-link scrollto" to='/about'>About</Link></li>
               <li><Link className="nav-link scrollto" to='/contact'>Contact</Link></li>
