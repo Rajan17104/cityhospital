@@ -18,7 +18,7 @@ export const departmentReducer = (state = initState, action) => {
             }
         case ActionType.ERROR_DEPARTMENT:
             return {
-                department: [],
+                department: [], 
                 loading: false,
                 error: action.payload
             }
