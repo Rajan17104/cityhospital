@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import DepartmentForm from './DepartmentForm';
 // import { addDepartmentData, deleteDepartment, getDepartmentData, updateDepartment } from '../../../user/Redux/action/department.action';
 import { getDepartmentApiData } from '../../../common/apis/department.api';
-import { addDepartment, deleteDepartment, fetchDepartment } from '../../../user/Redux/slice/DepartmentSlice';
+import { addDepartment, deleteDepartment, fetchDepartment, updateDepartment } from '../../../user/Redux/slice/DepartmentSlice';
 
 
 function Department(props) {
@@ -34,7 +34,7 @@ function Department(props) {
 
     const handlesubmit = (data) => {
         if (update) {
-            // dispatch(updateDepartment(data))
+            dispatch(updateDepartment(data))
         } else {
             dispatch(addDepartment(data))
         }

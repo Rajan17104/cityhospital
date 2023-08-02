@@ -30,7 +30,7 @@ export const deleteDepartment = createAsyncThunk(
     'department/delete',
     async (id) => {
         let response = await deleteDepartmentApiData(id);
-        return response.id
+        return response.id  
     }
 )
 
@@ -52,6 +52,10 @@ export const departmentSlice = createSlice({
                 console.log(action);
                 state.department = action.payload
             })
+            .addCase(fetchDepartment.pending, (state, action) => {
+                // state.department = action.payload
+
+            })
 
             .addCase(addDepartment.fulfilled, (state, action) => {
                 state.department = state.department.concat(action.payload)
@@ -61,8 +65,15 @@ export const departmentSlice = createSlice({
                  state.department=  state.department.filter((v) => v.id != action.payload)
             }) 
 
-            .addCase(deleteDepartment.fulfilled, (state,action) => {
-                state.department=  state.department.filter((v) => v.id != action.payload)
+            .addCase(updateDepartment.fulfilled, (state,action) => {
+
+                state.department= state.department.map((v) => {
+                    if (v.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return v;
+                    }
+                })
            }) 
             
     }
