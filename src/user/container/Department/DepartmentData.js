@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../../Redux/slice/CartSlice';
 import { getDepartmentData } from '../../Redux/action/department.action';
 import ListDepartment from './ListDepartment';
+import { getDepartmentApiData } from '../../../common/apis/department.api';
+import { fetchDepartment } from '../../Redux/slice/DepartmentSlice';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function DepartmentData(props) {
@@ -28,7 +30,7 @@ function DepartmentData(props) {
     // }, []);
 
     useEffect(() => {
-        dispatch(getDepartmentData())
+        dispatch(fetchDepartment())
     }, [])
 
     const handlechange = (val) => {

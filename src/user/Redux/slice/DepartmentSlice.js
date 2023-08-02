@@ -1,47 +1,73 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { addDepartmentApiData, deleteDepartmentApiData, getDepartmentApiData, updateDepartmentApiData } from "../../../common/apis/department.api"
 
 const initState = {
     department: [],
-    loading: false,
+    isloading: false,
     error: null
 }
 
+
+export const fetchDepartment = createAsyncThunk(
+    'department/fetch',
+    async () => {
+        let response = await getDepartmentApiData();
+        console.log(response);
+        return response.data
+    }
+)
+
+export const addDepartment = createAsyncThunk(
+    'department/add',
+    async (data) => {
+        let response = await addDepartmentApiData(data);
+        console.log(response);
+        return response.data
+    }
+)
+
+export const deleteDepartment = createAsyncThunk(
+    'department/delete',
+    async (id) => {
+        let response = await deleteDepartmentApiData(id);
+        return response.id
+    }
+)
+
+export const updateDepartment = createAsyncThunk(
+    'department/update',
+    async (data) => {
+        let response = await updateDepartmentApiData(data);
+        return response.data
+    }
+)
+
 export const departmentSlice = createSlice({
-    name: 'Department',
+    name: 'department',
     initialState: initState,
-    reducers: {
-        getDepartment: (state,action) => {
-            state.department = action.payload
-
-        },
-
-        addDepartment: (state, action) => {
-            state.department = state.department
-
-        },
-
-        deleteDepartment: (state, action) => {
-
-            state.department.filter((v) => v.id != action.payload)
-
-
-        },
-
-        updateDepartment: (state, action) => {
-
-            state.department.map((v) => {
-                if (v.id === action.payload.id) {
-                    return action.payload
-                } else {
-                    return v;
-                }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchDepartment.fulfilled, (state, action) => {
+                console.log(action);
+                state.department = action.payload
             })
 
-        }
+            .addCase(addDepartment.fulfilled, (state, action) => {
+                state.department = state.department.concat(action.payload)
+            })
 
+            .addCase(deleteDepartment.fulfilled, (state,action) => {
+                 state.department=  state.department.filter((v) => v.id != action.payload)
+            }) 
+
+            .addCase(deleteDepartment.fulfilled, (state,action) => {
+                state.department=  state.department.filter((v) => v.id != action.payload)
+           }) 
+            
     }
 })
 
-export const {getDepartment, addDepartment, deleteDepartment, updateDepartment } = departmentSlice;
+
 
 export default departmentSlice.reducer

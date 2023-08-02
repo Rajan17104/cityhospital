@@ -6,8 +6,9 @@ import { medicinereducer } from "./medicine.reducer";
 import { favoriteReducer } from "./favorite.reducer";
 import counterReducer from "../slice/CounterSlice";
 import cartReducer from "../slice/CartSlice";
-import { departmentReducer } from "./department.reducer";
-// import departmentReducer  from "../slice/DepartmentSlice";
+import departmentReducer from "../slice/DepartmentSlice";
+// import { departmentReducer } from "./department.reducer";
+
 
 
 
