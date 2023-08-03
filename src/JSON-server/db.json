@@ -166,6 +166,29 @@
       "id": 5,
       "name": "Neurosurgery",
       "desc": "Aliquam sed convallis libero. Proin in mi tempor, convallis lectus sed, convallis mauris. Quisque ac nulla et lorem ultricies vulputate. Vivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque."
+    },
+    {
+      "name": "patel",
+      "desc": "fghg",
+      "id": 6
+    },
+    {
+      "name": "pubg",
+      "desc": "ddd ffff ffff 3243423",
+      "img": "C:\\fakepath\\i (2).webp",
+      "id": 7
+    },
+    {
+      "name": "dcsdasddasdd",
+      "desc": "ddd ffff ffff ",
+      "img": "C:\\fakepath\\i (1).webp",
+      "id": 8
+    },
+    {
+      "name": "patel",
+      "desc": "ddd ffff ffff ",
+      "date": "2023-08-17",
+      "id": 9
     }
   ]
 }

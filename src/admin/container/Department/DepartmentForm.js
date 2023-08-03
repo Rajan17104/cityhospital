@@ -31,7 +31,8 @@ function DepartmentForm({onhandlesubmit , onupdate}) {
   let departmentSchema = yup.object({
     
     name: yup.string().required().matches(/^[a-zA-Z ]+$/, 'please enter a valid name'),
-    desc: yup.string().required()
+    desc: yup.string().required(),
+    // img: yup.string().required()
 
   })
 
@@ -41,6 +42,7 @@ function DepartmentForm({onhandlesubmit , onupdate}) {
     initialValues: {
       name: '',
       desc: '',
+      // img: ''
     },
     onSubmit: (values, action) => {
       action.resetForm()
@@ -93,6 +95,19 @@ console.log(errors);
               onBlur={handleBlur}
             />
             <span style={{ color: 'red' }}>{errors.desc && touched.desc ? errors.price : null}</span>
+            {/* <TextField
+              margin="dense"
+              id="img"
+              label="image"
+              name='img'
+              type="file"
+              fullWidth
+              variant="standard"
+              value={values.img}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            /> */}
+            {/* <span style={{ color: 'red' }}>{errors.img && touched.img ? errors.img : null}</span> */}
            
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>

@@ -46,6 +46,7 @@ function Department(props) {
         // { field: 'id', headerName: 'ID', width: 130 },
         { field: 'name', headerName: 'Name', width: 130 },
         { field: 'desc', headerName: 'desc', width: 250 },
+        // { field: 'date', headerName: 'date', width: 250 },
         {
             field: 'action', headerName: 'action', width: 130,
             renderCell: (params) => (
@@ -73,25 +74,25 @@ function Department(props) {
             <h1>Department</h1>
 
             {
-                department.loading ? <CircularProgress style={{ color: "red" }} /> :
+                department.isloading ? <CircularProgress style={{ color: "red" }} /> :
+                    department.error ? <p>{department.error}</p> :
+                        <>
+                            <DepartmentForm onhandlesubmit={handlesubmit} onupdate={update} />
 
-                    <>
-                        <DepartmentForm onhandlesubmit={handlesubmit} onupdate={update} />
-
-                        <div style={{ height: 400, width: '100%' }}>
-                            <DataGrid
-                                rows={department.department}
-                                columns={columns}
-                                initialState={{
-                                    pagination: {
-                                        paginationModel: { page: 0, pageSize: 5 },
-                                    },
-                                }}
-                                pageSizeOptions={[5, 10]}
-                                checkboxSelection
-                            />
-                        </div>
-                    </>
+                            <div style={{ height: 400, width: '100%' }}>
+                                <DataGrid
+                                    rows={department.department}
+                                    columns={columns}
+                                    initialState={{
+                                        pagination: {
+                                            paginationModel: { page: 0, pageSize: 5 },
+                                        },
+                                    }}
+                                    pageSizeOptions={[5, 10]}
+                                    checkboxSelection
+                                />
+                            </div>
+                        </>
             }
         </div >
 

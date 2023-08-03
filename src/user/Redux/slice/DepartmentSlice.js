@@ -11,6 +11,9 @@ const initState = {
 export const fetchDepartment = createAsyncThunk(
     'department/fetch',
     async () => {
+
+        await new Promise((resolve, reject) => setTimeout(resolve, 2000));
+
         let response = await getDepartmentApiData();
         console.log(response);
         return response.data
@@ -29,8 +32,8 @@ export const addDepartment = createAsyncThunk(
 export const deleteDepartment = createAsyncThunk(
     'department/delete',
     async (id) => {
-        let response = await deleteDepartmentApiData(id);
-        return response.id  
+        await deleteDepartmentApiData(id);
+        return id
     }
 )
 
@@ -42,40 +45,63 @@ export const updateDepartment = createAsyncThunk(
     }
 )
 
+const Loading = (state, action) => {
+    state.isloading = true;
+    state.error = null;
+}
+
+const reject = (state, action) => {
+    state.isloading = false;
+    state.error = action.error.message;
+}
+
 export const departmentSlice = createSlice({
     name: 'department',
     initialState: initState,
     reducers: {},
     extraReducers: (builder) => {
         builder
+
+            /***get data***/
+            .addCase(fetchDepartment.pending, Loading)
             .addCase(fetchDepartment.fulfilled, (state, action) => {
                 console.log(action);
+                state.isloading = false
                 state.department = action.payload
             })
-            .addCase(fetchDepartment.pending, (state, action) => {
-                // state.department = action.payload
+            .addCase(fetchDepartment.rejected, reject)
 
-            })
-
+            /***Add data***/
+            .addCase(addDepartment.pending, Loading)
             .addCase(addDepartment.fulfilled, (state, action) => {
+                state.isloading = false
                 state.department = state.department.concat(action.payload)
             })
+            .addCase(addDepartment.rejected, reject)
 
-            .addCase(deleteDepartment.fulfilled, (state,action) => {
-                 state.department=  state.department.filter((v) => v.id != action.payload)
-            }) 
+            /***Delete data***/
+            .addCase(deleteDepartment.pending, Loading)
+            .addCase(deleteDepartment.fulfilled, (state, action) => {
+                state.isloading = false
+                state.department = state.department.filter((v) => v.id != action.payload)
+            })
+            .addCase(deleteDepartment.rejected, reject)
 
-            .addCase(updateDepartment.fulfilled, (state,action) => {
-
-                state.department= state.department.map((v) => {
+            /***Update data***/
+            .addCase(updateDepartment.pending, Loading)
+            .addCase(updateDepartment.fulfilled, (state, action) => {
+                state.isloading = false
+                state.department = state.department.map((v) => {
                     if (v.id === action.payload.id) {
                         return action.payload
                     } else {
                         return v;
                     }
                 })
-           }) 
-            
+            })
+            .addCase(updateDepartment.rejected, reject)
+
+
     }
 })
 
