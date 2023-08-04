@@ -8,7 +8,7 @@ function Counter() {
             <center>
                 <div className="container1">
                     <div className="section-title">
-                        <h1 name="h2tag1">Counter Context</h1>
+                        <h1 name="h2tag1">Counter Context </h1>
                     </div>
                     <div className="count-wrapper">
                         <button onClick={increment}>+</button>

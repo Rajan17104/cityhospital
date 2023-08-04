@@ -1,13 +1,13 @@
 import { useState, createContext } from 'react';
 
-const counterContext = createContext();
+const CounterContext = createContext();
 
 export const CounterProvider = ({ children }) => {
 
     const [counter, setCounter] = useState(0);
 
     const increment = () => {
-        return setCounter(counter - 1);
+        return setCounter(counter + 1);
 
     }
 
@@ -17,10 +17,10 @@ export const CounterProvider = ({ children }) => {
     }
 
     return (
-        <counterContext.Provider value={{ counter, increment, decrement }}>
+        <CounterContext.Provider value={{ counter, increment, decrement }}>
             {children}
-        </counterContext.Provider>
+        </CounterContext.Provider>
     )
 }
 
-export default counterContext;
+export default CounterContext;

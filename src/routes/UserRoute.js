@@ -16,60 +16,62 @@ import Contact1 from '../user/container/Contact1';
 import { Route, Routes } from 'react-router-dom';
 import Medicine from '../user/container/Medicines/Medicine';
 import PrivateRoute from './PrivateRoute';
-import Counter from '../user/Counter/Counter'
+// import Counter from '../user/Counter/Counter'
 import Cart from '../user/container/Cart/Cart';
 import Medicine_1 from '../user/container/Medicines/Medicine_1';
 import Cart_1 from '../user/container/Cart/Cart_1';
 import Favorite from '../user/container/Cart/Favorite';
 import { useState } from 'react';
 import DepartmentData from '../user/container/Department/DepartmentData';
+import Counter from '../user/Context/Counter';
 
 function UserRoute(props) {
 
-  const [cartCount, setCartCount] = useState(0); 
+  const [cartCount, setCartCount] = useState(0);
 
 
   return (
     <>
-      <Header count={cartCount} />
-      {/* <Header /> */}
+        <Header count={cartCount} />
+        {/* <Header /> */}
 
-      <Routes>
-        <Route path='/' element={<Home />} />
-        {/* <Route path='/departments' element={<Departments />} /> */}
-        <Route path='/department' element={<DepartmentData />} />
-        <Route path='/doctors' element={<Doctors />} />
-        <Route path='/about' element={<About />} />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          {/* <Route path='/departments' element={<Departments />} /> */}
+          <Route path='/department' element={<DepartmentData />} />
+          <Route path='/doctors' element={<Doctors />} />
+          <Route path='/about' element={<About />} />
        // {/* <Route path='/contact' element={<Contact />} /> */}
-        <Route path='/contact' element={<Contact1 />} />
-        <Route path='/appointment' element={<Appointment />} />
+          <Route path='/contact' element={<Contact1 />} />
+          <Route path='/appointment' element={<Appointment />} />
         // {/* <Route path='/doctor/:id' element={<Doctor />} />*/}
         // {/* <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} />   */}
 
-        {/* <Route path='/doctor/'>
+          {/* <Route path='/doctor/'>
         <Route path=':id' element={<Doctor />} />
         <Route path='visiting_doctor' element={<VisitingDoctor />} />
         </Route> */}
 
-        <Route path='*' element={<NotFound />} />
-        <Route path='/auth' element={<Auth />} />
+          <Route path='*' element={<NotFound />} />
+          <Route path='/auth' element={<Auth />} />
       //  {/* <Route path='/auth' element={<Auth1 />} /> */}
-        <Route path='/extra' element={<Extra />} />
-        <Route path='/validation' element={<Validation />} />
-        <Route path='/counter' element={<Counter />} />
-        <Route path='/cart' element={<Cart />} />
-        {/* <Route path='/cart1' element={<Cart_1 />} /> */}
-        <Route path='/favorite' element={<Favorite />} />
+          <Route path='/extra' element={<Extra />} />
+          <Route path='/validation' element={<Validation />} />
+          {/* <Route path='/counter' element={<Counter />} /> */}
+          <Route path='/counter1' element={<Counter />} />
+          <Route path='/cart' element={<Cart />} />
+          {/* <Route path='/cart1' element={<Cart_1 />} /> */}
+          <Route path='/favorite' element={<Favorite />} />
 
-        <Route element={<PrivateRoute />} >
-          <Route path='medicine' element={<Medicine />} />
-          {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
-          {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
+          <Route element={<PrivateRoute />} >
+            <Route path='medicine' element={<Medicine />} />
+            {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
+            {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
-        </Route>
+          </Route>
 
-      </Routes>
-      <Footer />
+        </Routes>
+        <Footer />
     </>
   );
 }

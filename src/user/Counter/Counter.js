@@ -1,33 +1,33 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../Redux/slice/CounterSlice';
-// import { decrement, increment } from '../Redux/action/counter.action';
+// import React from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { decrement, increment } from '../Redux/slice/CounterSlice';
+// // import { decrement, increment } from '../Redux/action/counter.action';
 
-function Counter(props) {
+// function Counter(props) {
 
-    const dispatch = useDispatch();
+//     const dispatch = useDispatch();
 
-    const counterVal = useSelector(state => state.counter);
+//     const counterVal = useSelector(state => state.counter);
 
-    const handleInc = () => {
-        dispatch(increment());
-    }
+//     const handleInc = () => {
+//         dispatch(increment());
+//     }
 
-    const handleDec = () => {
-        dispatch(decrement());
-    }
+//     const handleDec = () => {
+//         dispatch(decrement());
+//     }
 
 
-    return (
-        <>
-            <h1>Counter Redux</h1>
-            <div>
-                <button onClick={() => handleInc()}>+</button>
-                <span>{counterVal.count}</span>
-                <button onClick={() => handleDec()}>-</button>
-            </div>
-        </>
-    );
-}
+//     return (
+//         <>
+//             <h1>Counter Redux</h1>
+//             <div>
+//                 <button onClick={() => handleInc()}>+</button>
+//                 <span>{counterVal.count}</span>
+//                 <button onClick={() => handleDec()}>-</button>
+//             </div>
+//         </>
+//     );
+// }
 
-export default Counter;
+// export default Counter;

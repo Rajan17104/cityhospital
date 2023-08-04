@@ -1815,3 +1815,14 @@ section {
 .social- a:last-child:hover{
   color:#2f31d4 ;
 }
+
+
+.dark{
+  color: white !important;
+  background-color: black !important;
+}
+
+.light{
+  color: black !important;
+  background-color: white !important;
+}

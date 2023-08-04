@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './UI/Button/Button';
 import Badge from '@mui/material/Badge';
@@ -7,10 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { ThemeContext } from '../Context/ThemeContext';
 
 // import './App.css'
 
 function Header({ count }) {
+
+  let theme = useContext(ThemeContext)
+  console.log(theme);
 
   let cartCount = 0;
   let favCount = 0;
@@ -56,15 +60,13 @@ function Header({ count }) {
 
   return (
 
-    <div className="main-header">
-      <div id="topbar" className="d-flex align-items-center fixed-top">
+    <div className={`main-header `}>
+      <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
         <div className="container d-flex justify-content-between">
           <div className="contact-info d-flex align-items-center">
             <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
           </div>
-
-
 
           <div className="d-none d-lg-flex social-links align-items-center">
             <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
@@ -96,6 +98,8 @@ function Header({ count }) {
               </FavoriteIcon >
             </Link>
 
+            <button onClick={() => theme.themeToggle(theme.theme)}>Toggle</button>
+
           </div>
         </div>
       </div>
@@ -119,7 +123,8 @@ function Header({ count }) {
               <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li>
               <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}
-              <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>*/}
+              <li><Link className="nav-link scrollto" to='/counter1'>Counter</Link></li> 
               {/* <li><Link className="nav-link scrollto" to='/favorite'>My Favorite</Link></li> */}
 
 
