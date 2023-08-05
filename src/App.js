@@ -13,8 +13,9 @@ function App() {
 
   const { store, persistor } = configureStore();
 
+
   return (
-    <CounterProvider>
+    <CounterProvider >
       <Provider store={store}>
         <ThemeProvider>
           <PersistGate loading={null} persistor={persistor}>
