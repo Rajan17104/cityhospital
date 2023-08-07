@@ -8,7 +8,7 @@ import Input from '../component/UI/InputBox/Input';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
 import { auth } from '../../firebase';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 
 
 function Auth(props) {
@@ -64,11 +64,11 @@ function Auth(props) {
       console.log(values);
 
       if (authType === 'login') {
-        handlelogin();
+        handlelogin(values);
       } else if (authType === 'sign up') {
         handleregister(values)
       } else if (authType === 'forgot') {
-        handleforgot();
+        handleforgot(values);
       }
     },
   });
@@ -122,8 +122,18 @@ function Auth(props) {
       });
   }
 
-  const handleforgot = () => {
+  const handleforgot = (values) => {
+    sendPasswordResetEmail(auth, values.email)
+      .then(() => {
+       console.log("Password reset email sent ");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
 
+        // ..
+      });
   }
 
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
