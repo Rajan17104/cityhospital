@@ -7,10 +7,15 @@ import Button from '../component/UI/Button/Button';
 import Input from '../component/UI/InputBox/Input';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
+import { auth } from '../../firebase';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+
 
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
+
+
   const navigate = useNavigate();
 
 
@@ -61,20 +66,60 @@ function Auth(props) {
       if (authType === 'login') {
         handlelogin();
       } else if (authType === 'sign up') {
-        handleregister()
+        handleregister(values)
       } else if (authType === 'forgot') {
         handleforgot();
       }
     },
   });
 
-  const handlelogin = () => {
-    localStorage.setItem("logindata", 'true')
-    navigate('/')
+  const handlelogin = (values) => {
+    signInWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        if (user.emailVerified) {
+          console.log("email varification success fully");
+        } else {
+          console.log("not verify");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+    // localStorage.setItem("logindata", 'true')
+    // navigate('/')
   }
 
-  const handleregister = () => {
+  const handleregister = (values) => {
+    console.log(values);
 
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+
+        onAuthStateChanged(auth, (user) => {
+          sendEmailVerification(auth.currentUser)
+            .then(() => {
+              console.log('Email verification sent');
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorCode, errorMessage);
+            });
+        })
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
   }
 
   const handleforgot = () => {
@@ -164,7 +209,7 @@ function Auth(props) {
             authType === 'login' ?
               <div className="text-center"><Button type='primary' >Login</Button></div> :
               authType === 'sign up' ?
-                <div className="text-center"><Button type='secondary' btndisable={true}>Sign up</Button></div> :
+                <div className="text-center"><Button type='secondary'>Sign up</Button></div> :
                 <div className="text-center"><Button type='outline' >Submit</Button></div>
           }
 
@@ -183,7 +228,7 @@ function Auth(props) {
           <div className='text-center'>
             <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a></span>
           </div>
-      }<br /><br/>
+      }<br /><br />
 
     </section>
 
