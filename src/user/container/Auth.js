@@ -76,6 +76,7 @@ function Auth(props) {
   });
 
   const handlelogin = (values) => {
+    console.log(values);
     signInWithEmailAndPassword(auth, values.email, values.password)
       .then((userCredential) => {
         // Signed in 
@@ -100,8 +101,13 @@ function Auth(props) {
 
   const handleregister = (values) => {
     console.log(values);
-
+    
+    
     dispatch(signUpRequest(values))
+    // console.log('Email verification sent');
+
+
+
 
     // createUserWithEmailAndPassword(auth, values.email, values.password)
     //   .then((userCredential) => {

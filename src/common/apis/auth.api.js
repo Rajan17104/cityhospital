@@ -1,7 +1,10 @@
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { auth } from "../../firebase";
 
 
 
 export const singupApi = (values) => {
+    console.log(values);
     try {
 
         createUserWithEmailAndPassword(auth, values.email, values.password)
@@ -14,11 +17,11 @@ export const singupApi = (values) => {
                         .then(() => {
                             console.log('Email verification sent');
                         })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                            console.log(errorCode, errorMessage);
-                        });
+                        // .catch((error) => {
+                        //     const errorCode = error.code;
+                        //     const errorMessage = error.message;
+                        //     console.log(errorCode, errorMessage);
+                        // });
                 })
             })
 

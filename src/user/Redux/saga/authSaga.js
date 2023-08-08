@@ -1,6 +1,6 @@
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import Api from '...'
 import { singupApi } from '../../../common/apis/auth.api'
+import * as ActionTypes from '../ActionType'
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* userSaga(action) {
@@ -14,7 +14,7 @@ function* userSaga(action) {
 
 
 function* signupSaga() {
-  yield takeEvery('USER_FETCH_REQUESTED', userSaga)
+  yield takeEvery(ActionTypes.SIGNUP_REQUEST, userSaga)
 }
 
 export function* authsaga() {
@@ -23,7 +23,3 @@ export function* authsaga() {
     ])
 }
 
-
-
-
-export default signupSaga

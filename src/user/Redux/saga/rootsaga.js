@@ -1,5 +1,6 @@
-import { all } from "redux-saga/effects";
+import { all } from "axios";
 import { authsaga } from "./authSaga";
+
 
 
 export function* rootsaga() {
