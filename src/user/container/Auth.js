@@ -9,13 +9,15 @@ import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
 import { auth } from '../../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { signUpRequest } from '../Redux/action/auth.action';
 
 
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
 
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
 
@@ -81,6 +83,8 @@ function Auth(props) {
         console.log(user);
         if (user.emailVerified) {
           console.log("email varification success fully");
+          localStorage.setItem("logindata", 'true')
+          navigate('/')
         } else {
           console.log("not verify");
         }
@@ -88,44 +92,47 @@ function Auth(props) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+
       });
-    // localStorage.setItem("logindata", 'true')
-    // navigate('/')
+
   }
 
   const handleregister = (values) => {
     console.log(values);
 
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
+    dispatch(signUpRequest(values))
 
-        onAuthStateChanged(auth, (user) => {
-          sendEmailVerification(auth.currentUser)
-            .then(() => {
-              console.log('Email verification sent');
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
-            });
-        })
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
+    // createUserWithEmailAndPassword(auth, values.email, values.password)
+    //   .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     console.log(user);
+
+    //     onAuthStateChanged(auth, (user) => {
+    //       sendEmailVerification(auth.currentUser)
+    //         .then(() => {
+    //           console.log('Email verification sent');
+    //         })
+    //         .catch((error) => {
+    //           const errorCode = error.code;
+    //           const errorMessage = error.message;
+    //           console.log(errorCode, errorMessage);
+    //         });
+    //     })
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+    //     // ..
+    //   });
   }
 
   const handleforgot = (values) => {
     sendPasswordResetEmail(auth, values.email)
       .then(() => {
-       console.log("Password reset email sent ");
+        console.log("Password reset email sent ");
       })
       .catch((error) => {
         const errorCode = error.code;

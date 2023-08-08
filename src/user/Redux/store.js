@@ -8,8 +8,8 @@ import storage from 'redux-persist/lib/storage'
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['medicines','cart'] 
-    
+    whitelist: ['medicines', 'cart']
+
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -17,7 +17,9 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const configureStore = () => {
 
     let store = createStore(persistedReducer, applyMiddleware(thunk))
-    let persistor = persistStore(store)
-    return { store, persistor }
+    return store
 
 }
+
+export let store = configureStore()
+export let persistor = persistStore(store)

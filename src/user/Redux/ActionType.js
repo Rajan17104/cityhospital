@@ -31,6 +31,8 @@ export const REMOVE_ITEM = "REMOVE_ITEM"
 export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE'
 
 
+export const SIGNUP_REQUEST = 'SIGNUP_REQUEST'
+
  
 
 
