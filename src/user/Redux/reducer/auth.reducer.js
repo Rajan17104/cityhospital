@@ -6,7 +6,7 @@ const initState = {
     error: null
 }
 
-export const counterReducer = (state = initState, action) => {
+export const authReducer = (state = initState, action) => {
     console.log(action);
     switch (action.type) {
         case ActionType.SIGNUP_REQUEST:

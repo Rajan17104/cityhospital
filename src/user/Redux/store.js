@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga'
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['medicines', 'cart' ,'myFav']
+    whitelist: ['medicines', 'cart']
 
 }
 
@@ -26,7 +26,7 @@ const configureStore = () => {
     let store = createStore(persistedReducer, applyMiddleware(...middlewere))
     sagaMiddleware.run(rootsaga)
 
-    return store
+    return store;
 
 }
 

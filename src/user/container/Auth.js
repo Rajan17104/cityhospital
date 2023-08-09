@@ -84,8 +84,8 @@ function Auth(props) {
         console.log(user);
         if (user.emailVerified) {
           console.log("email varification success fully");
-          localStorage.setItem("logindata", 'true')
-          navigate('/')
+          // localStorage.setItem("logindata", 'true')
+          // navigate('/')
         } else {
           console.log("not verify");
         }
@@ -102,37 +102,7 @@ function Auth(props) {
   const handleregister = (values) => {
     console.log(values);
     
-    
     dispatch(signUpRequest(values))
-    // console.log('Email verification sent');
-
-
-
-
-    // createUserWithEmailAndPassword(auth, values.email, values.password)
-    //   .then((userCredential) => {
-    //     // Signed in 
-    //     const user = userCredential.user;
-    //     console.log(user);
-
-    //     onAuthStateChanged(auth, (user) => {
-    //       sendEmailVerification(auth.currentUser)
-    //         .then(() => {
-    //           console.log('Email verification sent');
-    //         })
-    //         .catch((error) => {
-    //           const errorCode = error.code;
-    //           const errorMessage = error.message;
-    //           console.log(errorCode, errorMessage);
-    //         });
-    //     })
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode, errorMessage);
-    //     // ..
-    //   });
   }
 
   const handleforgot = (values) => {

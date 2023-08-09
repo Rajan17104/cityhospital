@@ -11,7 +11,6 @@ import { ThemeProvider } from './user/Context/ThemeContext';
 
 function App() {
 
-  // const { store, persistor } = configureStore();
 
 
   return (
