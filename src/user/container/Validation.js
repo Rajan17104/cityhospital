@@ -1,4 +1,5 @@
 import { useFormik } from 'formik';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 import React from 'react';
 import * as yup from 'yup';
 
@@ -18,14 +19,14 @@ function Validation(props) {
                 }),
         email: yup.string().email().required('please enter a email'),
         password: yup.string().required('please enter a password').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, 'please enter a valid password'),
-        confpassword: yup.string().test('confpassword','password is not match',
-                function (val) {
-                    if(this.parent.password === val){
-                        return true;
-                    }else{
-                        return false;
-                    }
+        confpassword: yup.string().test('confpassword', 'password is not match',
+            function (val) {
+                if (this.parent.password === val) {
+                    return true;
+                } else {
+                    return false;
                 }
+            }
         ),
         mobile_no: yup.string().required('please enter a mobile number').matches((/^(\+\d{1,3}[- ]?)?\d{10}$/), 'please enter a valid mobile number'),
         age: yup.number().required('please enter your age').min(0).max(150),
@@ -45,7 +46,7 @@ function Validation(props) {
             }),
         date: yup.date().max(new Date(), "Enter a Valid Date").required(),
         condition: yup.boolean().oneOf([true]).required('please select Your condition'),
-          
+
     });
 
     const formik = useFormik({
@@ -277,6 +278,12 @@ function Validation(props) {
                     </div>
                     <div className="text-cente"><button type="submit">submit</button></div>
                 </form>
+            </div>
+
+            <div>
+                <SnackbarProvider />
+                <button style={{height: '30px' , backgroundColor: 'blue'}} onClick={() => enqueueSnackbar('That was easy!')}>Show snackbar</button>
+                <button style={{height: '30px' ,  marginLeft: '10px', backgroundColor: 'green'}} onClick={() => enqueueSnackbar('I love hooks')}>Show snackbar</button>           
             </div>
         </section>
     );

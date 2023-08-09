@@ -11,6 +11,7 @@ import { auth } from '../../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { signupRequest } from '../Redux/action/auth.action';
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 
 
 function Auth(props) {
@@ -129,7 +130,7 @@ function Auth(props) {
   const handleforgot = (values) => {
     sendPasswordResetEmail(auth, values.email)
       .then(() => {
-       console.log("Password reset email sent ");
+        console.log("Password reset email sent ");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -144,107 +145,113 @@ function Auth(props) {
 
 
   return (
-    <section id="appointment" className="appointment">
-      <div className="container">
-        <div className="section-title">
-          {
-            authType === 'login' ? <H2>Login</H2> :
-              authType === 'sign up' ? <H2>Sign up</H2> : <H2>Reset password</H2  >
-          }
-
-          <Title>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-            blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-            Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</Title>
-        </div>
-        <form onSubmit={handleSubmit} className="php-email-form">
-          <div className="row justify-content-center" >
+    <>
+      <section id="appointment" className="appointment">
+        <div className="container">
+          <div className="section-title">
             {
-              authType === 'login' || authType === 'forgot' ? null :
-                <div className="col-md-7 form-group">
-                  <Input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Your Name"
-                    data-rule="minlen:4"
-                    data-msg="Please enter at least 4 chars"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    errorText={errors.name && touched.name ? errors.name : ''}
-                  />
-                  {/* <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span> */}
-                  <div className="validate" />
-                </div>
-
+              authType === 'login' ? <H2>Login</H2> :
+                authType === 'sign up' ? <H2>Sign up</H2> : <H2>Reset password</H2  >
             }
 
-            <div className="col-md-7 form-group mt-3 mt-md-0">
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Your Email"
-                data-rule="email"
-                data-msg="Please enter a valid email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                errorText={errors.email && touched.email ? errors.email : ''}
-              />
-              {/* <span style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span> */}
-
-              <div className="validate" />
-            </div>
-
-            {
-              authType !== 'forgot' ?
-                <div className="col-md-7 form-group mt-3 mt-md-0">
-                  <Input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Your password"
-                    data-rule="minlen:4"
-                    data-msg="Please enter a password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    errorText={errors.password && touched.password ? errors.password : ''}
-                  />
-                  {/* <span style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span> */}
-                  <div className="validate" />
-                </div> : null
-            }
-
+            <Title>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
+              blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
+              Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</Title>
           </div>
+          <form onSubmit={handleSubmit} className="php-email-form">
+            <div className="row justify-content-center" >
+              {
+                authType === 'login' || authType === 'forgot' ? null :
+                  <div className="col-md-7 form-group">
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Your Name"
+                      data-rule="minlen:4"
+                      data-msg="Please enter at least 4 chars"
+                      value={values.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorText={errors.name && touched.name ? errors.name : ''}
+                    />
+                    {/* <span style={{ color: 'red' }}>{errors.name && touched.name ? errors.name : null}</span> */}
+                    <div className="validate" />
+                  </div>
 
-          {
-            authType === 'login' ?
-              <div className="text-center"><Button type='primary' >Login</Button></div> :
-              authType === 'sign up' ?
-                <div className="text-center"><Button type='secondary'>Sign up</Button></div> :
-                <div className="text-center"><Button type='outline' >Submit</Button></div>
-          }
+              }
 
-        </form>
-      </div>
-      {
-        authType === 'login' ?
-          <>
-            <div className='text-center'>
-              <a href="#" onClick={() => setAuthType('forgot')}>  Forgot password ?</a>
-              <div className='text-center'>
-                <span>You have already account ? <a href="#" onClick={() => setAuthType('sign up')}> Sign up </a></span>
+              <div className="col-md-7 form-group mt-3 mt-md-0">
+                <Input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                  data-rule="email"
+                  data-msg="Please enter a valid email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  errorText={errors.email && touched.email ? errors.email : ''}
+                />
+                {/* <span style={{ color: 'red' }}>{errors.email && touched.email ? errors.email : null}</span> */}
+
+                <div className="validate" />
               </div>
-            </div>
-          </> :
-          <div className='text-center'>
-            <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a></span>
-          </div>
-      }<br /><br />
 
-    </section>
+              {
+                authType !== 'forgot' ?
+                  <div className="col-md-7 form-group mt-3 mt-md-0">
+                    <Input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Your password"
+                      data-rule="minlen:4"
+                      data-msg="Please enter a password"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      errorText={errors.password && touched.password ? errors.password : ''}
+                    />
+                    {/* <span style={{ color: 'red' }}>{errors.password && touched.password ? errors.password : null}</span> */}
+                    <div className="validate" />
+                  </div> : null
+
+
+              }
+
+            </div>
+
+           
+
+            {
+              authType === 'login' ?
+                <div className="text-center"><Button type='primary' >Login</Button></div> :
+                authType === 'sign up' ?
+                  <div className="text-center"><Button type='secondary'>Sign up</Button></div> :
+                  <div className="text-center"><Button type='outline' >Submit</Button></div>
+            }
+
+          </form>
+        </div >
+        {
+          authType === 'login' ?
+            <>
+              <div className='text-center'>
+                <a href="#" onClick={() => setAuthType('forgot')}>  Forgot password ?</a>
+                <div className='text-center'>
+                  <span>You have already account ? <a href="#" onClick={() => setAuthType('sign up')}> Sign up </a></span>
+                </div>
+              </div>
+            </> :
+            <div className='text-center'>
+              <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a></span>
+            </div>
+        }<br /><br />
+
+      </section >
+    </>
 
   );
 }

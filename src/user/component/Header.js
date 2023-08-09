@@ -8,6 +8,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from '../Context/ThemeContext';
+import Brightness6Icon from '@mui/icons-material/Brightness6';
+
 
 // import './App.css'
 
@@ -98,7 +100,9 @@ function Header({ count }) {
               </FavoriteIcon >
             </Link>
 
-            <button onClick={() => theme.themeToggle(theme.theme)}>Toggle</button>
+            <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} /> 
+
+            {/* <button onClick={() => theme.themeToggle(theme.theme)} >Toggle</button> */}
 
           </div>
         </div>
@@ -120,11 +124,11 @@ function Header({ count }) {
               <li><Link className="nav-link scrollto" to='/about'>About</Link></li>
               <li><Link className="nav-link scrollto" to='/contact'>Contact</Link></li>
               <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li>
-              <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li> */}
               <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}
               {/* <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>*/}
-              <li><Link className="nav-link scrollto" to='/counter1'>Counter</Link></li> 
+              {/* <li><Link className="nav-link scrollto" to='/counter1'>Counter</Link></li>  */}
               {/* <li><Link className="nav-link scrollto" to='/favorite'>My Favorite</Link></li> */}
 
 

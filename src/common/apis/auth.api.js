@@ -5,7 +5,7 @@ export const signupAPI = (values) => {
     console.log(values);
 
     try {
-        return new Promise = ((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             createUserWithEmailAndPassword(auth, values.email, values.password)
                 .then((userCredential) => {
                     // Signed in 

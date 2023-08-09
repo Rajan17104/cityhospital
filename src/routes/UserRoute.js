@@ -58,7 +58,7 @@ function UserRoute(props) {
           <Route path='/extra' element={<Extra />} />
           <Route path='/validation' element={<Validation />} />
           {/* <Route path='/counter' element={<Counter />} /> */}
-          <Route path='/counter1' element={<Counter />} />
+          {/* <Route path='/counter1' element={<Counter />} /> */}
           <Route path='/cart' element={<Cart />} />
           {/* <Route path='/cart1' element={<Cart_1 />} /> */}
           <Route path='/favorite' element={<Favorite />} />
