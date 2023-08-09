@@ -4,18 +4,18 @@ import UserRoute from './routes/UserRoute'
 import AdminRoute from './routes/AdminRoute';
 import PrivateRoute from './routes/PrivateRoute';
 import { Provider } from 'react-redux';
-import { configureStore } from './user/Redux/store';
+import { configureStore, persistor, store } from './user/Redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { CounterProvider } from './user/Context/CounterContext';
 import { ThemeProvider } from './user/Context/ThemeContext';
 
 function App() {
 
-  const { store, persistor } = configureStore();
+  // const { store, persistor } = configureStore();
 
 
   return (
-    <CounterProvider >
+    // <CounterProvider >
       <Provider store={store}>
         <ThemeProvider>
           <PersistGate loading={null} persistor={persistor}>
@@ -32,7 +32,7 @@ function App() {
           </PersistGate>
         </ThemeProvider>
       </Provider>
-    </CounterProvider>
+    // </CounterProvider>
   );
 }
 

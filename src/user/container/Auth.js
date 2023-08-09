@@ -9,13 +9,15 @@ import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
 import { auth } from '../../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { signupRequest } from '../Redux/action/auth.action';
 
 
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
 
-
+  const dispatch = useDispatch()
   const navigate = useNavigate();
 
 
@@ -96,30 +98,32 @@ function Auth(props) {
   const handleregister = (values) => {
     console.log(values);
 
-    createUserWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
+    dispatch(signupRequest(values))
 
-        onAuthStateChanged(auth, (user) => {
-          sendEmailVerification(auth.currentUser)
-            .then(() => {
-              console.log('Email verification sent');
-            })
-            .catch((error) => {
-              const errorCode = error.code;
-              const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
-            });
-        })
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ..
-      });
+    // createUserWithEmailAndPassword(auth, values.email, values.password)
+    //   .then((userCredential) => {
+    //     // Signed in 
+    //     const user = userCredential.user;
+    //     console.log(user);
+
+    //     onAuthStateChanged(auth, (user) => {
+    //       sendEmailVerification(auth.currentUser)
+    //         .then(() => {
+    //           console.log('Email verification sent');
+    //         })
+    //         .catch((error) => {
+    //           const errorCode = error.code;
+    //           const errorMessage = error.message;
+    //           console.log(errorCode, errorMessage);
+    //         });
+    //     })
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+    //     // ..
+    //   });
   }
 
   const handleforgot = (values) => {
