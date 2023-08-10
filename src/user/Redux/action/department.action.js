@@ -1,5 +1,6 @@
 import { addDepartmentApiData, deleteDepartmentApiData, getDepartmentApiData, updateDepartmentApiData } from '../../../common/apis/department.api';
 import * as ActionType from '../ActionType'
+import { setalert } from '../slice/AlertSlice';
 import { errorData, loadingData } from './doctors.action'
 
 export const getDepartmentData = () => (dispatch) => {
@@ -30,8 +31,14 @@ export const addDepartmentData = (data) => (dispatch) => {
     try {
 
         addDepartmentApiData(data)
-            .then((response) => dispatch({ type: ActionType.ADD_DEPARTMENT, payload: response.data }))
-            .catch((error) => console.log(error.message))
+            .then(response => {
+                dispatch(setalert({ text: 'Add Data', color: 'success' }))
+                dispatch({ type: ActionType.ADD_DEPARTMENT, payload: response.data })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'No Add Data Please Check..', color: 'error' }))
+                console.log(error.message)
+            })
         // fetch(" http://localhost:3004/department", {
         //     method: "POST",
         //     headers: {
@@ -58,8 +65,14 @@ export const addDepartmentData = (data) => (dispatch) => {
 export const deleteDepartment = (id) => (dispatch) => {
     try {
         deleteDepartmentApiData(id)
-            .then(dispatch({ type: ActionType.DELETE_DEPARTMENT, payload: id }))
-            .catch((error) => console.log(error))
+            .then(() => {
+                dispatch(setalert({ text: 'delete Data', color: 'success' }))
+                dispatch({ type: ActionType.DELETE_DEPARTMENT, payload: id })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'Not delete Your Data..', color: 'error' }))
+                console.log(error)
+            })
 
         // fetch(" http://localhost:3004/department/" + id, {
         //     method: "DELETE",
@@ -75,8 +88,14 @@ export const deleteDepartment = (id) => (dispatch) => {
 export const updateDepartment = (data) => (dispatch) => {
     try {
         updateDepartmentApiData(data)
-            .then(dispatch({ type: ActionType.UPDATE_DEPARTMENT, payload: data }))
-            .catch((error) => console.log(error))
+        .then(() => {
+            dispatch(setalert({ text: 'Update Data', color: 'success' }))
+            dispatch({ type: ActionType.UPDATE_DOCTORS, payload: data })
+        })
+        .catch(error => {
+            dispatch(setalert({ text: 'Not Update your Data', color: 'error' }))
+            console.log(error)
+        })
 
         // fetch("http://localhost:3004/department/" + data.id, {
         //     method: "PUT",

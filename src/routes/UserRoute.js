@@ -56,19 +56,19 @@ function UserRoute(props) {
         <Route path='/auth' element={<Auth />} />
       //  {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
-        <Route path='/validation' element={<Validation />} />
+        {/* <Route path='/validation' element={<Validation />} /> */}
         {/* <Route path='/counter' element={<Counter />} /> */}
         {/* <Route path='/counter1' element={<Counter />} /> */}
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/cart1' element={<Cart_1 />} /> */}
         <Route path='/favorite' element={<Favorite />} />
 
-        <Route element={<PrivateRoute />} >
+        {/* <Route element={<PrivateRoute />} > */}
           <Route path='medicine' element={<Medicine />} />
           {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
           {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
-        </Route>
+        {/* </Route> */}
 
       </Routes>
       <Footer />

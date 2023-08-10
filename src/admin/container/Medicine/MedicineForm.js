@@ -57,7 +57,7 @@ function DoctorFrom({ onhandlesubmit, onupdate }) {
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
 
-  console.log(errors);
+  // console.log(errors);
 
   return (
     <>

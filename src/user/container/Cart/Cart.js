@@ -19,9 +19,11 @@ function Cart(props) {
     console.log(medData, cartData);
 
     let cartItems = cartData.items.map((v) => {
+        
         let mData = medData.medicines.find((m) => m.id === v.pid)
+        console.log(mData);
 
-        let fData = { ...mData, ...v }
+        let fData = { ...mData, ...v };
 
         return fData
     })
@@ -45,6 +47,7 @@ function Cart(props) {
 
     let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
 
+
     return (
         <section id="doctors" className="doctors">
             <div className="container">
@@ -65,7 +68,7 @@ function Cart(props) {
 
                                             <div className="ms-3">
                                                 <h5>{c.name}</h5>
-                                                <p className="small mb-0">{c.desc.substring(0, 120)}{'.....'}</p>
+                                                <p className="small mb-0">{c.desc}</p>
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row align-items-center">

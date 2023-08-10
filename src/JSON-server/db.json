@@ -18,11 +18,6 @@
   },
   "Doctors": [
     {
-      "id": 105,
-      "name": "Hello ggj",
-      "price": "5204"
-    },
-    {
       "name": "patel ",
       "price": "52",
       "id": 108
@@ -33,60 +28,20 @@
       "id": 109
     },
     {
-      "name": "pubg",
-      "price": "4654",
+      "name": "pubgwerfdvc",
+      "price": "4654ds",
       "id": 110
     },
     {
       "name": "rajan",
       "price": "123",
-      "id": 111
-    },
-    {
-      "name": "free fire",
-      "price": "41541",
       "id": 112
-    },
-    {
-      "name": "pen",
-      "price": "651",
-      "id": 113
-    },
-    {
-      "name": "pen",
-      "price": "863512.0",
-      "id": 114
-    },
-    {
-      "name": "patel",
-      "price": "200",
-      "id": 115
-    },
-    {
-      "name": "kit",
-      "price": "600",
-      "id": 116
-    },
-    {
-      "name": "free fire",
-      "desc": "ddd ffff ffff ",
-      "id": 117
-    },
-    {
-      "name": "free fire",
-      "desc": "ddd ffff ffff ",
-      "id": 118
-    },
-    {
-      "name": "free fire",
-      "desc": "ddd ffff ffff ",
-      "id": 119
     }
   ],
   "medicines": [
     {
       "id": 1,
-      "name": "Naproxen",
+      "name": "Naproxen11",
       "price": 10,
       "expiry": 2023,
       "desc": "Naproxen, sold under the brand name Aleve among others, is a nonsteroidal anti-inflammatory drug used to treat pain, menstrual cramps, inflammatory diseases such as rheumatoid arthritis, gout and fever."
@@ -134,11 +89,11 @@
       "desc": "Aripiprazole is used to treat certain mental/mood disorders (such as bipolar disorder, schizophrenia, Tourette's syndrome, and irritability associated with autistic disorder). It may also be used in combination with other medication to treat depression. Aripiprazole is known as an antipsychotic drug (atypical type)."
     },
     {
-      "id": 8,
-      "name": "Orlistat",
-      "price": 80,
-      "expiry": 2023,
-      "desc": "Orlistat, sold under the brand name Xenical among others, is a medication used to treat obesity. Its primary function is preventing the absorption of fats from the human diet by acting as a lipase inhibitor, thereby reducing caloric intake."
+      "name": "free firelkn",
+      "price": "564",
+      "expiry": "2023-08-24",
+      "desc": "jhbrnm dscx",
+      "id": 8
     }
   ],
   "department": [
@@ -168,27 +123,19 @@
       "desc": "Aliquam sed convallis libero. Proin in mi tempor, convallis lectus sed, convallis mauris. Quisque ac nulla et lorem ultricies vulputate. Vivamus nisi mauris, blandit quis sem sit amet, posuere blandit diam. Cras quis quam suscipit, tincidunt neque non, ullamcorper erat. Quisque sapien ipsum, efficitur ac dui et, fringilla viverra tellus. Proin urna augue, posuere ut pellentesque quis, cursus ac neque."
     },
     {
-      "name": "patel",
-      "desc": "fghg",
+      "name": "pen",
+      "desc": "ddd ffff ffff",
       "id": 6
     },
     {
-      "name": "pubg",
-      "desc": "ddd ffff ffff 3243423",
-      "img": "C:\\fakepath\\i (2).webp",
+      "name": "oo",
+      "desc": "48451",
       "id": 7
     },
     {
-      "name": "dcsdasddasdd",
-      "desc": "ddd ffff ffff ",
-      "img": "C:\\fakepath\\i (1).webp",
+      "name": "oo",
+      "desc": "48451",
       "id": 8
-    },
-    {
-      "name": "patel",
-      "desc": "ddd ffff ffff ",
-      "date": "2023-08-17",
-      "id": 9
     }
   ]
 }

@@ -1,11 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { addDepartmentApiData, deleteDepartmentApiData, getDepartmentApiData, updateDepartmentApiData } from "../../../common/apis/department.api"
+import { setalert } from "./AlertSlice";
+import { useDispatch } from "react-redux";
 
 const initState = {
     department: [],
     isloading: false,
     error: null
 }
+
+// const dispatch = useDispatch([]);
 
 
 export const fetchDepartment = createAsyncThunk(
@@ -25,14 +29,18 @@ export const addDepartment = createAsyncThunk(
     async (data) => {
         let response = await addDepartmentApiData(data);
         console.log(response);
+
         return response.data
-    }
+    },
+    
+
 )
 
 export const deleteDepartment = createAsyncThunk(
     'department/delete',
     async (id) => {
         await deleteDepartmentApiData(id);
+
         return id
     }
 )

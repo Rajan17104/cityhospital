@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { CounterProvider } from './user/Context/CounterContext';
 import { ThemeProvider } from './user/Context/ThemeContext';
 import Alert from './user/component/Alert/Alert';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     // <CounterProvider >
+    <SnackbarProvider maxSnack={3}>
       <Provider store={store}>
         <ThemeProvider>
           <PersistGate loading={null} persistor={persistor}>
@@ -24,15 +26,16 @@ function App() {
             <Routes>
               <Route path='/*' element={<UserRoute />} />
 
-              <Route >
+              {/* <Route >
                 <Route path='/admin/*' element={<AdminRoute />} />
-              </Route>
+              </Route> */}
 
-              {/* <Route path='/admin/*' element={<AdminRoute />} /> */}
+              <Route path='/admin/*' element={<AdminRoute />} />
             </Routes>
           </PersistGate>
         </ThemeProvider>
       </Provider>
+    </SnackbarProvider>
     // </CounterProvider>
   );
 }

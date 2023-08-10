@@ -18,7 +18,7 @@ export const signupAPI = (values) => {
                             .catch((error) => {
                                 const errorCode = error.code;
                                 const errorMessage = error.message;
-                                reject({message : errorCode});
+                                reject({ message: errorCode });
                             });
                     })
                 })
@@ -39,37 +39,61 @@ export const signupAPI = (values) => {
 }
 
 export const loginAPI = (values) => {
-    return new Promise((resolve, reject) => {
+    console.log(values);
+    return new Promise((resovle, reject) => {
         signInWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user.emailVerified) {
-                    resolve({message: "You are successfully login"});
-                    // localStorage.setItem("loginstatus", 'true');
-                    // navigate('/');
+                    resovle({ message: "You are successfully login ", user: user });
+                    localStorage.setItem("loginstatus", "true");
+                    // naigate('/')
                 } else {
-                    reject({message: "Your Email is not Verified..."});
+                    reject({ message: "Your Email is not Verified..." });
                 }
             })
             .catch((error) => {
                 const errorCode = error.code;
-                const errorMessage = error.message;
-                reject({message: errorCode});
+                if (errorCode.localeCompare('auth/wrong-password') === 0) {
+                    reject({ message: "password is wrong." })
+                } else if (errorCode.localeCompare('auth/user-not-found') === 0) {
+                    reject({ message: "Email is not registred" })
+                }
             });
     })
 }
 
+
+// export const forgetAPI = (values) => {
+//     return new Promise((resolve, reject) => {
+//         sendPasswordResetEmail(auth, values.email)
+//             .then(() => {
+//                 resolve({message: "Password reset link sent to your email id."});
+//             })
+//             .catch((error) => {
+//                 const errorCode = error.code;
+//                 const errorMessage = error.message;
+//                 reject({message: errorCode});
+//             });
+//     })
+// }
+
 export const forgetAPI = (values) => {
-    return new Promise((resolve, reject) => {
-        sendPasswordResetEmail(auth, values.email)
-            .then(() => {
-                resolve({message: "Password reset link sent to your email id."});
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                reject({message: errorCode});
-            });
-    })
+    console.log(values);
+    try {
+        return new Promise((resovle, reject) => {
+            sendPasswordResetEmail(auth, values.email)
+                .then(() => {
+                    resovle({ message: "Password reset link sent to your email id." });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    reject({ message: errorCode })
+                });
+        })
+    } catch (error) {
+        console.log(error);
+    }
+
 }

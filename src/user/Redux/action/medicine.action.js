@@ -1,4 +1,5 @@
 import * as ActionType from "../ActionType"
+import { setalert } from "../slice/AlertSlice";
 
 export const getMedicine = () => (dispatch) => {
     try {
@@ -38,10 +39,14 @@ export const Addmedicine = (data) => (dispatch) => {
                 throw new Error('Something went wrong')
             }
             )
-            .then((data) => dispatch({ type: ActionType.ADD_MEDICINE, payload: data }))
+            .then(data => {
+                dispatch(setalert({ text: 'Add Data', color: 'success' }))
+                dispatch({ type: ActionType.ADD_MEDICINE, payload: data })
+            })
             .catch((error) => dispatch(errorData(error.message)))
 
     } catch (error) {
+        dispatch(setalert({ text: 'No Add DAta Please Check..', color: 'error' }))
         dispatch(errorData(error.message))
 
     }
@@ -53,15 +58,21 @@ export const deleteMedicine = (id) => (dispatch) => {
             method: "DELETE",
 
         })
-            .then(dispatch({ type: ActionType.DELETE_MEDICINE, payload: id }))
-            .catch((error) => console.log(error))
+            .then(() => {
+                dispatch(setalert({ text: 'delete Data', color: 'success' }))
+                dispatch({ type: ActionType.DELETE_MEDICINE, payload: id })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'Not delete Your Data..', color: 'error' }))
+                dispatch(errorData(error.message))
+            })
 
     } catch (error) {
         console.log(error);
     }
 }
 
-export const updateMedicine= (data) => (dispatch) => {
+export const updateMedicine = (data) => (dispatch) => {
     try {
         fetch("http://localhost:3004/medicines/" + data.id, {
             method: "PUT",
@@ -75,10 +86,15 @@ export const updateMedicine= (data) => (dispatch) => {
                     return response.json()
                 }
                 throw new Error('Something went wrong')
-            }
-            )
-            .then((data) => dispatch({ type: ActionType.UPDATE_MEDICINE, payload: data }))
-            .catch((error) => console.log(error))
+            })
+            .then((data) => {
+                dispatch(setalert({ text: 'Update Data', color: 'success' }))
+                dispatch({ type: ActionType.UPDATE_MEDICINE, payload: data })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'Not Update your Data', color: 'error' }))
+                dispatch(errorData(error))
+            })
 
     } catch (error) {
         console.log(error);
@@ -91,6 +107,6 @@ export const loadingData = (status) => (dispatch) => {
 }
 
 export const errorData = (errorMsg) => (dispatch) => {
-    console.log(errorMsg);
+    console.log(errorData);
     dispatch({ type: ActionType.ERROR_MEDICINE, payload: errorMsg })
 }

@@ -1,5 +1,6 @@
 import { addDoctorApiData, deleteDoctorApiData, getDoctorApiData, updateDoctorApiData } from '../../../common/apis/doctors.api';
 import * as ActionTypes from '../ActionType'
+import { setalert } from '../slice/AlertSlice';
 
 
 export const getDoctorData = () => (dispatch) => {
@@ -31,8 +32,15 @@ export const addDoctorData = (data) => (dispatch) => {
     try {
 
         addDoctorApiData(data)
-            .then((response) => dispatch({ type: ActionTypes.ADD_DOCTORS, payload: response.data }))
-            .catch((error) => dispatch(errorData(error.message)))
+            .then(response => {
+                dispatch(setalert({ text: 'Add Data', color: 'success' }))
+                dispatch({ type: ActionTypes.ADD_DOCTORS, payload: response.data })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'No Add Data Please Check..', color: 'error' }))
+                dispatch(errorData(error.message))
+            })
+
 
         // fetch("http://localhost:3004/Doctors", {
         //     method: "POST",
@@ -60,8 +68,14 @@ export const addDoctorData = (data) => (dispatch) => {
 export const deleteDoctor = (id) => (dispatch) => {
     try {
         deleteDoctorApiData(id)
-            .then(dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id }))
-            .catch((error) => console.log(error))
+            .then(() => {
+                dispatch(setalert({ text: 'delete Data', color: 'success' }))
+                dispatch({ type: ActionTypes.DELETE_DOCTORS, payload: id })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'Not delete Your Data..', color: 'error' }))
+                console.log(error)
+            })
 
         // fetch("http://localhost:3004/Doctors/" + id, {
         //     method: "DELETE",
@@ -78,8 +92,14 @@ export const deleteDoctor = (id) => (dispatch) => {
 export const updateDoctor = (data) => (dispatch) => {
     try {
         updateDoctorApiData(data)
-            .then(dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload:data }))
-            .catch((error) => console.log(error))
+            .then(() => {
+                dispatch(setalert({ text: 'Update Data', color: 'success' }))
+                dispatch({ type: ActionTypes.UPDATE_DOCTORS, payload: data })
+            })
+            .catch(error => {
+                dispatch(setalert({ text: 'Not Update your Data', color: 'error' }))
+                console.log(error)
+            })
 
 
 
