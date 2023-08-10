@@ -15,6 +15,14 @@ export const authReducer = (state = initState, action) => {
             return {
                 ...state
             }
+        // case ActionType.LOGIN_REQUEST:
+        //     return {
+        //         ...state
+        //     }
+        // case ActionType.FORGET_REQUSET:
+        //     return {
+        //         ...state
+        //     }
         default:
             return state
     }

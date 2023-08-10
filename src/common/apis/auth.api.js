@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signupAPI = (values) => {
@@ -18,16 +18,16 @@ export const signupAPI = (values) => {
                             .catch((error) => {
                                 const errorCode = error.code;
                                 const errorMessage = error.message;
-                                reject(errorCode, errorMessage);
+                                reject({message : errorCode});
                             });
                     })
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     if (errorCode.localeCompare('auth/email-already-in-use') === 0) {
-                        reject({ payload: 'Already user registered.' })
+                        reject({ message: 'Already user registered.' })
                     } else if (errorCode.localeCompare('auth/wrong-password') === 0) {
-                        reject({ payload: 'password is wrong' })
+                        reject({ message: 'password is wrong' })
                     }
                 });
         })
@@ -36,4 +36,40 @@ export const signupAPI = (values) => {
         console.log(error);
     }
 
+}
+
+export const loginAPI = (values) => {
+    return new Promise((resolve, reject) => {
+        signInWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                if (user.emailVerified) {
+                    resolve({message: "You are successfully login"});
+                    // localStorage.setItem("loginstatus", 'true');
+                    // navigate('/');
+                } else {
+                    reject({message: "Your Email is not Verified..."});
+                }
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                reject({message: errorCode});
+            });
+    })
+}
+
+export const forgetAPI = (values) => {
+    return new Promise((resolve, reject) => {
+        sendPasswordResetEmail(auth, values.email)
+            .then(() => {
+                resolve({message: "Password reset link sent to your email id."});
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                reject({message: errorCode});
+            });
+    })
 }

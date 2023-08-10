@@ -10,7 +10,7 @@ import { H2 } from '../component/UI/Heading/heading.style';
 import { auth } from '../../firebase';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useDispatch } from 'react-redux';
-import { signupRequest } from '../Redux/action/auth.action';
+import { forgetRequest, loginRequest, signupRequest } from '../Redux/action/auth.action';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 
 
@@ -77,21 +77,7 @@ function Auth(props) {
   });
 
   const handlelogin = (values) => {
-    signInWithEmailAndPassword(auth, values.email, values.password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        if (user.emailVerified) {
-          console.log("email varification success fully");
-        } else {
-          console.log("not verify");
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+    dispatch(loginRequest(values))
     // localStorage.setItem("logindata", 'true')
     // navigate('/')
   }
@@ -128,17 +114,19 @@ function Auth(props) {
   }
 
   const handleforgot = (values) => {
-    sendPasswordResetEmail(auth, values.email)
-      .then(() => {
-        console.log("Password reset email sent ");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
 
-        // ..
-      });
+    dispatch(forgetRequest(values))
+    // sendPasswordResetEmail(auth, values.email)
+    //   .then(() => {
+    //     console.log("Password reset email sent ");
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+
+    //     // ..
+    //   });
   }
 
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;

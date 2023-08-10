@@ -8,6 +8,7 @@ import { configureStore, persistor, store } from './user/Redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import { CounterProvider } from './user/Context/CounterContext';
 import { ThemeProvider } from './user/Context/ThemeContext';
+import Alert from './user/component/Alert/Alert';
 
 function App() {
 
@@ -19,11 +20,11 @@ function App() {
       <Provider store={store}>
         <ThemeProvider>
           <PersistGate loading={null} persistor={persistor}>
-
+            <Alert />
             <Routes>
               <Route path='/*' element={<UserRoute />} />
 
-              <Route element={<PrivateRoute />}>
+              <Route >
                 <Route path='/admin/*' element={<AdminRoute />} />
               </Route>
 
