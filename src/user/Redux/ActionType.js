@@ -31,8 +31,12 @@ export const REMOVE_ITEM = "REMOVE_ITEM"
 export const ADD_TO_FAVORITE = 'ADD_TO_FAVORITE'
 
 export const SIGNUP_REQUEST = "SIGNUP_REQUEST"
+export const EMAIL_VERIFICATION = "EMAIL_VERIFICATION"
 export const LOGIN_REQUEST = "LOGIN_REQUEST"
+export const LOGIN_IN = "LOGIN_IN"
+export const LOGOUT = "LOGOUT"
 export const FORGET_REQUSET = "FORGET_REQUSET"
+export const AUTH_ERROR = "AUTH_ERROR"
 
 
   

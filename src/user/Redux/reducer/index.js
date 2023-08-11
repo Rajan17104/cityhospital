@@ -8,12 +8,14 @@ import counterReducer from "../slice/CounterSlice";
 import cartReducer from "../slice/CartSlice";
 import departmentReducer from "../slice/DepartmentSlice";
 import alertReducer from "../slice/AlertSlice";
+import { authReducer } from "./auth.reducer";
 // import { departmentReducer } from "./department.reducer";
 
 
 
 
 export const rootReducer = combineReducers({
+    auth: authReducer,
     alert: alertReducer,
     counter : counterReducer,
     doctors : doctorsReducer,

@@ -12,17 +12,32 @@ export const authReducer = (state = initState, action) => {
 
     switch (action.type) {
         case ActionType.SIGNUP_REQUEST:
+        case ActionType.LOGIN_REQUEST:
+        case ActionType.FORGET_REQUSET:
             return {
-                ...state
+                user: null,
+                loading: true,
+                error: null
             }
-        // case ActionType.LOGIN_REQUEST:
-        //     return {
-        //         ...state
-        //     }
-        // case ActionType.FORGET_REQUSET:
-        //     return {
-        //         ...state
-        //     }
+        case ActionType.EMAIL_VERIFICATION:
+            return {
+                user: null,
+                loading: false,
+                error: null
+            }
+        case ActionType.AUTH_ERROR:
+            return {
+                user: null,
+                loading: false,
+                error: action.payload
+            }
+        case ActionType.LOGIN_IN:
+            return {
+                user: null,
+                loading: false,
+                error: null
+            }
+
         default:
             return state
     }
