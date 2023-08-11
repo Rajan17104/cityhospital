@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signupAPI = (values) => {
@@ -64,21 +64,6 @@ export const loginAPI = (values) => {
     })
 }
 
-
-// export const forgetAPI = (values) => {
-//     return new Promise((resolve, reject) => {
-//         sendPasswordResetEmail(auth, values.email)
-//             .then(() => {
-//                 resolve({message: "Password reset link sent to your email id."});
-//             })
-//             .catch((error) => {
-//                 const errorCode = error.code;
-//                 const errorMessage = error.message;
-//                 reject({message: errorCode});
-//             });
-//     })
-// }
-
 export const forgetAPI = (values) => {
     console.log(values);
     try {
@@ -96,4 +81,23 @@ export const forgetAPI = (values) => {
         console.log(error);
     }
 
+}
+
+export const logoutAPI = (values) => {
+    try {
+        return new Promise((resolve, reject) => {
+            signOut(auth, values.email)
+                .then(() => {
+                    // Sign-out successful.
+                    resolve({ message: "Sign-out successful." })
+                }).catch((error) => {
+                    // An error happened.
+                    const errorCode = error.code;
+                    reject({ message: errorCode })
+                });
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
 }

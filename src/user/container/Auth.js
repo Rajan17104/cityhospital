@@ -150,7 +150,11 @@ function Auth(props) {
               Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</Title>
           </div>
           {
-            auth.loading ? <CircularProgress style={{ color: "red" }} /> :
+            auth.loading ?
+              <div style={{textAlign: 'center'}}>
+                <CircularProgress style={{ color: "red" }} />
+              </div>
+              :
               <form onSubmit={handleSubmit} className="php-email-form">
                 <div className="row justify-content-center" >
                   {

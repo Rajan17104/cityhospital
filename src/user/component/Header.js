@@ -15,8 +15,9 @@ import Brightness6Icon from '@mui/icons-material/Brightness6';
 
 function Header({ count }) {
 
-  let theme = useContext(ThemeContext)
+    let theme = useContext(ThemeContext)
   console.log(theme);
+
 
   let cartCount = 0;
   let favCount = 0;

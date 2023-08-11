@@ -14,6 +14,7 @@ export const authReducer = (state = initState, action) => {
         case ActionType.SIGNUP_REQUEST:
         case ActionType.LOGIN_REQUEST:
         case ActionType.FORGET_REQUSET:
+        case ActionType.LOGOUT_REQUEST:
             return {
                 user: null,
                 loading: true,
@@ -37,6 +38,13 @@ export const authReducer = (state = initState, action) => {
                 loading: false,
                 error: null
             }
+        case ActionType.LOGOUT:
+            return {
+                user: null,
+                loading: false,
+                error: null
+            }
+
 
         default:
             return state

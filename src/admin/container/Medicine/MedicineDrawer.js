@@ -74,7 +74,7 @@ function MedicineDrawer(props) {
 
       {
 
-        medicines.loading ? <div><CircularProgress style={{color: "red" }} /></div> :
+        medicines.loading ? <div style={{textAlign: 'center'}}><CircularProgress style={{color: "red" }} /></div> :
 
           <>
             <MedicineForm onhandlesubmit={handlesubmit} onupdate={update} />

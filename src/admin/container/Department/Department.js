@@ -74,7 +74,7 @@ function Department(props) {
             <h1>Department</h1>
 
             {
-                department.isloading ? <CircularProgress style={{ color: "red" }} /> :
+                department.isloading ? <div style={{ textAlign: 'center' }}><CircularProgress style={{ color: "red" }} /></div> :
                     department.error ? <p>{department.error}</p> :
                         <>
                             <DepartmentForm onhandlesubmit={handlesubmit} onupdate={update} />
