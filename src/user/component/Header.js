@@ -5,17 +5,22 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from '../Context/ThemeContext';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
+import { logoutRequest } from '../Redux/action/auth.action';
 
 
 // import './App.css'
 
 function Header({ count }) {
 
-    let theme = useContext(ThemeContext)
+  let auth = useSelector(state => state.auth)
+  console.log(auth);
+  let dispatch = useDispatch()
+
+  let theme = useContext(ThemeContext)
   console.log(theme);
 
 
@@ -58,7 +63,8 @@ function Header({ count }) {
   // let localdata = localStorage.getItem('logindata');
 
   const handleremove = () => {
-    localStorage.removeItem('logindata');
+    // localStorage.removeItem('logindata');
+    dispatch(logoutRequest())
   }
 
   return (
@@ -101,7 +107,7 @@ function Header({ count }) {
               </FavoriteIcon >
             </Link>
 
-            <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} /> 
+            <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} />
 
             {/* <button onClick={() => theme.themeToggle(theme.theme)} >Toggle</button> */}
 
@@ -142,12 +148,12 @@ function Header({ count }) {
           </Link>
 
           {
-            localdata ? <Link to="/auth" onClick={handleremove}>
-              {/* <span className="d-none d-md-inline">Logout</span> */}
+            auth.user ?
+             <Link to="/auth" onClick={handleremove}>
               <Button>Logout</Button>
             </Link> :
+              
               <Link to="/auth" >
-                {/* <span className="d-none d-md-inline">Login/ Signup</span> */}
                 <Button>Login/Signup</Button>
               </Link>
           }

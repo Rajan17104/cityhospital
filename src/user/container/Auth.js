@@ -80,6 +80,8 @@ function Auth(props) {
   });
 
   const handlelogin = (values) => {
+    console.log(values);
+
     dispatch(loginRequest(values))
     // localStorage.setItem("logindata", 'true')
     // navigate('/')

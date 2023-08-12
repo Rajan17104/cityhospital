@@ -83,10 +83,9 @@ export const forgetAPI = (values) => {
 
 }
 
-export const logoutAPI = (values) => {
-    try {
+export const logoutAPI = () => {
         return new Promise((resolve, reject) => {
-            signOut(auth, values.email)
+            signOut(auth)
                 .then(() => {
                     // Sign-out successful.
                     resolve({ message: "Sign-out successful." })
@@ -97,7 +96,5 @@ export const logoutAPI = (values) => {
                 });
         })
 
-    } catch (error) {
-        console.log(error);
-    }
+ 
 }

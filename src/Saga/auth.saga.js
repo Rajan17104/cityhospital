@@ -2,7 +2,7 @@ import * as ActionType from '../user/Redux/ActionType'
 import { all, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { forgetAPI, loginAPI, logoutAPI, signupAPI } from '../common/apis/auth.api';
 import { setalert } from '../user/Redux/slice/AlertSlice';
-import { authError, emailVerified, loginRequest } from '../user/Redux/action/auth.action';
+import { authError, emailVerified, loginRequest, logout } from '../user/Redux/action/auth.action';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* signupUser(action) {
@@ -35,8 +35,9 @@ function* loginUser(action) {
 function* logoutuser(action) {
   console.log(action);
   try {
-    const user = yield call(logoutAPI, action.payload)
-    yield put(emailVerified())
+    const user = yield call(logoutAPI)
+    yield put(logout())
+    // console.log(logout);
     yield put(setalert({text: user.message, color: 'success'}))
   } catch (e) {
     yield put(authError(e.message))
@@ -68,7 +69,7 @@ function* loginSaga() {
 }
 
 function* logoutsaga() {
-  yield takeEvery(ActionType.LOGOUT , logoutuser)
+  yield takeEvery(ActionType.LOGOUT_REQUEST , logoutuser)
 }
 
 function* forgetSaga() {
