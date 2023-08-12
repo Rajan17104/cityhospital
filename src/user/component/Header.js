@@ -149,10 +149,10 @@ function Header({ count }) {
 
           {
             auth.user ?
-             <Link to="/auth" onClick={handleremove}>
-              <Button>Logout</Button>
-            </Link> :
-              
+              <Link to="/auth" onClick={handleremove}>
+                <Button>Logout</Button>
+              </Link> :
+
               <Link to="/auth" >
                 <Button>Login/Signup</Button>
               </Link>

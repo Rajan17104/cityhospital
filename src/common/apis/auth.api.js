@@ -45,6 +45,7 @@ export const loginAPI = (values) => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                console.log(user);
                 if (user.emailVerified) {
                     resovle({ message: "You are successfully login ", user: user });
                     localStorage.setItem("loginstatus", "true");

@@ -16,14 +16,14 @@ export const loginRequest = (data) => (dispatch) => {
     dispatch({ type: ActionType.LOGIN_REQUEST, payload: data })
 }
 
+export const forgetRequest = (data) => (dispatch) => {
+    dispatch({ type: ActionType.FORGET_REQUSET, payload: data })
+}
+
 export const logoutRequest = () => (dispatch) => {
-    dispatch({type: ActionType.LOGOUT_REQUEST})
+    dispatch({ type: ActionType.LOGOUT_REQUEST })
 }
 
 export const logout = () => (dispatch) => {
-    dispatch({type: ActionType.LOGOUT})
+    dispatch({ type: ActionType.LOGOUT })
 }
-
-export const forgetRequest = (data) => (dispatch) => {
-    dispatch({ type: ActionType.FORGET_REQUSET, payload: data })
-} 

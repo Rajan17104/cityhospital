@@ -34,7 +34,7 @@ export const authReducer = (state = initState, action) => {
             }
         case ActionType.LOGIN_IN:
             return {
-                user: action.payload,
+                user: action.payload,   
                 loading: false,
                 error: null
             }
