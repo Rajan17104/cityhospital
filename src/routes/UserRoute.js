@@ -21,17 +21,20 @@ import Cart from '../user/container/Cart/Cart';
 import Medicine_1 from '../user/container/Medicines/Medicine_1';
 import Cart_1 from '../user/container/Cart/Cart_1';
 import Favorite from '../user/container/Cart/Favorite';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import DepartmentData from '../user/container/Department/DepartmentData';
 import Counter from '../user/Context/Counter';
+import { ThemeContext } from '../user/Context/ThemeContext';
+import MedicineDetails from '../user/container/Medicines/MedicineDetails';
 
 function UserRoute(props) {
 
+  let theme = useContext(ThemeContext)
   const [cartCount, setCartCount] = useState(0);
 
 
   return (
-    <>
+    <div className={`${theme.theme}`}>
       <Header count={cartCount} />
       {/* <Header /> */}
 
@@ -44,7 +47,10 @@ function UserRoute(props) {
        // {/* <Route path='/contact' element={<Contact />} /> */}
         <Route path='/contact' element={<Contact1 />} />
         <Route path='/appointment' element={<Appointment />} />
-        // {/* <Route path='/doctor/:id' element={<Doctor />} />*/}
+        // <Route path='/doctor/:id' element={<Doctor />} />
+        // <Route path='/medi-details/:id' element={<MedicineDetails />} />
+
+        /medi-details/
         // {/* <Route path='/doctor/visiting_doctor' element={<VisitingDoctor />} />   */}
 
         {/* <Route path='/doctor/'>
@@ -64,7 +70,7 @@ function UserRoute(props) {
         <Route path='/favorite' element={<Favorite />} />
 
         {/* <Route element={<PrivateRoute />} > */}
-          <Route path='medicine' element={<Medicine />} />
+          <Route path='/medicine' element={<Medicine />} />
           {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
           {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
@@ -72,7 +78,7 @@ function UserRoute(props) {
 
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

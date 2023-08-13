@@ -22,5 +22,6 @@ export const rootReducer = combineReducers({
     medicines : medicinereducer,
     department : departmentReducer,
     cart : cartReducer,
+    // cart : cartReducer,
     favorite : favoriteReducer
 })

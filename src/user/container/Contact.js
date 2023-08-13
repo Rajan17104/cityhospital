@@ -56,7 +56,7 @@
 //           </div>
 //           <div className="col-lg-8 mt-5 mt-lg-0">
 //             <form onSubmit={handleSubmit} onChange={handleChange}  onBlur={handleBlur} action method="post" role="form" className="php-email-form">
-//               <div className="row">
+            //   <div className="row">
 //                 <div className="col-md-6 form-group"  >
 //                   <input type="text"
 //                     name="name"

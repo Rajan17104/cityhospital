@@ -9,6 +9,8 @@ import ListDepartment from './ListDepartment';
 import { getDepartmentApiData } from '../../../common/apis/department.api';
 import { fetchDepartment } from '../../Redux/slice/DepartmentSlice';
 import { Title } from '../../component/UI/Subtitel/subtitel.style';
+import { useContext } from 'react';
+import { ThemeContext } from '../../Context/ThemeContext';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function DepartmentData(props) {
@@ -60,9 +62,11 @@ function DepartmentData(props) {
 
     // }
 
+    let theme = useContext(ThemeContext)
+
     return (
 
-        <section id="departments" className="departments">
+        <section id="departments" className={`departments ${theme.theme}`}>
             <div className="container">
                 <div className="section-title">
                     <h2>Departments</h2>

@@ -2,12 +2,11 @@ import React from 'react';
 import { Title } from '../../component/UI/Subtitel/subtitel.style';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
-// import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
+import { DecCartQty, IncCartQty, RemoveCartQty } from '../../Redux/action/cart.action';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { decQty, incQty, removeItem } from '../../Redux/slice/CartSlice';
 
 function Cart(props) {
 
@@ -19,34 +18,31 @@ function Cart(props) {
     console.log(medData, cartData);
 
     let cartItems = cartData.items.map((v) => {
-        
-        let mData = medData.medicines.find((m) => m.id === v.pid)
-        console.log(mData);
+        let mData = medData.medicines.find((m) => m.id === v.pid);
 
-        let fData = { ...mData, ...v };
-
-        return fData
+        let fdata = { ...mData, ...v }
+        console.log(fdata);
+        return fdata
     })
 
     console.log(cartItems);
 
     const handleInc = (id) => {
-        dispatch(incQty(id))
+        dispatch(IncCartQty(id))
         console.log(id);
         console.log('handle increment called');
     }
 
     const handleDec = (id) => {
-        dispatch(decQty(id))
+        dispatch(DecCartQty(id))
         console.log(id);
     }
 
     const handleDelete = (id) => {
-        dispatch(removeItem(id))
+        dispatch(RemoveCartQty(id))
     }
 
     let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
-
 
     return (
         <section id="doctors" className="doctors">

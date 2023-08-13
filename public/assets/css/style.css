@@ -1826,3 +1826,285 @@ section {
   color: black !important;
   background-color: white !important;
 }
+
+
+/*****Color*****/
+
+
+
+.dark .testimonials .testimonial-item,
+.dark #header,
+.dark .doctors .member {
+  box-shadow: 0px 2px 12px rgb(68, 68, 68);
+}
+
+.dark .departments .nav-link.active {
+  color: #FF6337;
+  border-color: #FF6337;
+  background-color: transparent !important;
+}
+
+.dark a,
+.light a {
+  border: none;
+}
+
+.dark .gallery .gallery-item {
+  border-right: 3px solid #18122B;
+  border-bottom: 3px solid #18122B;
+}
+
+.dark #topbar .contact-info i,
+.dark #topbar .contact-info a,
+.dark #topbar .social-links a,
+.dark #header .logo,
+.dark .section-title h2,
+.dark .services .icon-box h4 a,
+.dark .testimonials .testimonial-item h3,
+.dark .testimonials .testimonial-item h4,
+.dark .testimonials .testimonial-item p,
+.dark .swiper-button-prev,
+.swiper-container-rtl .swiper-button-next,
+.dark .swiper-button-next,
+.swiper-container-rtl .swiper-button-prev,
+.dark .departments .details h3,
+.dark .departments .details p,
+.dark .section-title p,
+.dark .member-info p,
+.dark .member-info h4,
+.dark .member-info span,
+.dark .about h3,
+.dark .about-title h2,
+.dark .about-title h5,
+.dark .info h4,
+.dark .info p,
+.dark .medicine label,
+.dark .medicine input {
+  color: #fff;
+}
+
+.dark .medicine .css-l4u8b9-MuiInputBase-root-MuiInput-root,
+.dark .medicine .css-l4u8b9-MuiInputBase-root-MuiInput-root:after {
+  border-bottom: 2px solid #fff;
+}
+
+.dark #hero h1,
+.dark #hero h2,
+.dark .counts .count-box span,
+.dark .counts .count-box p {
+  color: #111;
+}
+
+.dark .header li:hover>a {
+  border-bottom: 2px solid #fff !important;
+  color: #fff !important;
+}
+
+.light .header li:hover>a {
+  border-bottom: 2px solid #ed3c0d !important;
+  color: #2c4964 !important;
+}
+
+.btncolor {
+  background: #FF6337;
+  color: #fff;
+  border-radius: 50px;
+  padding: 8px 25px;
+  white-space: nowrap;
+  transition: 0.3s;
+  font-size: 14px;
+  display: inline-block;
+  border: none;
+}
+
+.cl-toggle-switch {
+  position: relative;
+}
+
+.cl-switch {
+  position: relative;
+  display: inline-block;
+}
+
+/* Input */
+.cl-switch>input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  z-index: -1;
+  position: absolute;
+  right: 6px;
+  top: -8px;
+  display: block;
+  margin: 0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(0, 0, 0, 0.38);
+  outline: none;
+  opacity: 0;
+  transform: scale(1);
+  pointer-events: none;
+  transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+
+/* Track */
+.cl-switch>span::before {
+  content: "";
+  float: right;
+  display: inline-block;
+  margin: 5px 0 5px 10px;
+  border-radius: 7px;
+  width: 36px;
+  height: 14px;
+  background-color: #FF6337;
+  vertical-align: top;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+/* Thumb */
+.cl-switch>span::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 16px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+/* Checked */
+.cl-switch>input:checked {
+  right: -10px;
+  background-color: gray;
+}
+
+.cl-switch>input:checked+span::before {
+  background-color: gray;
+}
+
+.cl-switch>input:checked+span::after {
+  background-color: #fff;
+  transform: translateX(16px);
+}
+
+/* Hover, Focus */
+.cl-switch:hover>input {
+  opacity: 0.04;
+}
+
+.cl-switch>input:focus {
+  opacity: 0.12;
+}
+
+.cl-switch:hover>input:focus {
+  opacity: 0.16;
+}
+
+/* Active */
+.cl-switch>input:active {
+  opacity: 1;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.cl-switch>input:active+span::before {
+  background-color: #8f8f8f;
+}
+
+
+.cl-switch>input:checked:active+span::before {
+  background-color: #85b8b7;
+}
+
+/* Disabled */
+.cl-switch>input:disabled {
+  opacity: 0;
+}
+
+.cl-switch>input:disabled+span::before {
+  background-color: #ddd;
+}
+
+.cl-switch>input:checked:disabled+span::before {
+  background-color: #bfdbda;
+}
+
+.cl-switch>input:checked:disabled+span::after {
+  background-color: #61b5b4;
+}
+
+/* Drawer */
+/* 
+nav ul li a {
+  font-size: 16px;
+  padding: 20px 18px;
+  color: #2c4964;
+}
+
+nav a:hover {
+  color: #FF6337;
+}
+
+nav ul li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 20px 27px;
+}
+
+nav ul {
+  list-style: none;
+} */
+
+
+nav nav-tabs flex-column{
+  color: #fff;
+}
+
+#departments{
+  color: #fff;
+}
+
+.dark .section-title h2{
+  color: #000;
+}
+
+.dark .section-title {
+  color: #000;
+}
+
+.dark .member-info {
+  color: #000;
+}
+
+.dark .doctors {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark .doctor-b {
+  background-color: #000;
+}
+
+.dark .info ,.dark .php-email-form {
+  background-color: #000;
+}
+
+/* .dark .card{
+  background-color: #fff;
+  color: #000;
+} */
+
+.dark .card {
+  background-color: #000;
+  color: #fff ;
+}
+
+.dark .testimonial-item{
+  background-color: #000;
+  color: #fff;
+}
+

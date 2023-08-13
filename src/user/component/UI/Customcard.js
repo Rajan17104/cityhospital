@@ -8,57 +8,58 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 function Customcard({ values, btnVal, onclick1, favorite }) {
     return (
 
-        <Card
-            style={{
-                width: '18rem'
-            }}
-        >
-            {
-                values.url ? <img
-                    alt="Sample"
-                    src="https://picsum.photos/300/200"
-                /> :
-                    null
-            }
-
-            <CardBody>
-                <div className='d-flex ' >
-                    <CardTitle tag="h5">
-                        {'Name : ' + values.name}
-                    </CardTitle>
-                    {
-                        favorite ?
-                            <button onClick={() => favorite(values.id)} style={{ marginLeft: '70px' }}>
-                                <FavoriteBorderIcon />
-                            </button> :
-                            <FavoriteBorderIcon /> ?
-
-                                 <FavoriteBorderIcon /> :  <FavoriteIcon />
-                    }
-                    {/* <span><FavoriteBorderIcon /></span> */}
-                </div>
-                <CardSubtitle
-                    className="mb-2 text-muted"
-                    tag="h6"
-                >
-                    {'Price : ' + values.price}
-                </CardSubtitle>
-                <CardText>
-                    {'Date : ' + values.expiry}<br />
-                    {'Description : ' + values.desc.substring(0, 50)}
-                </CardText>
-
+            <Card className='card'
+                style={{
+                    width: '18rem'
+                }}
+            >
                 {
-                    btnVal ?
-                        <Button onClick={() => onclick1(values.id)}>
-                            {btnVal}
-                        </Button> : null
+                    values.url ? <img
+                        alt="Sample"
+                        src="https://picsum.photos/300/200"
+                    /> :
+                        null
                 }
 
+                <CardBody>
+                    <div className='d-flex ' >
+                        <CardTitle tag="h5">
+                            {'Name : ' + values.name}
+                        </CardTitle>
+                        {
+                            favorite ?
+                                <button onClick={() => favorite(values.id)} style={{ marginLeft: '70px' }}>
+                                    <FavoriteBorderIcon />
+                                </button> :
+                                <FavoriteBorderIcon /> ?
+
+                                    <FavoriteBorderIcon /> : <FavoriteIcon />
+                        }
+                        {/* <span><FavoriteBorderIcon /></span> */}
+                    </div>
+                    <CardSubtitle
+                        className="mb-2 text-muted"
+                        tag="h6"
+                    >
+                        {'Price : ' + values.price}
+                    </CardSubtitle>
+                    <CardText>
+                        {'Date : ' + values.expiry}<br />
+                        {'Description : ' + values.desc.substring(0, 50)}
+                    </CardText>
+
+                    {
+                        btnVal ?
+                            <Button onClick={() => onclick1(values.id)}>
+                                {btnVal}
+                            </Button> : null
+                    }
 
 
-            </CardBody>
-        </Card>
+
+                </CardBody>
+            </Card>
+
     );
 }
 

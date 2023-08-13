@@ -16,6 +16,7 @@ import { logoutRequest } from '../Redux/action/auth.action';
 
 function Header({ count }) {
 
+
   let auth = useSelector(state => state.auth)
   console.log(auth);
   let dispatch = useDispatch()
@@ -25,21 +26,19 @@ function Header({ count }) {
 
 
   let cartCount = 0;
-  let favCount = 0;
-
   let localdata = JSON.parse(localStorage.getItem("cart"));
 
   if (localdata) {
     cartCount = localdata.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-  let localdata1 = JSON.parse(localStorage.getItem("favorite"));
 
+  let favCount = 0;
+  let localdata1 = JSON.parse(localStorage.getItem("favorite"));
 
   if (localdata1) {
     favCount = localdata1.reduce((acc, v, i) => acc + v.qty, 0)
   }
-
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -69,11 +68,11 @@ function Header({ count }) {
 
   return (
 
-    <div className={`main-header `}>
+    <div className={`main-header ${theme.theme}`}>
       <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
         <div className="container d-flex justify-content-between">
           <div className="contact-info d-flex align-items-center">
-            <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
+            <i className={`bi bi-envelope ${theme.theme}`} /> <a href={`mailto:contact@example.com${theme.theme}`}>cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
           </div>
 
@@ -114,7 +113,7 @@ function Header({ count }) {
           </div>
         </div>
       </div>
-      <header id="header" className="fixed-top">
+      <header id="header" className={`fixed-top ${theme.theme}`}>
         <div className="container d-flex align-items-center">
           <div className="logo">
             <Link to="/">

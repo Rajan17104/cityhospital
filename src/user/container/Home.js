@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { H1, H2, H3 , H4} from '../component/UI/Heading/heading.style'
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import Icon from '../component/UI/Icon/Icon';
+import { ThemeContext } from '../Context/ThemeContext';
 
 function Home(props) {
+
+  let theme = useContext(ThemeContext)
+
     return (
-        <>
+        <div className={`${theme.theme}`}>
             <section id="hero" className="d-flex align-items-center">
                 <div className="container">
                     <H1 >Welcome to City <br />Multispeciality Hospital</H1>
@@ -268,7 +272,7 @@ function Home(props) {
             </main>
 
 
-        </>
+        </div>
     );
 }
 

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import Card from '../component/UI/Card/Card';
+import { H2 } from '../component/UI/Heading/heading.style';
 
 
 const doctordata = [
@@ -40,13 +41,14 @@ const doctordata = [
 
 ]
 
+// let theme = useContext(ThemeContext) 
 
 function Doctors(props) {
   return (
     <section id="doctors" className="doctors">
       <div className="container">
         <div className="section-title">
-          <h2>Doctors</h2>
+          <H2 className="heading" >Doctors</H2>
           <Title>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
             tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
             ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
@@ -59,23 +61,26 @@ function Doctors(props) {
           {
             doctordata.map((v) => {
               return (
+
                 <div className="col-lg-6">
-                  <Link to={`/doctor/${v.id}`}>
-                  <Card className="member d-flex align-items-start">
-                    <div className="pic"><img src={v.url} className="img-doctor" alt=''/></div>
-                    <div className="member-info">
-                      <h4>{v.name}</h4>
-                      <span>{v.designation}</span>
-                      <Title>{v.description}</Title>
-                      <div className="social">
-                        <a href><i className="ri-twitter-fill" /></a>
-                        <a href><i className="ri-facebook-fill" /></a>
-                        <a href><i className="ri-instagram-fill" /></a>
-                        <a href><i className="ri-linkedin-box-fill"/> </a>
-                      </div>
-                    </div>
-                  </Card>
-                  </Link>
+                  <div className='doctor-b'>
+                    <Link to={`/doctor/${v.id}`}>
+                      <Card className="member d-flex align-items-start">
+                        <div className="pic"><img src={v.url} className="img-doctor" alt='' /></div>
+                        <div className="member-info">
+                          <h4>{v.name}</h4>
+                          <span>{v.designation}</span>
+                          <Title>{v.description}</Title>
+                          <div className="social">
+                            <a href><i className="ri-twitter-fill" /></a>
+                            <a href><i className="ri-facebook-fill" /></a>
+                            <a href><i className="ri-instagram-fill" /></a>
+                            <a href><i className="ri-linkedin-box-fill" /> </a>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                  </div>
                 </div>
               )
             })
