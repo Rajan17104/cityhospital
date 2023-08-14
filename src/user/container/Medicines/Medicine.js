@@ -2,8 +2,8 @@ import { Button, Card } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ListMedicines from './ListMedicines';
 import { getMedicine } from '../../Redux/action/medicine.action';
+import { addCart } from '../../Redux/slice/CartSlice'
 import { useDispatch, useSelector } from 'react-redux';
-import { addCart } from '../../Redux/slice/CartSlice';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
@@ -27,12 +27,11 @@ function Medicine(props) {
 
     useEffect(() => {
         dispatch(getMedicine())
-    }, [])
+    }, [dispatch])
 
     const handlechange = (val) => {
         console.log(val);
 
-        let localData = JSON.parse(localStorage.getItem("medicines"));
 
         let mdata = medicines.medicines
 

@@ -25,20 +25,6 @@ function Header({ count }) {
   console.log(theme);
 
 
-  let cartCount = 0;
-  let localdata = JSON.parse(localStorage.getItem("cart"));
-
-  if (localdata) {
-    cartCount = localdata.reduce((acc, v, i) => acc + v.qty, 0)
-  }
-
-
-  let favCount = 0;
-  let localdata1 = JSON.parse(localStorage.getItem("favorite"));
-
-  if (localdata1) {
-    favCount = localdata1.reduce((acc, v, i) => acc + v.qty, 0)
-  }
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -49,17 +35,19 @@ function Header({ count }) {
     },
   }));
 
-  // const cartData = useSelector((state) => state.cart)
+  const cartData = useSelector((state) => state.cart)
 
-  // console.log(cartData);
+  console.log(cartData);
 
-  // let cartCount = 0;
+  let cartCount = 0;
 
-  // if (cartData.items) {
-  //   cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
-  // }
+  if (cartData.items) {
+    cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
+  }
 
-  // let localdata = localStorage.getItem('logindata');
+
+
+  const favouriteState = useSelector(state => state.favourites);
 
   const handleremove = () => {
     // localStorage.removeItem('logindata');
@@ -72,7 +60,7 @@ function Header({ count }) {
       <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
         <div className="container d-flex justify-content-between">
           <div className="contact-info d-flex align-items-center">
-            <i className={`bi bi-envelope ${theme.theme}`} /> <a href={`mailto:contact@example.com${theme.theme}`}>cityhospital@example.com</a>
+            <i className="bi bi-envelope " /> <a href={`mailto:contact@example.com${theme.theme}`}>cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
           </div>
 
@@ -83,7 +71,7 @@ function Header({ count }) {
             <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
 
             <Link to="/cart">
-              <IconButton aria-label="cart" style={{}}>
+              <IconButton aria-label={`cart ${theme.theme}`} style={{}}>
                 <StyledBadge badgeContent={cartCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
@@ -100,7 +88,7 @@ function Header({ count }) {
 
             <Link to='/favorite'>
               <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
-                <StyledBadge badgeContent={favCount} color="secondary">
+                <StyledBadge badgeContent={'Count'} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >

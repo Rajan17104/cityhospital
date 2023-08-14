@@ -30,9 +30,8 @@ export const cartReducer = (state = initState, action) => {
 
 
             return {
-                items: state.items,
-                loading: false,
-                error: null
+                ...state,
+                items: state.items
             }
 
         case ActionType.INC_QTY:
@@ -40,12 +39,15 @@ export const cartReducer = (state = initState, action) => {
             console.log(state.items + action.payload);
 
             let Inc_index = state.items.findIndex((v) => v.pid === action.payload);
+           
+                // if(Inc_index){
+                //     Inc_index.qty++
+                // }   
             state.items[Inc_index].qty++
 
             return {
-                items: state.items,
-                loading: false,
-                error: null
+                ...state,
+                items: state.items
             }
 
         case ActionType.DEC_QTY:
@@ -56,18 +58,18 @@ export const cartReducer = (state = initState, action) => {
             state.items[Dec_index].qty--
 
             return {
-                items: state.items,
-                loading: false,
-                error: null
+                ...state,
+                items: state.items
             }
 
         case ActionType.REMOVE_ITEM:
             return{
-                items: state.items.filter((v) => v.pid != action.payload)
+                ...state,
+                items: state.items.filter((v) => v.pid !== action.payload)
             }
 
         default:
-            return state;
+            return state
     }
 
 }

@@ -9,9 +9,9 @@ function Cart_1(props) {
 
     const [medicineData, setmedicineData] = useState([]);
     const [localdata, setLocaldata] = useState([]);
-
+    
     // let localdata = JSON.parse(localStorage.getItem("cart"));
-
+    
     useEffect(() => {
         let localdata = JSON.parse(localStorage.getItem("cart"));
         setLocaldata(localdata);
@@ -81,7 +81,7 @@ function Cart_1(props) {
         <section id="doctors" className="doctors">
             <div className="container">
                 <div className="section-title">
-                    <h2>Cart</h2>
+                    <h2>Cart 1</h2>
                     {/* <Title>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
                         tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
                         ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.

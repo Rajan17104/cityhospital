@@ -12,18 +12,23 @@ function Cart(props) {
 
     const dispatch = useDispatch();
 
-    const medData = useSelector((state) => state.medicines)
-    const cartData = useSelector((state) => state.cart)
+    const medData = useSelector((state) => state.medicines);
+    const cartData = useSelector((state) => state.cart);
 
     console.log(medData, cartData);
 
     let cartItems = cartData.items.map((v) => {
-        let mData = medData.medicines.find((m) => m.id === v.pid);
+        let mData = medData.medicines.find((m) => m.id === v.id);
+        console.log(mData);
 
         let fdata = { ...mData, ...v }
         console.log(fdata);
+
         return fdata
     })
+
+    let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
+
 
     console.log(cartItems);
 
@@ -36,16 +41,19 @@ function Cart(props) {
     const handleDec = (id) => {
         dispatch(DecCartQty(id))
         console.log(id);
+        console.log('handle Decrement called');
+
     }
 
     const handleDelete = (id) => {
         dispatch(RemoveCartQty(id))
+        console.log('handle Remove called');
+
     }
 
-    let Total = cartItems.reduce((acc, v) => acc + v.price * v.qty, 0)
 
     return (
-        <section id="doctors" className="doctors">
+        <section id="cart" className="cart">
             <div className="container">
                 <div className="section-title">
                     <h2>Cart</h2>

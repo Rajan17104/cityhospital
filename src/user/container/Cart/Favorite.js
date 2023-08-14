@@ -70,12 +70,12 @@ function Favorite(props) {
                                             </div>
                                             <div style={{ width: 80 }}>
 
-                                                <h5 className="mb-0">${ c.price}</h5>
+                                                <h5 className="mb-0">${c.price}</h5>
                                             </div>
                                             {/* <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a> */}
                                             {/* <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}> */}
-                                                {/* <IconButton style={{ color: 'red' }} aria-label="delete" > */}
-                                                {/* <DeleteIcon />
+                                            {/* <IconButton style={{ color: 'red' }} aria-label="delete" > */}
+                                            {/* <DeleteIcon />
                                             </IconButton> */}
                                         </div>
                                     </div>
