@@ -45,13 +45,17 @@ function Header({ count }) {
     cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-
-
   const favouriteState = useSelector(state => state.favourites);
+  console.log(favouriteState);
 
   const handleremove = () => {
     // localStorage.removeItem('logindata');
     dispatch(logoutRequest())
+  }
+
+
+  function toggleMenu() {
+    document.getElementById("fixed-top").classList.toggle('showHide')
   }
 
   return (
@@ -62,7 +66,7 @@ function Header({ count }) {
           <div className="contact-info d-flex align-items-center">
             <i className="bi bi-envelope " /> <a href={`mailto:contact@example.com${theme.theme}`}>cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
-          </div>
+          </div>  
 
           <div className="d-none d-lg-flex social-links align-items-center">
             <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
@@ -88,13 +92,13 @@ function Header({ count }) {
 
             <Link to='/favorite'>
               <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
-                <StyledBadge badgeContent={'Count'} color="secondary">
+                <StyledBadge badgeContent={{}} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >
             </Link>
 
-            <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} />
+            <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} style={{ marginLeft: '10px' }} />
 
             {/* <button onClick={() => theme.themeToggle(theme.theme)} >Toggle</button> */}
 
@@ -102,14 +106,14 @@ function Header({ count }) {
         </div>
       </div>
       <header id="header" className={`fixed-top ${theme.theme}`}>
-        <div className="container d-flex align-items-center">
+        <div className="container d-flex align-items-center ">
           <div className="logo">
             <Link to="/">
               <h1 className="logo me-auto">City</h1><br />
               <h2 className="logo-tiny-text me-auto">Multispeciality Hospital</h2>
             </Link>
           </div>
-          <nav id="navbar" className="navbar order-last order-lg-0">
+          <nav id="navbar" className="navbar order-last order-lg-0 ">
             <ul>
               <li><Link className="nav-link scrollto active" to='/'>Home</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/departments'>Departments</Link></li> */}
@@ -128,6 +132,8 @@ function Header({ count }) {
 
             </ul>
             <i className="bi bi-list mobile-nav-toggle" />
+
+            {/* <i className="bi bi-list mobile-nav-toggle" onClick={toggleMenu}/> */}
           </nav>
           <Link to='/appointment' >
             {/* <span className="d-none d-md-inline">Make an</span> */}
@@ -144,6 +150,7 @@ function Header({ count }) {
                 <Button>Login/Signup</Button>
               </Link>
           }
+
 
         </div>
       </header>

@@ -46,7 +46,7 @@ export const Addmedicine = (data) => (dispatch) => {
             .catch((error) => dispatch(errorData(error.message)))
 
     } catch (error) {
-        dispatch(setalert({ text: 'No Add DAta Please Check..', color: 'error' }))
+        dispatch(setalert({ text: 'No Add Data Please Check..', color: 'error' }))
         dispatch(errorData(error.message))
 
     }

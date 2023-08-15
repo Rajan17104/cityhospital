@@ -1,9 +1,11 @@
-import { Button, Card } from '@mui/material';
+import { Button, Card, Input, InputAdornment, InputLabel } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ListMedicines from './ListMedicines';
 import { getMedicine } from '../../Redux/action/medicine.action';
-import { addCart } from '../../Redux/slice/CartSlice'
+import { addCart } from '../../Redux/slice/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import SearchIcon from '@mui/icons-material/Search';
+import { addToFavorite, removeToFavorite } from '../../Redux/action/favorite.action';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
@@ -13,6 +15,7 @@ function Medicine(props) {
 
     const dispatch = useDispatch();
     const medicines = useSelector(state => state.medicines)
+    const favouriteState = useSelector(state => state.favourites);
 
     // useEffect(() => {
     //     let localData = JSON.parse(localStorage.getItem("medicines"));
@@ -51,20 +54,42 @@ function Medicine(props) {
         dispatch(addCart(id))
         console.log("handle cart called" + id);
     }
-
-    // const onFavorite = (id) => {
-
+    
+    // const addFavorite = (id) => {
+    //     dispatch(addToFavorite(id))
+    //     console.log("handle cart called" + id);
     // }
+
+    // const removeFavorite = (id) => {
+    //     dispatch(removeToFavorite(id))
+    //     console.log("handle cart called" + id);
+    // }
+
 
     return (
         <>
-            <input type='search' style={{ marginTop: '50px', width: '500px' , justifyContent: 'center' }} name='search' placeholder='Search....' onChange={(e) => handlechange(e.target.value)} />
+            {/* <input type='search' style={{ marginTop: '50px', width: '500px', justifyContent: 'center' }} name='search' placeholder='Search....' onChange={(e) => handlechange(e.target.value)} /> */}
 
+            <div  className='row justify-content-center , mt-3'>
+                <Input
+                    style={{ width: '40rem' }}
+                    onChange={(e) => handlechange(e.target.value)}
+                    id="input-with-icon-adornment"
+                    placeholder='Search Medicine....'
+                    startAdornment={
+                        <InputAdornment position="start" >
+                            <SearchIcon />
+                        </InputAdornment>
+                    }
+                />
+            </div>
             <div className='row' >
                 <ListMedicines
                     mdata={search.length > 0 ? search : medicines.medicines}
                     cart={handleCart}
-                    // favorite={onFavorite}
+                    // addFavorite= {addFavorite}
+                    // removeFavorite={removeFavorite}
+                    // favItmes={favouriteState.favItmes}
                 />
             </div>
         </>
