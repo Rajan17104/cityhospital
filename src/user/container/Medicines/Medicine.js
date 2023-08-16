@@ -51,7 +51,8 @@ function Medicine(props) {
     }
 
     const handleCart = (id) => {
-        dispatch(addCart(id))
+        dispatch(addCart({ pid: id, qty: 1 }))
+        console.log(addCart);
         console.log("handle cart called" + id);
     }
     

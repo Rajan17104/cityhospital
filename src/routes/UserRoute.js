@@ -3,10 +3,10 @@ import Header from '../user/component/Header';
 import Home from '../user/container/Home';
 import About from '../user/container/About';
 import Contact from '../user/container/Contact';
-import Appointment from '../user/container/Appointment';
 import Departments from '../user/container/Departments';
 import Doctors from '../user/container/Doctors';
 import Doctor from '../user/container/Doctor';
+import Appointment from '../user/container/Appointment/Appointment';
 import VisitingDoctor from '../user/container/VisitingDoctor';
 import NotFound from '../user/container/Notfound';
 import Auth from '../user/container/Auth';
@@ -46,7 +46,7 @@ function UserRoute(props) {
         <Route path='/about' element={<About />} />
        // {/* <Route path='/contact' element={<Contact />} /> */}
         <Route path='/contact' element={<Contact1 />} />
-        <Route path='/appointment' element={<Appointment />} />
+  
         // <Route path='/doctor/:id' element={<Doctor />} />
         // <Route path='/medi-details/:id' element={<MedicineDetails />} />
 
@@ -71,6 +71,7 @@ function UserRoute(props) {
 
         {/* <Route element={<PrivateRoute />} > */}
           <Route path='/medicine' element={<Medicine />} />
+          <Route path='/appointment' element={<Appointment />} />
           {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
           {/* <Route path='medicine1' element={<Medicine_1 />} /> */}
 
