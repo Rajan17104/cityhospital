@@ -21,7 +21,7 @@ export const getDepartmentData = () => (dispatch) => {
             //     .then((data) => dispatch({ type: ActionType.GET_DEPARTMENT, payload: data }))
             //     .catch((error) => dispatch(errorData(error.message)))
         }, 1000)
-0
+
 
     } catch (error) {
         dispatch(errorData(error.message))

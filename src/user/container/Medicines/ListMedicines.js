@@ -10,14 +10,14 @@ function ListMedicines({ mdata, cart }) {
                     return (
 
                         <div className='col-md-4 justify-content-between g-4'>
-                            <Link to={`/medi-details/${v.id}`}>
+                            {/* <Link to={`/medi-details/${v.id}`}> */}
                                 <Customcard
 
                                     values={v}
                                     btnVal={"Add to cart"}
                                     onclick1={cart}
                                 />
-                            </Link >
+                            {/* </Link > */}
                         </div >
 
                     )
