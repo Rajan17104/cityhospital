@@ -4,7 +4,7 @@ import { setalert } from "../slice/AlertSlice";
 export const getMedicine = () => (dispatch) => {
     try {
         dispatch(loadingData(true));
-        setTimeout(function () {
+        // setTimeout(function () {
             fetch("http://localhost:3004/medicines")
                 .then((response) => {
                     if (response.ok) {
@@ -15,7 +15,7 @@ export const getMedicine = () => (dispatch) => {
                 )
                 .then((data) => dispatch({ type: ActionType.GET_MEDICINE, payload: data }))
                 .catch((error) => dispatch(errorData(error.message)))
-        }, 1000)
+        // }, )
 
     } catch (error) {
         dispatch(errorData(error.message))

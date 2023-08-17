@@ -9,14 +9,13 @@ function ListMedicines({ mdata, cart }) {
                 mdata.map((v) => {
                     return (
 
-                        <div className='col-md-4 justify-content-between g-4'>
+                        <div className='col-md-4 g-5'>
                             {/* <Link to={`/medi-details/${v.id}`}> */}
-                                <Customcard
-
-                                    values={v}
-                                    btnVal={"Add to cart"}
-                                    onclick1={cart}
-                                />
+                            <Customcard
+                                values={v}
+                                btnVal={"Add to cart"}
+                                onclick1={cart}
+                            />
                             {/* </Link > */}
                         </div >
 

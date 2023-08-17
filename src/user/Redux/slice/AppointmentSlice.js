@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 const initState = {
@@ -52,6 +52,24 @@ export const deleteApt = createAsyncThunk(
         console.log(id);
         try {
             await deleteDoc(doc(db, "appointment", id));
+
+            return id;
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+)
+
+export const updateApt = createAsyncThunk(
+    'appointment/update',
+    async (data) => {
+        try {
+            const aptRef = doc(db, "appointment", data.id);
+
+            await updateDoc(aptRef, data);
+
+            return data;
+
         } catch (e) {
             console.error("Error adding document: ", e);
         }
@@ -93,7 +111,19 @@ export const appointmentSlice = createSlice({
                 state.loading = false;
                 console.log(action);
                 let Ddata = state.apt.filter((v) => v.id !== action.payload);
-                Ddata = state.apt   
+                state.apt = Ddata
+            })
+
+            .addCase(updateApt.fulfilled, (state, action) => {
+                state.loading = false
+                let uData = state.apt.map((values) => {
+                    if (values.id === action.payload.id) {
+                        return action.payload;
+                    } else {
+                        return values;
+                    }
+                })
+                state.apt = uData
             })
     }
 })
