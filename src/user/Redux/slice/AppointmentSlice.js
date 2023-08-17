@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 const initState = {
@@ -23,12 +23,47 @@ export const aptAdd = createAsyncThunk(
     }
 )
 
-const pending = (state,action) => {
+export const getApt = createAsyncThunk(
+    'appointment/get',
+    async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "appointment"));
+
+            let data = [];
+
+            querySnapshot.forEach((doc) => {
+                data.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+
+            return data;
+
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+)
+
+export const deleteApt = createAsyncThunk(
+    'appointment/delete',
+    async (id) => {
+        console.log(id);
+        try {
+            await deleteDoc(doc(db, "appointment", id));
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
+)
+
+const pending = (state, action) => {
     state.loading = true;
     state.error = null;
 }
 
-const rejected = (state,action) => {
+const rejected = (state, action) => {
     state.loading = false;
     state.error = action.error.message;
 }
@@ -44,7 +79,21 @@ export const appointmentSlice = createSlice({
             .addCase(aptAdd.fulfilled, (state, action) => {
                 state.loading = false;
                 console.log(action);
+                state.apt = state.apt.concat(action.payload);
+            })
+
+            // .addCase(getApt.pending, pending)
+            .addCase(getApt.fulfilled, (state, action) => {
+                state.loading = false;
+                console.log(action);
                 state.apt = action.payload;
+            })
+
+            .addCase(deleteApt.fulfilled, (state, action) => {
+                state.loading = false;
+                console.log(action);
+                let Ddata = state.apt.filter((v) => v.id !== action.payload);
+                Ddata = state.apt   
             })
     }
 })
