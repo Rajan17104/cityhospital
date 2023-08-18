@@ -6,7 +6,7 @@ import ListIcon from '@mui/icons-material/List';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteApt, getApt, updateApt } from '../../Redux/slice/AppointmentSlice';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -72,6 +72,7 @@ function Appointment(props) {
           return true
         }
       }),
+    prec: yup.mixed().required('please upload a file')
 
   })
 
@@ -83,7 +84,8 @@ function Appointment(props) {
       phone: '',
       date: '',
       department: '',
-      message: ''
+      message: '',
+      prec: ''
     },
     onSubmit: (values, action) => {
       console.log(values);
@@ -98,7 +100,7 @@ function Appointment(props) {
     },
   });
 
-  const { values, errors, touched, handleBlur, handleChange, setValues, handleSubmit } = formik;
+  const { values, errors, touched, handleBlur, handleChange, setValues, handleSubmit, setFieldValue } = formik;
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -228,20 +230,33 @@ function Appointment(props) {
                     <span className='fromError' style={{ color: 'red' }}>{errors.department && touched.department ? errors.department : null}</span>
 
                   </div>
+
+
+                  <div className="col-md-4 form-group mt-3">
+                    <input type="file"
+                      name="prec"
+                      id="datprece"
+                      onChange={(event => setFieldValue("prec", event.target.files[0]))}
+                      onBlur={handleBlur}
+                    />
+                    <span style={{ color: 'red' }}>{errors.prec && touched.prec ? errors.prec : null}  </span>
+                  </div>
+
+                  <div className="form-group mt-3">
+                    <textarea className="form-control"
+                      name="message"
+                      rows={5}
+                      placeholder="Message (Optional)"
+                      value={values.message}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      defaultValue={""}
+                    />
+                    <span className='fromError' style={{ color: 'red' }}>{errors.message && touched.message ? errors.message : null}</span>
+                  </div>
                 </div>
 
-                <div className="form-group mt-3">
-                  <textarea className="form-control"
-                    name="message"
-                    rows={5}
-                    placeholder="Message (Optional)"
-                    value={values.message}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    defaultValue={""}
-                  />
-                  <span className='fromError' style={{ color: 'red' }}>{errors.message && touched.message ? errors.message : null}</span>
-                </div>
+
 
                 <div className="mb-3">
                   <div className="loading">Loading</div>
@@ -255,44 +270,49 @@ function Appointment(props) {
 
           {
             value === 1 &&
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                <>
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell>Book Apoointment (Name)</StyledTableCell>
-                      <StyledTableCell >email</StyledTableCell>
-                      <StyledTableCell >Mobile no.</StyledTableCell>
-                      <StyledTableCell >Apt Date</StyledTableCell>
-                      <StyledTableCell >Apt Department</StyledTableCell>
-                      <StyledTableCell >Message</StyledTableCell>
-                      <StyledTableCell >Action</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {
-                      appointment.apt.map((v) => (
-                        <StyledTableRow >
-                          <StyledTableCell >{v.name}</StyledTableCell>
-                          <StyledTableCell >{v.email}</StyledTableCell>
-                          <StyledTableCell >{v.phone}</StyledTableCell>
-                          <StyledTableCell >{v.date}</StyledTableCell>
-                          <StyledTableCell >{v.department}</StyledTableCell>
-                          <StyledTableCell >{v.message}</StyledTableCell>
-                          <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(v.id)}>
-                            <DeleteIcon />
-                          </IconButton>
+            <div className='mt-5'>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                  <>
+                    <TableHead>
+                      <TableRow>
+                        <StyledTableCell>Book Apoointment (Name)</StyledTableCell>
+                        <StyledTableCell >email</StyledTableCell>
+                        <StyledTableCell >Mobile no.</StyledTableCell>
+                        <StyledTableCell >Apt Date</StyledTableCell>
+                        <StyledTableCell >Apt Department</StyledTableCell>
+                        <StyledTableCell >Message</StyledTableCell>
+                        <StyledTableCell >Image</StyledTableCell>
+                        <StyledTableCell >Action</StyledTableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {
+                        appointment.apt.map((v) => (
+                          <StyledTableRow >
+                            <StyledTableCell >{v.name}</StyledTableCell>
+                            <StyledTableCell >{v.email}</StyledTableCell>
+                            <StyledTableCell >{v.phone}</StyledTableCell>
+                            <StyledTableCell >{v.date}</StyledTableCell>
+                            <StyledTableCell >{v.department}</StyledTableCell>
+                            <StyledTableCell >{v.message}</StyledTableCell>
+                            <StyledTableCell ><img style={{width: '60px' ,height:'40px'}} src={v.prec}></img></StyledTableCell>
 
-                          <IconButton aria-label="edit" onClick={() => handleUpdate(v)}>
-                            <EditIcon />
-                          </IconButton>
-                        </StyledTableRow>
-                      ))
-                    }
-                  </TableBody>
-                </>
-              </Table>
-            </TableContainer>
+                            <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(v.id)}>
+                              <DeleteIcon />
+                            </IconButton>
+
+                            <IconButton aria-label="edit" onClick={() => handleUpdate(v)}>
+                              <EditIcon />
+                            </IconButton>
+                          </StyledTableRow>
+                        ))
+                      }
+                    </TableBody>
+                  </>
+                </Table>
+              </TableContainer>
+            </div>
           }
         </div >
       </section >
