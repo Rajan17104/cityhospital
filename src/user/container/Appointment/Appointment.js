@@ -36,8 +36,8 @@ function Appointment(props) {
   }, [])
 
 
-  const handleDelete = (id) => {
-    dispatch(deleteApt(id))
+  const handleDelete = (data) => {
+    dispatch(deleteApt(data));
   }
 
   const handleUpdate = (data) => {
@@ -239,6 +239,7 @@ function Appointment(props) {
                       onChange={(event => setFieldValue("prec", event.target.files[0]))}
                       onBlur={handleBlur}
                     />
+                    <img src={typeof values.prec === "string" ? values.prec : URL.createObjectURL(values.prec)} width={'70px'} height={'50px'} />
                     <span style={{ color: 'red' }}>{errors.prec && touched.prec ? errors.prec : null}  </span>
                   </div>
 
@@ -296,9 +297,9 @@ function Appointment(props) {
                             <StyledTableCell >{v.date}</StyledTableCell>
                             <StyledTableCell >{v.department}</StyledTableCell>
                             <StyledTableCell >{v.message}</StyledTableCell>
-                            <StyledTableCell ><img style={{width: '60px' ,height:'40px'}} src={v.prec}></img></StyledTableCell>
+                            <StyledTableCell ><img style={{ width: '60px', height: '40px' }} src={v.prec}></img></StyledTableCell>
 
-                            <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(v.id)}>
+                            <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(v)}>
                               <DeleteIcon />
                             </IconButton>
 

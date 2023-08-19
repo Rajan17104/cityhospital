@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import { db, storage } from "../../../firebase";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const initState = {
     apt: [],
@@ -14,26 +14,31 @@ export const aptAdd = createAsyncThunk(
     async (data) => {
         console.log(data.prec.name);
 
+
         let iData = { data }
         try {
 
-            const precRef = ref(storage, 'prescrtion/' + data.prec.name);
+            const r_no = Math.floor(Math.random() * 1000)
+
+            const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
 
             await uploadBytes(precRef, data.prec)
                 .then(async (snapshot) => {
                     console.log('Uploaded a blob or file!');
 
+
                     await getDownloadURL(snapshot.ref)
                         .then(async (url) => {
                             console.log(url);
 
-                            iData = { ...data, prec: url }
+                            iData = { ...data, prec: url, presName: r_no + "_" + data.prec.name }
                             const docRef = await addDoc(collection(db, "appointment"), iData);
 
                             iData = {
                                 id: docRef.id,
                                 ...data,
-                                prec: url
+                                prec: url,
+                                presName: r_no + "_" + data.prec.name
                             }
                         })
                 });
@@ -76,15 +81,18 @@ export const getApt = createAsyncThunk(
 
 export const deleteApt = createAsyncThunk(
     'appointment/delete',
-    async (id) => {
-        console.log(id);
+    async (data) => {
         try {
-            await deleteDoc(doc(db, "appointment", id));
-
-            return id;
+            const desertRef = ref(storage, 'prescrtion/' + data.presName);
+            console.log(data);
+            await deleteObject(desertRef).then(async () => {
+                await deleteDoc(doc(db, "appointment", data.id));
+                console.log("file deleted success");
+            })
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+        return data.id;
     }
 )
 
@@ -92,11 +100,68 @@ export const updateApt = createAsyncThunk(
     'appointment/update',
     async (data) => {
         try {
-            const aptRef = doc(db, "appointment", data.id);
 
-            await updateDoc(aptRef, data);
+            if (typeof data.prec === "string") {
+                console.log('No chnage image');
 
-            return data;
+                const aptRef = doc(db, "appointment", data.id);
+
+                await updateDoc(aptRef, data);
+
+                return data;
+
+            } else {
+                console.log('chnage image');
+
+                // Old image delete
+                // New image upload
+                // New url and new data
+                let iData = { data }
+                const desertRef = ref(storage, 'prescrtion/' + data.presName);
+
+                await deleteObject(desertRef).then(async () => {
+
+                    await deleteDoc(doc(db, "appointment", data.id));
+                    console.log("file deleted success");
+
+                    console.log("old image delete");
+
+                    
+
+                    const r_no = Math.floor(Math.random() * 1000)
+
+                    const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
+
+                    await uploadBytes(precRef, data.prec)
+                        .then(async (snapshot) => {
+                            console.log('Uploaded a blob or file!');
+
+
+                            await getDownloadURL(snapshot.ref)
+                                .then(async (url) => {
+                                    console.log("New url" + url);
+
+                                    iData = { ...data, prec: url, presName: r_no + "_" + data.prec.name }
+                                    const docRef = await addDoc(collection(db, "appointment"), iData);
+
+                                    iData = {
+                                        id: docRef.id,
+                                        ...data,
+                                        prec: url,
+                                        presName: r_no + "_" + data.prec.name
+                                    }
+                                })
+                        });
+
+                })
+
+
+                return iData
+
+            }
+
+
+
 
         } catch (e) {
             console.error("Error adding document: ", e);
