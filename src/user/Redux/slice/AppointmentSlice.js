@@ -15,12 +15,14 @@ export const aptAdd = createAsyncThunk(
         console.log(data.prec.name);
 
 
-        let iData = { data }
         try {
 
             const r_no = Math.floor(Math.random() * 1000)
 
             const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
+
+            let iData = { ...data }
+
 
             await uploadBytes(precRef, data.prec)
                 .then(async (snapshot) => {
@@ -116,19 +118,18 @@ export const updateApt = createAsyncThunk(
                 // Old image delete
                 // New image upload
                 // New url and new data
-                let iData = { data }
+                let iData = { ...data }
                 const desertRef = ref(storage, 'prescrtion/' + data.presName);
 
                 await deleteObject(desertRef).then(async () => {
-
+                    
+                    
                     await deleteDoc(doc(db, "appointment", data.id));
                     console.log("file deleted success");
-
-                    console.log("old image delete");
-
                     
-
                     const r_no = Math.floor(Math.random() * 1000)
+                    console.log("old image delete");
+                    
 
                     const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
 
@@ -145,7 +146,6 @@ export const updateApt = createAsyncThunk(
                                     const docRef = await addDoc(collection(db, "appointment"), iData);
 
                                     iData = {
-                                        id: docRef.id,
                                         ...data,
                                         prec: url,
                                         presName: r_no + "_" + data.prec.name
@@ -153,19 +153,19 @@ export const updateApt = createAsyncThunk(
                                 })
                         });
 
-                })
-
-
+                }).catch((error) => {
+                    console.error("Error adding document: ", error);
+                });
+                console.log(iData);
                 return iData
 
             }
 
-
-
-
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+
+
     }
 )
 
