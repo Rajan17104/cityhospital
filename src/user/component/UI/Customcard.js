@@ -1,11 +1,11 @@
 import { Height } from '@mui/icons-material';
 import React from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
+import FavoriteIconFilled from '@mui/icons-material/Favorite';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 
-function Customcard({ values, btnVal, onclick1, favorite }) {
+function Customcard({ values, btnVal, onclick1, favourite ,removeFavourite, addFavourite, favouriteTrue }) {
     return (
 
         <Card className='card'
@@ -27,13 +27,16 @@ function Customcard({ values, btnVal, onclick1, favorite }) {
                         {'Name : ' + values.name}
                     </CardTitle>
                     {
-                        favorite ?
-                            <button onClick={() => favorite(values.id)} style={{ marginLeft: '70px' }}>
-                                <FavoriteBorderIcon />
-                            </button> :
-                            <FavoriteBorderIcon /> ?
-
-                                <FavoriteBorderIcon /> : <FavoriteIcon />
+                        favouriteTrue ?
+                        favourite ?
+                                <Button size="small" classes='p-0 bg-transparent remove' onClick={() => removeFavourite(values.id)}>
+                                    <FavoriteIconFilled sx={{ color: '#FF6337' }} />
+                                </Button>
+                                :
+                                <Button size="small" classes='p-0 bg-transparent add' onClick={() => addFavourite(values.id)}>
+                                    <FavoriteIcon sx={{ color: '#FF6337' }} />
+                                </Button>
+                            : null
                     }
                     {/* <span><FavoriteBorderIcon /></span> */}
                 </div>

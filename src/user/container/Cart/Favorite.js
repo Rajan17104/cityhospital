@@ -1,54 +1,48 @@
-import { IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 
 function Favorite(props) {
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    const [localdata, setLocaldata] = useState([]);
-    const [medicineData, setmedicineData] = useState([]);
+    const medData = useSelector((state) => state.medicines);
+    const cartData = useSelector((state) => state.cart);
+    const favData = useSelector((state) => state.favourite);
+    
+    console.log(medData)
+    console.log(favData);
 
 
-    // const medData = useSelector((state) => state.medicines)
-    // const cartData = useSelector((state) => state.cart)
 
-    useEffect(() => {
-        let localdata = JSON.parse(localStorage.getItem("favorite"));
-        setLocaldata(localdata);
-        try {
-            fetch("http://localhost:3004/medicines")
-                .then((response) => response.json())
-                .then((data) => setmedicineData(data))
-                .catch((error) => console.log(error))
-        } catch (error) {
-            console.log(error);
-        }
-    }, []);
+    let favouriteData = favData.favourite.map((v) => {
+        let Fdata = medData.medicines.find((m) => m.id === v.fid)
 
-    // console.log(medData, cartData);  
-
-    let cartItems = localdata.map((v) => {
-        let mData = medicineData.find((m) => m.id === v.pid)
-
-        let fData = { ...mData, ...v }
-
-        return fData
+        return { ...Fdata, ...v }
     })
 
-    console.log(cartItems);
+    // const handleAddfavourite = (id) => {
+    //     dispatch(addFavourite(id))
+    // }
+
+    // const handleRemovefavourite = (id) => {
+    //     dispatch(removeFavourite(id))
+    // }
+
     return (
+
+
         <section id="doctors" className="doctors">
             <div className="container">
                 <div className="section-title">
                     <h2>My Favorite</h2>
                     {/* <Title>Duis sagittis rutrum neque, quis tincidunt arcu pretium ac. Suspendisse sem risus, molestie vitae arcu et,
-                        tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
-                        ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
-                    </Title> */}
+                            tincidunt viverra erat. Quisque in lectus id nulla viverra sodales in a risus. Aliquam ut sem ex. Duis viverra
+                            ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
+                        </Title> */}
                 </div>
                 {
-                    cartItems.map((c) => {
+                    favouriteData.map((c) => {
                         return (
                             <div className="card mb-3">
                                 <div className="card-body">
@@ -76,7 +70,7 @@ function Favorite(props) {
                                             {/* <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}> */}
                                             {/* <IconButton style={{ color: 'red' }} aria-label="delete" > */}
                                             {/* <DeleteIcon />
-                                            </IconButton> */}
+                                                </IconButton> */}
                                         </div>
                                     </div>
                                 </div>
@@ -86,11 +80,12 @@ function Favorite(props) {
                 }
 
                 {/* <div className=''>
-                    <p>{Total}</p>
-                </div> */}
+                        <p>{Total}</p>
+                    </div> */}
 
             </div>
         </section>
+
     );
 }
 

@@ -21,7 +21,7 @@ export const aptAdd = createAsyncThunk(
 
             const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
 
-            let iData = { ...data }
+            let iData = {   data }
 
 
             await uploadBytes(precRef, data.prec)
@@ -118,44 +118,44 @@ export const updateApt = createAsyncThunk(
                 // Old image delete
                 // New image upload
                 // New url and new data
-                let iData = { ...data }
+                let iData = { data }
                 const desertRef = ref(storage, 'prescrtion/' + data.presName);
 
-                await deleteObject(desertRef).then(async () => {
-                    
-                    
-                    await deleteDoc(doc(db, "appointment", data.id));
-                    console.log("file deleted success");
-                    
-                    const r_no = Math.floor(Math.random() * 1000)
-                    console.log("old image delete");
-                    
+                await deleteObject(desertRef)
 
-                    const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
+                    .then(async () => {
+                        await deleteDoc(doc(db, "appointment", data.id));
+                        console.log("file deleted success");
 
-                    await uploadBytes(precRef, data.prec)
-                        .then(async (snapshot) => {
-                            console.log('Uploaded a blob or file!');
+                        const r_no = Math.floor(Math.random() * 1000)
+                        console.log("old image delete");
 
 
-                            await getDownloadURL(snapshot.ref)
-                                .then(async (url) => {
-                                    console.log("New url" + url);
+                        const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
 
-                                    iData = { ...data, prec: url, presName: r_no + "_" + data.prec.name }
-                                    const docRef = await addDoc(collection(db, "appointment"), iData);
+                        await uploadBytes(precRef, data.prec)
+                            .then(async (snapshot) => {
+                                console.log('Uploaded a blob or file!');
 
-                                    iData = {
-                                        ...data,
-                                        prec: url,
-                                        presName: r_no + "_" + data.prec.name
-                                    }
-                                })
-                        });
 
-                }).catch((error) => {
-                    console.error("Error adding document: ", error);
-                });
+                                await getDownloadURL(snapshot.ref)
+                                    .then(async (url) => {
+                                        console.log("New url" + url);
+
+                                        iData = { ...data, prec: url, presName: r_no + "_" + data.prec.name }
+                                        const docRef = await addDoc(collection(db, "appointment"), iData);
+
+                                        iData = {
+                                            ...data,
+                                            prec: url,
+                                            presName: r_no + "_" + data.prec.name
+                                        }
+                                    })
+                            });
+
+                    }).catch((error) => {
+                        console.error("Error adding document: ", error);
+                    });
                 console.log(iData);
                 return iData
 

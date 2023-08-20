@@ -239,8 +239,10 @@ function Appointment(props) {
                       onChange={(event => setFieldValue("prec", event.target.files[0]))}
                       onBlur={handleBlur}
                     />
+
                     <img src={typeof values.prec === "string" ? values.prec : URL.createObjectURL(values.prec)} width={'70px'} height={'50px'} />
                     <span style={{ color: 'red' }}>{errors.prec && touched.prec ? errors.prec : null}  </span>
+
                   </div>
 
                   <div className="form-group mt-3">

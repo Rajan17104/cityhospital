@@ -15,7 +15,9 @@ function Medicine(props) {
 
     const dispatch = useDispatch();
     const medicines = useSelector(state => state.medicines)
-    const favouriteState = useSelector(state => state.favourites);
+    // const favouriteState = useSelector(state => state.favourites);
+    const favData = useSelector((state) => state.favourite);
+
 
     // useEffect(() => {
     //     let localData = JSON.parse(localStorage.getItem("medicines"));
@@ -56,15 +58,15 @@ function Medicine(props) {
         console.log("handle cart called" + id);
     }
     
-    // const addFavorite = (id) => {
-    //     dispatch(addToFavorite(id))
-    //     console.log("handle cart called" + id);
-    // }
+    const addFavorite = (id) => {
+        dispatch(addFavorite(id))
+        console.log("add favourite called" + id);
+    }
 
-    // const removeFavorite = (id) => {
-    //     dispatch(removeToFavorite(id))
-    //     console.log("handle cart called" + id);
-    // }
+    const removeFavorite = (id) => {
+        dispatch(removeFavorite(id))
+        console.log("remove favorite  called" + id);
+    }
 
 
     return (
@@ -88,9 +90,10 @@ function Medicine(props) {
                 <ListMedicines
                     mdata={search.length > 0 ? search : medicines.medicines}
                     cart={handleCart}
-                    // addFavorite= {addFavorite}
-                    // removeFavorite={removeFavorite}
-                    // favItmes={favouriteState.favItmes}
+                    
+                    addFavorite= {addFavorite}
+                    removeFavorite={removeFavorite}
+                    favourite={favData.favourite}
                 />
             </div>
         </>
