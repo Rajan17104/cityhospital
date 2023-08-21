@@ -5,7 +5,7 @@ import { getMedicine } from '../../Redux/action/medicine.action';
 import { addCart } from '../../Redux/slice/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
-import { addToFavorite, removeToFavorite } from '../../Redux/action/favorite.action';
+import { addToFavorite, addToFavourite, removeToFavorite, removeToFavourite } from '../../Redux/action/favorite.action';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
@@ -15,20 +15,8 @@ function Medicine(props) {
 
     const dispatch = useDispatch();
     const medicines = useSelector(state => state.medicines)
-    // const favouriteState = useSelector(state => state.favourites);
     const favData = useSelector((state) => state.favourite);
-
-
-    // useEffect(() => {
-    //     let localData = JSON.parse(localStorage.getItem("medicines"));
-
-    //     if (localData) {
-    //         setData(localData)
-    //     }
-
-    //     console.log(localData);
-
-    // }, []);
+    console.log(favData);
 
     useEffect(() => {
         dispatch(getMedicine())
@@ -54,18 +42,16 @@ function Medicine(props) {
 
     const handleCart = (id) => {
         dispatch(addCart({ pid: id, qty: 1 }))
-        console.log(addCart);
-        console.log("handle cart called" + id);
     }
     
-    const addFavorite = (id) => {
-        dispatch(addFavorite(id))
-        console.log("add favourite called" + id);
+    const addFavourite = (id) => {
+        dispatch(addToFavourite(id))
+        console.log('add favourite');
     }
 
-    const removeFavorite = (id) => {
-        dispatch(removeFavorite(id))
-        console.log("remove favorite  called" + id);
+    const removeFavourite = (id) => {
+        dispatch(removeToFavourite(id))
+        console.log('remove favourite');
     }
 
 
@@ -91,9 +77,9 @@ function Medicine(props) {
                     mdata={search.length > 0 ? search : medicines.medicines}
                     cart={handleCart}
                     
-                    addFavorite= {addFavorite}
-                    removeFavorite={removeFavorite}
-                    favourite={favData.favourite}
+                    addFavourite= {addFavourite}
+                    removeFavourite={removeFavourite}
+                    favItems={favData.favItems}
                 />
             </div>
         </>

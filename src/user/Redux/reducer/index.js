@@ -3,14 +3,14 @@ import { combineReducers } from "redux";
 import { doctorsReducer } from "./doctors.reducer";
 import { medicinereducer } from "./medicine.reducer";
 // import { cartReducer } from "./cart.reducer";
-// import { favoriteReducer } from "./favorite.reducer";
 import counterReducer from "../slice/CounterSlice";
 import cartReducer from "../slice/CartSlice";
 import departmentReducer from "../slice/DepartmentSlice";
 import alertReducer from "../slice/AlertSlice";
 import { authReducer } from "./auth.reducer";
 import appointmentReducer from "../slice/AppointmentSlice";
-import favouriteReducer  from "..//slice/FavouriteSlice";
+import { favoriteReducer } from "./favorite.reducer";
+// import favouriteReducer  from "..//slice/FavouriteSlice";
 
 // import { departmentReducer } from "./department.reducer";
 
@@ -26,6 +26,7 @@ export const rootReducer = combineReducers({
     department: departmentReducer,
     cart: cartReducer,
     appointment: appointmentReducer,
-    favourite: favouriteReducer
+    // favourite: favouriteReducer
+    favourite: favoriteReducer
 })
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Customcard from '../../component/UI/Customcard';
 import { Link } from 'react-router-dom';
 
-function ListMedicines({ mdata, cart, addFavorite,removeFavorite, favourite }) {
+function ListMedicines({ mdata, cart, addFavourite, removeFavourite, favItmes }) {
     return (
         <>
             {
@@ -16,9 +16,9 @@ function ListMedicines({ mdata, cart, addFavorite,removeFavorite, favourite }) {
                                 btnVal={"Add to cart"}
                                 onclick1={cart}
 
-                                addFavorite={addFavorite}
-                                removeFavorite={removeFavorite}
-                                favourite={favourite ? favourite.some((f) => f.foid === v.id) : null}
+                                addFavourite={addFavourite}
+                                removeFavourite={removeFavourite}
+                                favItmes={favItmes ? favItmes.some((items) => items.fid === v.id) : null}
                                 favouriteTrue={true}
                             />
                             {/* </Link > */}
