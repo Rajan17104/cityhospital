@@ -118,32 +118,36 @@ export const updateApt = createAsyncThunk(
                 // Old image delete
                 // New image upload
                 // New url and new data
-                let iData = { data }
                 const desertRef = ref(storage, 'prescrtion/' + data.presName);
+                let iData = { data }
 
                 await deleteObject(desertRef)
 
                     .then(async () => {
-                        await deleteDoc(doc(db, "appointment", data.id));
-                        console.log("file deleted success");
-
                         const r_no = Math.floor(Math.random() * 1000)
-                        console.log("old image delete");
-
-
+                        
                         const precRef = ref(storage, 'prescrtion/' + r_no + '_' + data.prec.name);
+                        console.log("file deleted success");
+                        console.log("old image delete");
+                        
+                        // await deleteDoc(doc(db, "appointment", data.id));
+                        
+
 
                         await uploadBytes(precRef, data.prec)
                             .then(async (snapshot) => {
                                 console.log('Uploaded a blob or file!');
-
 
                                 await getDownloadURL(snapshot.ref)
                                     .then(async (url) => {
                                         console.log("New url" + url);
 
                                         iData = { ...data, prec: url, presName: r_no + "_" + data.prec.name }
-                                        const docRef = await addDoc(collection(db, "appointment"), iData);
+                                        // const docRef = await updateDoc(collection(db, "appointment"), iData);
+
+                                        const aptRef = doc(db, "appointment" ,data.id)
+
+                                        await updateDoc(aptRef,iData)
 
                                         iData = {
                                             ...data,

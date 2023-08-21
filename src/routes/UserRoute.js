@@ -26,6 +26,7 @@ import DepartmentData from '../user/container/Department/DepartmentData';
 import Counter from '../user/Context/Counter';
 import { ThemeContext } from '../user/Context/ThemeContext';
 import MedicineDetails from '../user/container/Medicines/MedicineDetails';
+import MemoCounter from '../user/container/MemoCounter';
 
 function UserRoute(props) {
 
@@ -68,7 +69,8 @@ function UserRoute(props) {
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/cart1' element={<Cart_1 />} /> */}
         <Route path='/favorite' element={<Favorite />} />
-
+        <Route path='/memocounter' element={<MemoCounter />} />
+        
         {/* <Route element={<PrivateRoute />} > */}
           <Route path='/medicine' element={<Medicine />} />
           <Route path='/appointment' element={<Appointment />} />
