@@ -66,7 +66,7 @@ function Header({ count }) {
           <div className="contact-info d-flex align-items-center">
             <i className="bi bi-envelope " /> <a href={`mailto:contact@example.com${theme.theme}`}>cityhospital@example.com</a>
             <i className="bi bi-phone" /> +91 9988776655
-          </div>  
+          </div>
 
           <div className="d-none d-lg-flex social-links align-items-center">
             <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
@@ -124,6 +124,12 @@ function Header({ count }) {
               {/* <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li> */}
               {/* <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li> */}
               <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
+              <li><Link className="nav-link scrollto" to='/memocounter'>Memo</Link></li>
+              <li><Link className="nav-link scrollto" to='/callback'>callback</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/ref'>UseRef</Link></li> */}
+
+
+
               {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}
               {/* <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>*/}
               {/* <li><Link className="nav-link scrollto" to='/counter1'>Counter</Link></li>  */}
@@ -158,4 +164,4 @@ function Header({ count }) {
   );
 }
 
-export default Header;
+export default Header;  
