@@ -45,9 +45,18 @@ function Header({ count }) {
     cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-  // const favouriteState = useSelector(state => state.favourites);
-  // console.log(favouriteState);
+  /***************************/
 
+  let favCount = 0;
+  const favData = useSelector(state => state.favourite);
+  console.log(favData);
+
+  if( favData.items){
+    favCount = favData.items.reducer((acc , v ,i) => acc + v.qty,0)
+  }
+
+
+  
   const handleremove = () => {
     // localStorage.removeItem('logindata');
     dispatch(logoutRequest())
@@ -92,7 +101,7 @@ function Header({ count }) {
 
             <Link to='/favorite'>
               <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
-                <StyledBadge badgeContent={{}} color="secondary">
+                <StyledBadge badgeContent={favCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >
@@ -127,7 +136,6 @@ function Header({ count }) {
               <li><Link className="nav-link scrollto" to='/memocounter'>Memo</Link></li>
               <li><Link className="nav-link scrollto" to='/callback'>callback</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/ref'>UseRef</Link></li> */}
-
 
 
               {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}

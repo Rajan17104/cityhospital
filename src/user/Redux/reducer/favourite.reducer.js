@@ -12,13 +12,13 @@ console.log(action.payload);
     switch (action.type) {
         case ActionType.ADD_TO_FAVORITE:
 
-            let item = state.item.find((v) => v.fid === action.payload.fid);
+            let item = state.item.find((v) => v.pid === action.payload.pid);
 
             console.log(item);
             let newD;
 
             if (item) {
-                newD = state.item.filter((v) => v.fid !== action.payload.fid);
+                newD = state.item.filter((v) => v.pid !== action.payload.pid);
                 state.item = newD;
 
             } else {

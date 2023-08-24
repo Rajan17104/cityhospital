@@ -10,24 +10,11 @@ import {  addToFavourite } from '../../Redux/action/favorite.action';
 
 function Medicine(props) {
 
-    // const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
     const [search, setSearch] = useState([]);
 
     const dispatch = useDispatch();
     const medicines = useSelector(state => state.medicines)
-    // const favouriteState = useSelector(state => state.favourites);
-
-
-    // useEffect(() => {
-    //     let localData = JSON.parse(localStorage.getItem("medicines"));
-
-    //     if (localData) {
-    //         setData(localData)
-    //     }
-
-    //     console.log(localData);
-
-    // }, []);
 
     useEffect(() => {
         dispatch(getMedicine())

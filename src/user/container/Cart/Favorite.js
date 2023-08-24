@@ -16,7 +16,7 @@ function Favorite(props) {
 
 
 
-    let favouriteData = favData.favourite.map((v) => {
+    let favouriteData = favData.item.map((v) => {
         let Fdata = medData.medicines.find((m) => m.id === v.pid)
 
         let fData = { ...Fdata, ...v }

@@ -38,7 +38,7 @@ function Customcard({ values, btnVal, onclick1, onclick2, favourite, removeFavou
                                 </Button>
                             : null
                     } */}
-
+                    
                     <FavoriteIcon sx={{ color: '#FF6337' }} onClick={() => onclick2(values.id)} />
 
                     {/* <span><FavoriteBorderIcon /></span> */}
