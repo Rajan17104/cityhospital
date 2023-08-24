@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 import { addToFavourite, removeToFavourite } from '../../Redux/action/favorite.action';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Favorite(props) {
 
@@ -22,6 +23,7 @@ function Favorite(props) {
         let fData = { ...Fdata, ...v }
 
         return fData
+
     })
 
     console.log(favouriteData);
@@ -29,11 +31,6 @@ function Favorite(props) {
     // const handleAddfavourite = (id) => {
     //     dispatch(addFavourite(id))
     // }
-
-    const addFavourite = (id) => {
-        dispatch(addToFavourite(id))
-        console.log("add favourite called" + id);
-    }
 
     const removeFavourite = (id) => {
         dispatch(removeToFavourite(id))
@@ -63,19 +60,19 @@ function Favorite(props) {
                                             <div className="ms-3">
                                                 <h5>{c.name}</h5>
                                                 <p className='small mb-0'>
-                                                    {c.desc.substring(0, 50)}
+                                                    {c.desc.substring(0, 150)}
                                                     {"....."} </p>
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row align-items-center">
-                                            <div style={{ width: 150, display: 'flex' }}>
+                                            {/* <div style={{ width: 150, display: 'flex' }}>
                                                 <h5 className="fw-normal mb-0">{c.qty}</h5>
-                                            </div>
+                                            </div> */}
                                             <div style={{ width: 80 }}>
 
                                                 <h5 className="mb-0">${c.price}</h5>
                                             </div>
-                                            <FavoriteIcon sx={{ color: '#FF6337' }} onClick={() => removeFavourite(c.id)} />
+                                            <CloseIcon  onClick={() => removeFavourite(c.id)} />
                                         </div>
                                     </div>
                                 </div>

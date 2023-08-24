@@ -9,7 +9,7 @@ import { rootsaga } from "../../Saga/rootsaga"
 const persistConfig = {
     key: 'root',
     storage: storage,
-    whitelist: ['medicines', 'auth' ,'cart'] 
+    whitelist: ['medicines', 'auth' ,'cart', 'favourite'] 
     
 }
 

@@ -51,12 +51,14 @@ function Header({ count }) {
   const favData = useSelector(state => state.favourite);
   console.log(favData);
 
-  if( favData.items){
-    favCount = favData.items.reducer((acc , v ,i) => acc + v.qty,0)
+  if (favData.item) {
+    favCount = favData.item.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
+  console.log(favCount);
 
-  
+
+
   const handleremove = () => {
     // localStorage.removeItem('logindata');
     dispatch(logoutRequest())
@@ -85,7 +87,7 @@ function Header({ count }) {
 
             <Link to="/cart">
               <IconButton aria-label={`cart ${theme.theme}`} style={{}}>
-                <StyledBadge badgeContent={cartCount} color="secondary">
+                <StyledBadge badgeContent={cartCount} color="info">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
@@ -99,13 +101,16 @@ function Header({ count }) {
               </IconButton >
             </Link> */}
 
-            <Link to='/favorite'>
-              <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
-                <StyledBadge badgeContent={favCount} color="secondary">
-                  <ShoppingCartIcon />
+
+
+            <Link to="/favorite">
+              <IconButton aria-label="cart">
+                <StyledBadge badgeContent={favCount} color="info">
+                  <FavoriteIcon  />
                 </StyledBadge>
-              </FavoriteIcon >
+              </IconButton>
             </Link>
+
 
             <Brightness6Icon onClick={() => theme.themeToggle(theme.theme)} style={{ marginLeft: '10px' }} />
 

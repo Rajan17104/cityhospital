@@ -7,7 +7,7 @@ const initState = {
 }
 
 export const favouriteReducer = (state = initState, action) => {
-console.log(action.payload);
+
 
     switch (action.type) {
         case ActionType.ADD_TO_FAVORITE:
@@ -18,9 +18,10 @@ console.log(action.payload);
             let newD;
 
             if (item) {
-                newD = state.item.filter((v) => v.pid !== action.payload.pid);
-                state.item = newD;
+                newD =  state.item.filter((v) => v.pid !== action.payload.pid)
 
+                state.item = newD
+                
             } else {
                 state.item.push(action.payload);
             }
@@ -35,7 +36,9 @@ console.log(action.payload);
                 error: null
             }
 
-        default: return state
+        default : 
+
+        return state
     }
 
 }

@@ -24,23 +24,22 @@ function Customcard({ values, btnVal, onclick1, onclick2, favourite, removeFavou
             <CardBody>
                 <div className='d-flex ' >
                     <CardTitle tag="h5">
-                        {'Name : ' + values.name}
+                        { values.name}
                     </CardTitle>
                     {/* {
                         favouriteTrue ?
                         favourite ?
-                                <Button size="small" classes='p-0 bg-transparent remove' onClick={() => removeFavourite(values.id)}>
+                                // <Button size="small" classes='p-0 bg-transparent remove' onClick={() => removeFavourite(values.id)}>
                                     <FavoriteIconFilled sx={{ color: '#FF6337' }} />
-                                </Button>
+                                // </Button>
                                 :
-                                <Button size="small" classes='p-0 bg-transparent add' onClick={() => addFavourite(values.id)}>
+                                // <Button size="small" classes='p-0 bg-transparent add' onClick={() => addFavourite(values.id)}>
                                     <FavoriteIcon sx={{ color: '#FF6337' }} />
-                                </Button>
+                                // </Button>
                             : null
                     } */}
-                    
-                    <FavoriteIcon sx={{ color: '#FF6337' }} onClick={() => onclick2(values.id)} />
 
+                        <FavoriteIcon sx={{ color: '#FF6337' }} style={{justifyContent: 'flex-end'}} onClick={() => onclick2(values.id)} />
                     {/* <span><FavoriteBorderIcon /></span> */}
                 </div>
                 <CardSubtitle
