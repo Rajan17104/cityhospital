@@ -5,7 +5,7 @@ import { getMedicine } from '../../Redux/action/medicine.action';
 import { addCart } from '../../Redux/slice/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
-import { addToFavorite, removeToFavorite } from '../../Redux/action/favorite.action';
+import {  addToFavourite } from '../../Redux/action/favorite.action';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
@@ -16,7 +16,6 @@ function Medicine(props) {
     const dispatch = useDispatch();
     const medicines = useSelector(state => state.medicines)
     // const favouriteState = useSelector(state => state.favourites);
-    const favData = useSelector((state) => state.favourite);
 
 
     // useEffect(() => {
@@ -58,14 +57,9 @@ function Medicine(props) {
         console.log("handle cart called" + id);
     }
     
-    const addFavorite = (id) => {
-        dispatch(addFavorite(id))
+    const handlefav = (id) => {
+        dispatch(addToFavourite(id))
         console.log("add favourite called" + id);
-    }
-
-    const removeFavorite = (id) => {
-        dispatch(removeFavorite(id))
-        console.log("remove favorite  called" + id);
     }
 
 
@@ -90,10 +84,7 @@ function Medicine(props) {
                 <ListMedicines
                     mdata={search.length > 0 ? search : medicines.medicines}
                     cart={handleCart}
-                    
-                    addFavorite= {addFavorite}
-                    removeFavorite={removeFavorite}
-                    favourite={favData.favourite}
+                    handlefav= {handlefav}
                 />
             </div>
         </>

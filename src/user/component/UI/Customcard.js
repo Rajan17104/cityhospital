@@ -5,7 +5,7 @@ import FavoriteIconFilled from '@mui/icons-material/Favorite';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 
-function Customcard({ values, btnVal, onclick1, favourite ,removeFavourite, addFavourite, favouriteTrue }) {
+function Customcard({ values, btnVal, onclick1, onclick2, favourite, removeFavourite, addFavourite, favouriteTrue }) {
     return (
 
         <Card className='card'
@@ -26,7 +26,7 @@ function Customcard({ values, btnVal, onclick1, favourite ,removeFavourite, addF
                     <CardTitle tag="h5">
                         {'Name : ' + values.name}
                     </CardTitle>
-                    {
+                    {/* {
                         favouriteTrue ?
                         favourite ?
                                 <Button size="small" classes='p-0 bg-transparent remove' onClick={() => removeFavourite(values.id)}>
@@ -37,7 +37,10 @@ function Customcard({ values, btnVal, onclick1, favourite ,removeFavourite, addF
                                     <FavoriteIcon sx={{ color: '#FF6337' }} />
                                 </Button>
                             : null
-                    }
+                    } */}
+
+                    <FavoriteIcon sx={{ color: '#FF6337' }} onClick={() => onclick2(values.id)} />
+
                     {/* <span><FavoriteBorderIcon /></span> */}
                 </div>
                 <CardSubtitle

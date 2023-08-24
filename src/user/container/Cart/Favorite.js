@@ -1,33 +1,43 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
+import { addToFavourite, removeToFavourite } from '../../Redux/action/favorite.action';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Favorite(props) {
 
     const dispatch = useDispatch();
 
-    const medData = useSelector((state) => state.medicines);
-    const cartData = useSelector((state) => state.cart);
-    const favData = useSelector((state) => state.favourite);
-    
+    const medData = useSelector(state => state.medicines);
+    const favData = useSelector(state => state.favourite);
+
     console.log(medData)
     console.log(favData);
 
 
 
     let favouriteData = favData.favourite.map((v) => {
-        let Fdata = medData.medicines.find((m) => m.id === v.fid)
+        let Fdata = medData.medicines.find((m) => m.id === v.pid)
 
-        return { ...Fdata, ...v }
+        let fData = { ...Fdata, ...v }
+
+        return fData
     })
+
+    console.log(favouriteData);
 
     // const handleAddfavourite = (id) => {
     //     dispatch(addFavourite(id))
     // }
 
-    // const handleRemovefavourite = (id) => {
-    //     dispatch(removeFavourite(id))
-    // }
+    const addFavourite = (id) => {
+        dispatch(addToFavourite(id))
+        console.log("add favourite called" + id);
+    }
+
+    const removeFavourite = (id) => {
+        dispatch(removeToFavourite(id))
+    }
 
     return (
 
@@ -41,6 +51,7 @@ function Favorite(props) {
                             ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
                         </Title> */}
                 </div>
+                <></>
                 {
                     favouriteData.map((c) => {
                         return (
@@ -51,26 +62,20 @@ function Favorite(props) {
 
                                             <div className="ms-3">
                                                 <h5>{c.name}</h5>
-                                                <p className="small mb-0">{c.desc}</p>
-                                                {/* .substring(0, 120)}{'.....' */}
+                                                <p className='small mb-0'>
+                                                    {c.desc.substring(0, 50)}
+                                                    {"....."} </p>
                                             </div>
                                         </div>
                                         <div className="d-flex flex-row align-items-center">
                                             <div style={{ width: 150, display: 'flex' }}>
-
-                                                {/* <Button onClick={() => handleDec(c.pid)}><RemoveIcon /></Button> */}
                                                 <h5 className="fw-normal mb-0">{c.qty}</h5>
-                                                {/* <Button onClick={() => handleInc(c.pid)}><AddIcon /></Button> */}
                                             </div>
                                             <div style={{ width: 80 }}>
 
                                                 <h5 className="mb-0">${c.price}</h5>
                                             </div>
-                                            {/* <a href="#!" style={{ color: '#cecece' }}><i className="fas fa-trash-alt" /></a> */}
-                                            {/* <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(c.pid)}> */}
-                                            {/* <IconButton style={{ color: 'red' }} aria-label="delete" > */}
-                                            {/* <DeleteIcon />
-                                                </IconButton> */}
+                                            <FavoriteIcon sx={{ color: '#FF6337' }} onClick={() => removeFavourite(c.id)} />
                                         </div>
                                     </div>
                                 </div>
@@ -78,11 +83,6 @@ function Favorite(props) {
                         )
                     })
                 }
-
-                {/* <div className=''>
-                        <p>{Total}</p>
-                    </div> */}
-
             </div>
         </section>
 

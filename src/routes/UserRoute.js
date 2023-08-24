@@ -78,7 +78,7 @@ function UserRoute(props) {
 
         
         {/* <Route element={<PrivateRoute />} > */}
-          <Route path='/medicine' element={<Medicine />} />
+          <Route path='/medicine' element={<Medicine /> } />
           <Route path='/appointment' element={<Appointment />} />
           {/* <Route path='medicine1' element={<Medicine_1  setCartCount={setCartCount} />} /> */}
           {/* <Route path='medicine1' element={<Medicine_1 />} /> */}

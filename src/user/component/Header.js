@@ -45,8 +45,8 @@ function Header({ count }) {
     cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-  const favouriteState = useSelector(state => state.favourites);
-  console.log(favouriteState);
+  // const favouriteState = useSelector(state => state.favourites);
+  // console.log(favouriteState);
 
   const handleremove = () => {
     // localStorage.removeItem('logindata');

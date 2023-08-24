@@ -5,7 +5,7 @@ const initState = {
     favourite: [],
     loading: false,
     error: null
-}
+}   
 
 
 export const favouriteSlice = createSlice({
