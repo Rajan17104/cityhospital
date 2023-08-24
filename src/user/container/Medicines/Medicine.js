@@ -5,7 +5,7 @@ import { getMedicine } from '../../Redux/action/medicine.action';
 import { addCart } from '../../Redux/slice/CartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchIcon from '@mui/icons-material/Search';
-import { addToFavorite, removeToFavorite } from '../../Redux/action/favorite.action';
+import { addOnfavApi, removeOnfavApi } from '../../Redux/action/favorite.action';
 // import { addToCart } from '../../Redux/action/cart.action';
 
 function Medicine(props) {
@@ -59,12 +59,13 @@ function Medicine(props) {
     }
     
     const addFavorite = (id) => {
-        dispatch(addFavorite(id))
+        dispatch(addOnfavApi(id))
         console.log("add favourite called" + id);
     }
+    console.log(addFavorite);
 
     const removeFavorite = (id) => {
-        dispatch(removeFavorite(id))
+        dispatch(removeOnfavApi(id))
         console.log("remove favorite  called" + id);
     }
 

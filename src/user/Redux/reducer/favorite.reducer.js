@@ -1,4 +1,4 @@
-import * as ActionType from '../ActionType'
+    import * as ActionType from '../ActionType'
 
 const initState = {
     items: [],

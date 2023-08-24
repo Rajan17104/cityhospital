@@ -18,7 +18,7 @@ function ListMedicines({ mdata, cart, addFavorite,removeFavorite, favourite }) {
 
                                 addFavorite={addFavorite}
                                 removeFavorite={removeFavorite}
-                                favourite={favourite ? favourite.some((f) => f.foid === v.id) : null}
+                                favourite={favourite ? favourite.some((f) => f.fid === v.id) : null}
                                 favouriteTrue={true}
                             />
                             {/* </Link > */}

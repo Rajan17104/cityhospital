@@ -36,8 +36,11 @@ function Header({ count }) {
   }));
 
   const cartData = useSelector((state) => state.cart)
-
+  const favData = useSelector(state => state.favourite);
+  
   console.log(cartData);
+  console.log(favData);
+
 
   let cartCount = 0;
 
@@ -45,9 +48,13 @@ function Header({ count }) {
     cartCount = cartData.items.reduce((acc, v, i) => acc + v.qty, 0)
   }
 
-  const favouriteState = useSelector(state => state.favourites);
-  console.log(favouriteState);
+  /*******************************/
 
+  let favCount = 0;
+
+  if (favData.items) {
+    favCount = favData.items.reduce((acc, v, i) => acc + v.qty, 0)
+  }
   const handleremove = () => {
     // localStorage.removeItem('logindata');
     dispatch(logoutRequest())
@@ -92,7 +99,7 @@ function Header({ count }) {
 
             <Link to='/favorite'>
               <FavoriteIcon aria-label="cart" style={{ color: 'red' }}>
-                <StyledBadge badgeContent={{}} color="secondary">
+                <StyledBadge badgeContent={favCount} color="secondary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </FavoriteIcon >

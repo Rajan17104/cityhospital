@@ -21,13 +21,6 @@ function Favorite(props) {
         return { ...Fdata, ...v }
     })
 
-    // const handleAddfavourite = (id) => {
-    //     dispatch(addFavourite(id))
-    // }
-
-    // const handleRemovefavourite = (id) => {
-    //     dispatch(removeFavourite(id))
-    // }
 
     return (
 

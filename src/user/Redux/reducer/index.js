@@ -14,9 +14,6 @@ import favouriteReducer  from "..//slice/FavouriteSlice";
 
 // import { departmentReducer } from "./department.reducer";
 
-
-
-
 export const rootReducer = combineReducers({
     auth: authReducer,
     alert: alertReducer,
