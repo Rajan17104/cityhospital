@@ -1,3 +1,4 @@
+import { Call } from '@mui/icons-material';
 import * as ActionType from '../ActionType'
 
 const initState = {
@@ -18,10 +19,10 @@ export const favouriteReducer = (state = initState, action) => {
             let newD;
 
             if (item) {
-                newD =  state.item.filter((v) => v.pid !== action.payload.pid)
+                newD = state.item.filter((v) => v.pid !== action.payload.pid)
 
                 state.item = newD
-                
+
             } else {
                 state.item.push(action.payload);
             }
@@ -36,9 +37,18 @@ export const favouriteReducer = (state = initState, action) => {
                 error: null
             }
 
-        default : 
+        case ActionType.REMOVE_TO_FAVORITE:
 
-        return state
+            return {
+                ...state,
+                item: state.item.filter((v) => v.pid !== action.payload)
+            }
+
+
+
+        default:
+
+            return state
     }
 
 }
