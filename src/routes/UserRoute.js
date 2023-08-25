@@ -71,8 +71,8 @@ function UserRoute(props) {
         <Route path='/cart' element={<Cart />} />
         {/* <Route path='/cart1' element={<Cart_1 />} /> */}
         <Route path='/favorite' element={<Favorite />} />
-        <Route path='/memocounter' element={<MemoCounter />} />
-        <Route path='/callback' element={<Callback />} />
+        {/* <Route path='/memocounter' element={<MemoCounter />} /> */}
+        {/* <Route path='/callback' element={<Callback />} /> */}
         {/* <Route path='/ref' element={<UseRefExample />} /> */}
 
 

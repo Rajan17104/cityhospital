@@ -87,25 +87,15 @@ function Header({ count }) {
 
             <Link to="/cart">
               <IconButton aria-label={`cart ${theme.theme}`} style={{}}>
-                <StyledBadge badgeContent={cartCount} color="info">
+                <StyledBadge badgeContent={cartCount} color="primary">
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
             </Link>
 
-            {/* <Link to="/cart1">
-              <IconButton aria-label="cart" style={{}}>
-                <StyledBadge badgeContent={count} color="secondary">
-                  <ShoppingCartIcon />
-                </StyledBadge>
-              </IconButton >
-            </Link> */}
-
-
-
             <Link to="/favorite">
               <IconButton aria-label="cart">
-                <StyledBadge badgeContent={favCount} color="info">
+                <StyledBadge badgeContent={favCount} color="error">
                   <FavoriteIcon  />
                 </StyledBadge>
               </IconButton>
@@ -138,8 +128,8 @@ function Header({ count }) {
               {/* <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li> */}
               {/* <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li> */}
               <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
-              <li><Link className="nav-link scrollto" to='/memocounter'>Memo</Link></li>
-              <li><Link className="nav-link scrollto" to='/callback'>callback</Link></li>
+              {/* <li><Link className="nav-link scrollto" to='/memocounter'>Memo</Link></li>
+              <li><Link className="nav-link scrollto" to='/callback'>callback</Link></li> */}
               {/* <li><Link className="nav-link scrollto" to='/ref'>UseRef</Link></li> */}
 
 

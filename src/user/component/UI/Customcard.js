@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 
-function Customcard({ values, btnVal, onclick1, onclick2, onclick3, removefav, item, btnText, favourite, removeFavourite, addFavourite, favouriteTrue }) {
+function Customcard({ values, btnVal, onclick1, onclick2, removefav, item, favouriteTrue }) {
     return (
 
         <Card className='card'
@@ -46,10 +46,10 @@ function Customcard({ values, btnVal, onclick1, onclick2, onclick3, removefav, i
                     className="mb-2 text-muted"
                     tag="h6"
                 >
-                    {values.price}
+                    {'Price ' + values.price}
                 </CardSubtitle>
                 <CardText>
-                    {values.expiry}<br />
+                    {'Date ' + values.expiry}<br />
                     {values.desc.substring(0, 50)}
                 </CardText>
                 <div style={{ justifyContent: 'space-between' }}>
