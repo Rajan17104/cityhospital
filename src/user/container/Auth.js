@@ -8,6 +8,7 @@ import Input from '../component/UI/InputBox/Input';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
 import { auth } from '../../firebase';
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { forgetRequest, loginRequest, signupRequest } from '../Redux/action/auth.action';
@@ -133,6 +134,28 @@ function Auth(props) {
     //     // ..
     //   });
   }
+  const loginWithGoogle = () => {
+    // const provider = new GoogleAuthProvider();
+
+    // handleregister(auth, provider)
+    //   .then((result) => {
+    //     console.log(result);
+    //   }).catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // try {
+    //   const auth = getAuth();
+    //   const provider = new GoogleAuthProvider();
+    //   const result = auth()
+    //     .handleregister(auth, provider)
+    //   console.log(result);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
+
+
 
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
 
@@ -153,7 +176,7 @@ function Auth(props) {
           </div>
           {
             auth.loading ?
-              <div style={{textAlign: 'center'}}>
+              <div style={{ textAlign: 'center' }}>
                 <CircularProgress style={{ color: "red" }} />
               </div>
               :
@@ -226,9 +249,19 @@ function Auth(props) {
 
                 {
                   authType === 'login' ?
-                    <div className="text-center"><Button type='primary' >Login</Button></div> :
+                    <>
+                      <div className="text-center"><Button type='primary' >Login</Button></div>
+                      <button onClick={() => loginWithGoogle()}>
+                        Google
+                      </button>
+                    </> :
                     authType === 'sign up' ?
-                      <div className="text-center"><Button type='secondary'>Sign up</Button></div> :
+                      <>
+                        <div className="text-center"><Button type='secondary'>Sign up</Button></div>
+                        <button onClick={() => loginWithGoogle()}>
+                          Google
+                        </button>
+                      </> :
                       <div className="text-center"><Button type='outline' >Submit</Button></div>
                 }
 

@@ -2440,10 +2440,141 @@ nav nav-tabs flex-column {
   }
 }
 
+/* .icon-hover-primary:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+}
+
+.icon-hover-primary:hover i {
+  color: #3b71ca !important;
+}
+.icon-hover-danger:hover {
+  border-color: #dc4c64 !important;
+  background-color: white !important;
+}
+
+.icon-hover-danger:hover i {
+  color: #dc4c64 !important;
+} */
+
+.img-thumbnail {
+  background-color: transparent;
+}
+
+.css-heg063-MuiTabs-flexContainer {
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.css-aym9vq-MuiButtonBase-root-MuiTab-root {}
 
 
-@media screen and (max-width: 1199px) {
 
-  
+/***my responsive***/
 
+
+@media (max-width: 768px) {
+
+  .Appointment Button,
+  .Authbtn Button {
+    width: 82px;
+    height: 40px;
+    padding: 0;
+    border-radius: 20px;
+
+  }
+
+  .Appointment Button p,
+  .Authbtn Button p {
+    font-size: 12px;
+  }
+
+}
+
+
+@media (max-width: 576px) {
+
+  .Appointment Button,
+  .Authbtn Button {
+    width: 82px;
+    height: 40px;
+    padding: 0;
+    border-radius: 20px;
+    flex-wrap: wrap;
+  }
+
+  .Appointment Button p,
+  .Authbtn Button p {
+    font-size: 12px;
+  }
+
+
+}
+
+@media (max-width: 900px) {
+  .product .popup-card {
+    flex-direction: column;
+    width: 550px;
+    height: auto;
+  }
+
+  .product .popup-card .product-img {
+    z-index: 3;
+    width: 100%;
+    height: 200px;
+    transform: translateY(0);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .product .popup-card .product-img img {
+    left: initial;
+    max-width: 100%;
+  }
+
+  .product .popup-card .info {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .product .popup-card .info h2 {
+    margin: 20px 5px 5px 5px;
+    font-size: 25px;
+  }
+
+  .product .popup-card .info h2 span {
+    font-size: 10px;
+  }
+
+  .product .popup-card .info p {
+    margin: 5px;
+    font-size: 13px;
+  }
+
+  .product .popup-card .info .price {
+    margin: 5px;
+    font-size: 30px;
+  }
+
+  .product .popup-card .info .add-cart-btn {
+    margin: 5px auto;
+    padding: 5px 40px;
+    font-size: 14px;
+  }
+
+  .product .popup-card .info .add-wish {
+    font-size: 14px;
+  }
+
+  .product .popup-card .close-btn {
+    z-index: 4;
+  }
+
+  .drawer { 
+    margin-left: 50px;
+  }
 }

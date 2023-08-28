@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './UI/Button/Button';
 import Badge from '@mui/material/Badge';
@@ -10,12 +10,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ThemeContext } from '../Context/ThemeContext';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import { logoutRequest } from '../Redux/action/auth.action';
-
+// import { Drawer, Placeholder } from 'rsuite';
 
 // import './App.css'
 
 function Header({ count }) {
 
+
+  const [open, setOpen] = useState(false);
 
   let auth = useSelector(state => state.auth)
   console.log(auth);
@@ -96,7 +98,7 @@ function Header({ count }) {
             <Link to="/favorite">
               <IconButton aria-label="cart">
                 <StyledBadge badgeContent={favCount} color="error">
-                  <FavoriteIcon  />
+                  <FavoriteIcon />
                 </StyledBadge>
               </IconButton>
             </Link>
@@ -140,26 +142,45 @@ function Header({ count }) {
 
 
             </ul>
-            <i className="bi bi-list mobile-nav-toggle" />
+            <i onClick={() => setOpen(true)} className="bi bi-list mobile-nav-toggle" />
 
             {/* <i className="bi bi-list mobile-nav-toggle" onClick={toggleMenu}/> */}
           </nav>
-          <Link to='/appointment' >
+          <Link to='/appointment' className='Appointment'>
             {/* <span className="d-none d-md-inline">Make an</span> */}
-            <Button>Appointment</Button>
+            <Button><p>Appointment</p></Button>
           </Link>
 
           {
             auth.user ?
-              <Link to="/auth" onClick={handleremove}>
-                <Button>Logout</Button>
+              <Link to="/auth" className='Authbtn' onClick={handleremove}>
+                <Button><p>Logout</p></Button>
               </Link> :
 
-              <Link to="/auth" >
-                <Button>Login/Signup</Button>
+              <Link to="/auth" className='Authbtn' >
+                <Button><p>Login/Signup</p></Button>
               </Link>
           }
 
+          {/* <div className='drawer' >
+            <Drawer backdrop={"static"} open={open} onClose={() => setOpen(false)}>
+              <Drawer.Header>
+                <Drawer.Title>Navbar List</Drawer.Title>
+              </Drawer.Header>
+              <Drawer.Body>
+                <nav>
+                  <ul>
+                    <li><Link to="/" onClick={() => setOpen(false)}>Home</Link></li>
+                    <li><Link to="/department" onClick={() => setOpen(false)}>Departments</Link></li>
+                    <li><Link to="/doctors" onClick={() => setOpen(false)}>Doctors</Link></li>
+                    <li><Link to="/about" onClick={() => setOpen(false)}>About</Link></li>
+                    <li><Link to="/contact" onClick={() => setOpen(false)}>Contact</Link></li>
+                    <li><Link to="/medicine" onClick={() => setOpen(false)}>Medicine</Link></li>
+                  </ul>
+                </nav>
+              </Drawer.Body>
+            </Drawer>
+          </div> */}
 
         </div>
       </header>

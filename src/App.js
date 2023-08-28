@@ -11,6 +11,7 @@ import { ThemeContext, ThemeProvider } from './user/Context/ThemeContext';
 import Alert from './user/component/Alert/Alert';
 import { SnackbarProvider } from 'notistack';
 import { useContext } from 'react';
+import './rsuite.css';
 
 function App() {
 
