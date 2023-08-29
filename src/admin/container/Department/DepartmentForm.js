@@ -9,15 +9,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-function DepartmentForm({onhandlesubmit , onupdate}) {
+function DepartmentForm({ onhandlesubmit, onupdate }) {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (onupdate) {
       formik.setValues(onupdate)
       handleClickOpen()
-  }
-  },[onupdate])
+    }
+  }, [onupdate])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,7 +29,7 @@ function DepartmentForm({onhandlesubmit , onupdate}) {
 
 
   let departmentSchema = yup.object({
-    
+
     name: yup.string().required().matches(/^[a-zA-Z ]+$/, 'please enter a valid name'),
     desc: yup.string().required(),
     // img: yup.string().required()
@@ -52,9 +52,9 @@ function DepartmentForm({onhandlesubmit , onupdate}) {
     },
   })
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = formik;
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit,setFieldValue,setValues } = formik;
 
-console.log(errors);
+  console.log(errors);
 
   return (
     <>
@@ -108,13 +108,26 @@ console.log(errors);
               onBlur={handleBlur}
             /> */}
             {/* <span style={{ color: 'red' }}>{errors.img && touched.img ? errors.img : null}</span> */}
-           
+
+            <div className="col-md-4 form-group mt-3">
+              <input type="file"
+                name="prec"
+                id="datprece"
+                onChange={(event => setFieldValue("prec", event.target.files[0]))}
+                onBlur={handleBlur}
+              />
+
+              {/* <img src={typeof values.prec === "string" ? values.prec : URL.createObjectURL(values.prec)} width={'70px'} height={'50px'} /> */}
+              <span style={{ color: 'red' }}>{errors.prec && touched.prec ? errors.prec : null}  </span>
+
+            </div>
+
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
               <Button type='submit'>submit</Button>
             </DialogActions>
           </form>
-          
+
         </DialogContent>
 
       </Dialog>

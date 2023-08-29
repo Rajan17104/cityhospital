@@ -46,12 +46,22 @@ function Department(props) {
         // { field: 'id', headerName: 'ID', width: 130 },
         { field: 'name', headerName: 'Name', width: 130 },
         { field: 'desc', headerName: 'desc', width: 250 },
+        {
+            field: 'prec', headerName: 'img', width: 250 ,
+            renderCell: (parmas) => {
+                return (
+                    <div>
+                        <img  src={parmas.row.prec} style={{width:'150px' , height:"50px"}} />
+                    </div>
+                )
+            }
+        },
         // { field: 'date', headerName: 'date', width: 250 },
         {
             field: 'action', headerName: 'action', width: 130,
             renderCell: (params) => (
                 <>
-                    <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(params.row.id)}>
+                    <IconButton style={{ color: 'red' }} aria-label="delete" onClick={() => handleDelete(params.row)}>
                         <DeleteIcon />
                     </IconButton>
 
