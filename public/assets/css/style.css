@@ -2080,7 +2080,7 @@ section {
 }
 
 /* Drawer */
-/* 
+
 nav ul li a {
   font-size: 16px;
   padding: 20px 18px;
@@ -2099,7 +2099,7 @@ nav ul li a {
 
 nav ul {
   list-style: none;
-} */
+}
 
 
 nav nav-tabs flex-column {
@@ -2446,4 +2446,33 @@ nav nav-tabs flex-column {
 
   
 
+}
+
+.dark #topbar .contact-info i,
+.dark #topbar .contact-info a,
+.dark #topbar .social-links a,
+.dark #header .logo,
+.dark .section-title h2,
+.dark .services .icon-box h4 a,
+.dark .testimonials .testimonial-item h3,
+.dark .testimonials .testimonial-item h4,
+.dark .testimonials .testimonial-item p,
+.dark .swiper-button-prev,
+.swiper-container-rtl .swiper-button-next,
+.dark .swiper-button-next,
+.swiper-container-rtl .swiper-button-prev,
+.dark .departments .details h3,
+.dark .departments .details p,
+.dark .section-title p,
+.dark .member-info p,
+.dark .member-info h4,
+.dark .member-info span,
+.dark .about h3,
+.dark .about-title h2,
+.dark .about-title h5,
+.dark .info h4,
+.dark .info p,
+.dark .medicine label,
+.dark .medicine input {
+  color: #fff;
 }
