@@ -9,7 +9,7 @@ function ListMedicines({ mdata, cart, handlefav, item, removefav,favouriteTrue, 
                 mdata.map((v) => {
                     return (
 
-                        <div className='col-md-4 g-5'>
+                        <div className='col-md g-5'>
                             {/* <Link to={`/medi-details/${v.id}`}> */}
                             <Customcard
                                 values={v}

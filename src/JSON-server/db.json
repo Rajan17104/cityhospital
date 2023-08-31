@@ -87,6 +87,13 @@
       "price": 70,
       "expiry": 2023,
       "desc": "Aripiprazole is used to treat certain mental/mood disorders (such as bipolar disorder, schizophrenia, Tourette's syndrome, and irritability associated with autistic disorder). It may also be used in combination with other medication to treat depression. Aripiprazole is known as an antipsychotic drug (atypical type)."
+    },
+    {
+      "name": "Dolo",
+      "price": "60",
+      "expiry": "2023-09-01",
+      "desc": "Ruxolitinib, sold under the brand name Jakafi amon",
+      "id": 8
     }
   ],
   "department": [

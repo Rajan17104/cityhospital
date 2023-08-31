@@ -18,7 +18,7 @@ import { Drawer } from 'rsuite';
 function Header({ count }) {
 
 
-  const [open,setOpen] =useState(false)
+  const [open, setOpen] = useState(false)
 
   let auth = useSelector(state => state.auth)
   console.log(auth);
@@ -90,7 +90,7 @@ function Header({ count }) {
 
             <Link to="/cart">
               <IconButton aria-label={`cart ${theme.theme}`} style={{}}>
-                <StyledBadge badgeContent={cartCount} color="primary">
+                <StyledBadge badgeContent={cartCount} color="primary" className={` ${theme.theme}`}>
                   <ShoppingCartIcon />
                 </StyledBadge>
               </IconButton >
@@ -98,7 +98,7 @@ function Header({ count }) {
 
             <Link to="/favorite">
               <IconButton aria-label="cart">
-                <StyledBadge badgeContent={favCount} color="error">
+                <StyledBadge badgeContent={favCount} color="error" className={` ${theme.theme}`}>
                   <FavoriteIcon />
                 </StyledBadge>
               </IconButton>
@@ -120,26 +120,26 @@ function Header({ count }) {
               <h2 className="logo-tiny-text me-auto">Multispeciality Hospital</h2>
             </Link>
           </div>
-          <nav id="navbar" className="navbar order-last order-lg-0 ">
+          <nav id="navbar" className={`navbar order-last order-lg-0 ${theme.theme}`}>
             <ul>
-              <li><Link className="nav-link scrollto active" to='/'>Home</Link></li>
+              <li><Link className={`nav-link scrollto active ${theme.theme}`} to='/' >Home</Link></li>
               {/* <li><Link className="nav-link scrollto" to='/departments'>Departments</Link></li> */}
-              <li><Link className="nav-link scrollto" to='/department'>Department</Link></li>
-              <li><Link className="nav-link scrollto" to='/doctors'>Doctors</Link></li>
-              <li><Link className="nav-link scrollto" to='/about'>About</Link></li>
-              <li><Link className="nav-link scrollto" to='/contact'>Contact</Link></li>
-              {/* <li><Link className="nav-link scrollto" to='/validation'>Validation Form</Link></li> */}
-              {/* <li><Link className="nav-link scrollto" to='/dropdown'>Dropdown</Link></li> */}
-              <li><Link className="nav-link scrollto" to='/medicine'>Medicine</Link></li>
-              {/* <li><Link className="nav-link scrollto" to='/memocounter'>Memo</Link></li>
-              <li><Link className="nav-link scrollto" to='/callback'>callback</Link></li> */}
-              {/* <li><Link className="nav-link scrollto" to='/ref'>UseRef</Link></li> */}
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/department'>Department</Link></li>
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/doctors'>Doctors</Link></li>
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/about'>About</Link></li>
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/contact'>Contact</Link></li>
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/validation'>Validation Form</Link></li> */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/dropdown'>Dropdown</Link></li> */}
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/medicine'>Medicine</Link></li>
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/memocounter'>Memo</Link></li>
+              <li><Link className={`nav-link scrollto ${theme.theme}`} to='/callback'>callback</Link></li> */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/ref'>UseRef</Link></li> */}
 
 
-              {/* <li><Link className="nav-link scrollto" to='/medicine1'>Medicine1</Link></li> */}
-              {/* <li><Link className="nav-link scrollto" to='/counter'>Counter</Link></li>*/}
-              {/* <li><Link className="nav-link scrollto" to='/counter1'>Counter</Link></li>  */}
-              {/* <li><Link className="nav-link scrollto" to='/favorite'>My Favorite</Link></li> */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/medicine1'>Medicine1</Link></li> */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/counter'>Counter</Link></li>*/}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/counter1'>Counter</Link></li>  */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/favorite'>My Favorite</Link></li> */}
 
 
             </ul>

@@ -30,7 +30,7 @@ function DepartmentForm({ onhandlesubmit, onupdate }) {
 
   let departmentSchema = yup.object({
 
-    name: yup.string().required().matches(/^[a-zA-Z ]+$/, 'please enter a valid name'),
+    name: yup.string().required(),
     desc: yup.string().required(),
     // img: yup.string().required()
 

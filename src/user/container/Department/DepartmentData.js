@@ -100,7 +100,7 @@ function DepartmentData(props) {
                                                 <div className="col-lg-4 text-center order-1 order-lg-2">
                                                     {v.date}
                                                     {/* {v.img} */}
-                                                    <img src="../assets/img/departments-1.jpg" alt="img" className="img-fluid" />
+                                                    <img src={v.prec} alt="img" className="img-fluid" />
                                                 </div>
                                             </div>
                                         </div>
