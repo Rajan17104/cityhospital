@@ -28,6 +28,7 @@ import { ThemeContext } from '../user/Context/ThemeContext';
 import MedicineDetails from '../user/container/Medicines/MedicineDetails';
 import MemoCounter from '../user/container/MemoCounter';
 import Callback from '../user/container/Callback';
+import Validation1 from '../user/container/Validation1';
 // import UseRefExample from '../user/container/UseRefExample';
 
 function UserRoute(props) {
@@ -49,7 +50,10 @@ function UserRoute(props) {
         <Route path='/about' element={<About />} />
        // {/* <Route path='/contact' element={<Contact />} /> */}
         <Route path='/contact' element={<Contact1 />} />
+        
   
+        <Route path='/validation1' element={<Validation1 />} />
+
         // <Route path='/doctor/:id' element={<Doctor />} />
         // <Route path='/medi-details/:id' element={<MedicineDetails />} />
 
@@ -65,7 +69,7 @@ function UserRoute(props) {
         <Route path='/auth' element={<Auth />} />
       //  {/* <Route path='/auth' element={<Auth1 />} /> */}
         <Route path='/extra' element={<Extra />} />
-        {/* <Route path='/validation' element={<Validation />} /> */}
+        <Route path='/validation' element={<Validation />} />
         {/* <Route path='/counter' element={<Counter />} /> */}
         {/* <Route path='/counter1' element={<Counter />} /> */}
         <Route path='/cart' element={<Cart />} />

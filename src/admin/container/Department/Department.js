@@ -47,11 +47,11 @@ function Department(props) {
         { field: 'name', headerName: 'Name', width: 130 },
         { field: 'desc', headerName: 'desc', width: 250 },
         {
-            field: 'prec', headerName: 'img', width: 250 ,
+            field: 'prec', headerName: 'img', width: 100 ,
             renderCell: (parmas) => {
                 return (
                     <div>
-                        <img  src={parmas.row.prec} style={{width:'150px' , height:"50px"}} />
+                        <img  src={parmas.row.prec} style={{width:'100px' , height:"50px"}} />
                     </div>
                 )
             }

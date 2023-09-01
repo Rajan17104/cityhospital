@@ -129,6 +129,8 @@ function Header({ count }) {
               <li><Link className={`nav-link scrollto ${theme.theme}`} to='/about'>About</Link></li>
               <li><Link className={`nav-link scrollto ${theme.theme}`} to='/contact'>Contact</Link></li>
               {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/validation'>Validation Form</Link></li> */}
+              {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/validation1'>Validation Form1</Link></li> */}
+             
               {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/dropdown'>Dropdown</Link></li> */}
               <li><Link className={`nav-link scrollto ${theme.theme}`} to='/medicine'>Medicine</Link></li>
               {/* <li><Link className={`nav-link scrollto ${theme.theme}`} to='/memocounter'>Memo</Link></li>
