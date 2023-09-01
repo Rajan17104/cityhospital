@@ -25,7 +25,7 @@ function Customcard({ values, btnVal, onclick1, onclick2, removefav, item, favou
             <CardBody>
                 <div className='d-flex' style={{ justifyContent: 'space-between' }} >
                     <CardTitle tag="h5">
-                        {values.name}
+                       <b>Name :</b> {values.name}
 
                     </CardTitle>
                     {
@@ -46,12 +46,13 @@ function Customcard({ values, btnVal, onclick1, onclick2, removefav, item, favou
                     className="mb-2 text-muted"
                     tag="h6"
                 >
-                    {'Price ' + values.price}
+                   <b>Price :</b> {values.price}
                 </CardSubtitle>
                 <CardText>
-                    {'Date ' + values.expiry}<br />
-                    {values.desc.substring(0, 50)}
+                  <b>Ex.Date :</b> {values.expiry}<br></br>
+                   <b>Desc :</b> {values.desc.substring(0, 50)}
                 </CardText>
+                <br></br>
                 <div style={{ justifyContent: 'space-between' }}>
                     <div>
                         {
