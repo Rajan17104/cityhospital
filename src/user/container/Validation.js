@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 import React from 'react';
 import * as yup from 'yup';
 
@@ -44,7 +43,7 @@ function Validation(props) {
                     return true
                 }
             }),
-        date: yup.date().max(new Date(), "Enter a Valid Date").required(),
+        date: yup.date().min(new Date(), "Enter a Valid Date").required(),
         condition: yup.boolean().oneOf([true]).required('please select Your condition'),
 
     });
@@ -68,14 +67,14 @@ function Validation(props) {
 
         },
         onSubmit: values => {
-
+            console.log(values);
         },
     });
 
     const { values, errors, handleBlur, handleChange, handleSubmit, touched } = formik;
 
     return (
-        <section id="contac" className="contact">
+        <section id="contac" className="contact" >
             <h1>Validation form</h1>
             <div className="col-lg-8 mt-5 mt-lg-0">
                 <form onSubmit={handleSubmit} onChange={handleChange} onBlur={handleBlur} action method="post" role="form" className="php-email-form">
@@ -278,12 +277,6 @@ function Validation(props) {
                     </div>
                     <div className="text-cente"><button type="submit">submit</button></div>
                 </form>
-            </div>
-
-            <div>
-                <SnackbarProvider />
-                <button style={{height: '30px' , backgroundColor: 'blue'}} onClick={() => enqueueSnackbar('That was easy!')}>Show snackbar</button>
-                <button style={{height: '30px' ,  marginLeft: '10px', backgroundColor: 'green'}} onClick={() => enqueueSnackbar('I love hooks')}>Show snackbar</button>           
             </div>
         </section>
     );
