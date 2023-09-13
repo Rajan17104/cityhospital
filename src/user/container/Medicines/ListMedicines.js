@@ -10,7 +10,7 @@ function ListMedicines({ mdata, cart, handlefav, item, removefav,favouriteTrue, 
                     return (
 
                         <div className='col-md g-5'>
-                            {/* <Link to={`/medi-details/${v.id}`}> */}
+                                {/* <Link to={`/medi-details/${v.id}`}> */}
                             <Customcard
                                 values={v}
                                 btnVal={"Add to cart"}
@@ -20,10 +20,6 @@ function ListMedicines({ mdata, cart, handlefav, item, removefav,favouriteTrue, 
                                 removefav={removefav}
                                 item={item ? item.some((m) => m.pid === v.id) : null}
                                 favouriteTrue={true}
-                            // addFavorite={addFavorite}
-                            // removeFavorite={removeFavorite}
-                            // favourite={favourite ? favourite.some((f) => f.foid === v.id) : null}
-                            // favouriteTrue={true}
                             />
                             {/* </Link > */}
                         </div >

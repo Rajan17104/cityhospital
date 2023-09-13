@@ -105,16 +105,6 @@ function Cart(props) {
                     })
                 }
 
-                {/* <div className='' style={{}}>
-                    <p>{Total}</p>
-                </div> */}
-
-                {/* <div className=" align-items-center" style={{display:'flex' , alignItems:'flex-end'}}>
-                    Total Amount Is:-
-                    <div style={{ width: 80 }}>
-                        <h5 className="mb-0">{Total}</h5>
-                    </div>
-                </div> */}
 
                 {
                     cartData.items.length > 0 ?

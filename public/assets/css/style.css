@@ -2142,10 +2142,6 @@ nav nav-tabs flex-column {
   background-color: #000;
 }
 
-/* .dark .card{
-  background-color: #fff;
-  color: #000;
-} */
 
 .dark .card {
   background-color: #000;
@@ -2483,13 +2479,7 @@ nav nav-tabs flex-column {
   color: #fff;
 }
 
-/* .light  .nav-link.active:hover{
-  background-color: #FF6337 !important;   
-} */
 
-/* .light .nav-link.active:hover a{
-  background-color: #FF6337;
-} */
 
 body {
   font-family: "Open Sans", sans-serif;
