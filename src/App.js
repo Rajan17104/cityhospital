@@ -15,7 +15,7 @@ import './rsuite.css'
 
 function App() {
 
-  const { store, persistor } = configureStore();
+  // const { store, persistor } = configureStore();
 
   // let theme = useContext(ThemeContext);
   // console.log(theme);

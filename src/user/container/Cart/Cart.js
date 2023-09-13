@@ -64,6 +64,9 @@ function Cart(props) {
                         ipsum lacus, ut pharetra arcu sagittis nec. Phasellus a eleifend elit.
                     </Title> */}
                 </div>
+                <div style={{display: "flex" , justifyContent: "flex-end"}}>
+                    <button style={{ backgroundColor: "#FF6337", padding: "10px", marginBottom: "20px", borderRadius: "20px" }}><a style={{ color: "#fff" }} href='/Medicine'>Continue shoping </a></button>
+                </div>
                 {
                     cartItems.map((c) => {
                         return (
@@ -80,11 +83,11 @@ function Cart(props) {
                                         <div className="d-flex flex-row align-items-center">
                                             <div style={{ width: 150, display: 'flex' }}>
 
-                                                <button style={{ backgroundColor: '#FF6337', color: 'white', borderRadius: '50%' ,margin:'0 10px'}} onClick={() => handleDec(c.pid)}><RemoveIcon /></button>
+                                                <button style={{ backgroundColor: '#FF6337', color: 'white', borderRadius: '50%', margin: '0 10px' }} onClick={() => handleDec(c.pid)}><RemoveIcon /></button>
                                                 {/* <Button style={{ width: '50px', height: '20px', display: 'flex', alignItems: 'center' }} onClick={() => handleDec(c.pid)}><RemoveIcon style={{ display: 'flex', alignItems: 'center' }} /></Button> */}
 
                                                 <h5 className="fw-normal mb-0">{c.qty}</h5>
-                                                <button style={{ backgroundColor: '#FF6337', color: 'white', borderRadius: '50%' ,margin:'0 10px' }} onClick={() => handleInc(c.pid)}><AddIcon /></button>
+                                                <button style={{ backgroundColor: '#FF6337', color: 'white', borderRadius: '50%', margin: '0 10px' }} onClick={() => handleInc(c.pid)}><AddIcon /></button>
                                             </div>
                                             <div style={{ width: 80 }}>
 
