@@ -7,17 +7,19 @@ import Button from '../component/UI/Button/Button';
 import Input from '../component/UI/InputBox/Input';
 import { Title } from '../component/UI/Subtitel/subtitel.style';
 import { H2 } from '../component/UI/Heading/heading.style';
-import { auth } from '../../firebase';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useDispatch, useSelector } from 'react-redux';
 import { forgetRequest, loginRequest, signupRequest } from '../Redux/action/auth.action';
 import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 import { CircularProgress } from '@mui/material';
+import GoogleIcon from '@mui/icons-material/Google';
 
 
 function Auth(props) {
 
   const [authType, setAuthType] = useState('login');
+  const provider = new GoogleAuthProvider();
+  const authGoogle = getAuth();
 
   const auth = useSelector(state => state.auth);
   console.log(auth);
@@ -83,8 +85,10 @@ function Auth(props) {
     console.log(values);
 
     dispatch(loginRequest(values))
+    if (authType === true) {
+      navigate('/')
+    }
     // localStorage.setItem("logindata", 'true')
-    // navigate('/')
   }
 
   const handleregister = (values) => {
@@ -134,6 +138,10 @@ function Auth(props) {
     //   });
   }
 
+  const signupWithGoogle = () => {
+    signInWithPopup(authGoogle, provider)
+  }
+
   const { handleBlur, handleChange, handleSubmit, values, errors, touched } = formik;
 
 
@@ -153,7 +161,7 @@ function Auth(props) {
           </div>
           {
             auth.loading ?
-              <div style={{textAlign: 'center'}}>
+              <div style={{ textAlign: 'center' }}>
                 <CircularProgress style={{ color: "red" }} />
               </div>
               :
@@ -224,12 +232,28 @@ function Auth(props) {
 
 
 
+
+
                 {
+
                   authType === 'login' ?
-                    <div className="text-center"><Button type='primary' >Login</Button></div> :
+                    <>
+                      <div className="text-center"><Button type='primary' >Login</Button></div>
+
+                    </>
+                    :
+
                     authType === 'sign up' ?
-                      <div className="text-center"><Button type='secondary'>Sign up</Button></div> :
-                      <div className="text-center"><Button type='outline' >Submit</Button></div>
+                      <>
+                        <div className="text-center"><Button type='secondary'>Sign up</Button></div>
+
+                      </>
+                      :
+                      <>
+                        <div className="text-center"><Button type='outline' >Submit</Button></div>
+
+
+                      </>
                 }
 
               </form>
@@ -250,7 +274,13 @@ function Auth(props) {
             <div className='text-center'>
               <span>Creat new account<a href="#" onClick={() => setAuthType('login')}>  Login </a></span>
             </div>
-        }<br /><br />
+        }<br></br>
+
+        <div style={{ textAlign: 'center' }}> ______________________OR______________________</div>
+
+        <br></br>
+        <div className="text-center google"><GoogleIcon onClick={signupWithGoogle} />  continue With Google</div>
+
 
       </section >
     </>
