@@ -23,8 +23,6 @@ function MedicineDetails(props) {
     return (
         <>
             <div className="row">
-
-
                 <div className="col-lg-6-">
                     {/* <p>{id}</p> */}
                     <div className="member d-flex align-items-start">

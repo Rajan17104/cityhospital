@@ -279,8 +279,7 @@ function Auth(props) {
         <div style={{ textAlign: 'center' }}> ______________________OR______________________</div>
 
         <br></br>
-        <div className="text-center google"><GoogleIcon onClick={signupWithGoogle} />  continue With Google</div>
-
+        <div className="text-center google" onClick={signupWithGoogle} ><GoogleIcon /> continue With Google</div>
 
       </section >
     </>

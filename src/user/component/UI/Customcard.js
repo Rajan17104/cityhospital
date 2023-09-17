@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { addFavourite, removeFavourite } from '../../Redux/slice/FavouriteSlice';
 
-function Customcard({ values, btnVal, onclick1, onclick2, removefav, item, favouriteTrue }) {
+function Customcard({ values, btnVal,btnText, onclick1, onclick2, removefav, item, favouriteTrue }) {
     return (
 
         <Card className='card'
@@ -61,6 +61,9 @@ function Customcard({ values, btnVal, onclick1, onclick2, removefav, item, favou
                                     {btnVal}
                                 </Button> : null
                         }
+                          {/* <Button onClick={() => onclick1(values.id)} style={{ backgroundColor: '#FF6337' }}>
+                                    {btnText}
+                                </Button>  */}
 
                         {/* {
                             btnText ?
